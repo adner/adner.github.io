@@ -6,3 +6,7 @@ permalink: /bowtie360/
 Lorem ipsum.
 
 {{ jekyll.environment }}
+
+{{ site.google_analytics}}
+
+
