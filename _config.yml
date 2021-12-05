@@ -21,18 +21,17 @@
 title: The Nullpointer Blog
 email: andreas.adner@apprexo.se
 description: >- # this means to ignore newlines until "baseurl:"
-  Write an awesome description for your new site here. You can edit this
-  line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+  Welcome to my blog about Dynamics 365, the Power Platform and Microsoft Azure!
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+url: "https://adner.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username: andyboy23
+github_username:  adner
 
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
+#  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
@@ -53,3 +52,7 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+#remote_theme: pages-themes/minimal@v0.2.0
+google-analytics: G-T51V1G8E8E
+
+
