@@ -24,7 +24,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Welcome to my blog about Dynamics 365, the Power Platform and Microsoft Azure!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://adner.github.io" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: andyboy23
+twitter_username: adner123
 github_username:  adner
 google-analytics: G-T51V1G8E8E
 
