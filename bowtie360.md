@@ -4,3 +4,5 @@ title: "Bowtie 360"
 permalink: /bowtie360/
 ---
 Lorem ipsum.
+
+{{ jekyll.environment }}
