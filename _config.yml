@@ -29,10 +29,12 @@ github_username:  adner
 google_analytics: G-T51V1G8E8E
 
 # Build settings
-theme: minima
+#theme: minima
+remote_theme: jekyll/minima
+
 plugins:
   - jekyll-feed
-#  - jekyll-remote-theme
+  - jekyll-remote-theme
 
 # Exclude from processing.
 # The following items will not be processed, by default.
