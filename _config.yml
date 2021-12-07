@@ -19,9 +19,10 @@
 # in the templates via {{ site.myvariable }}.
 
 title: The Nullpointer Blog
+repository: adner/adner.github.io
 email: andreas.adner@apprexo.se
-description: >- # this means to ignore newlines until "baseurl:"
-  Welcome to my blog about Dynamics 365, the Power Platform and Microsoft Azure!
+#description: >- # this means to ignore newlines until "baseurl:"
+# Welcome to my blog about Dynamics 365, the Power Platform and Microsoft Azure!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://adner.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: adner123
