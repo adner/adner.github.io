@@ -4,15 +4,8 @@ title: About
 permalink: /about/
 ---
 
-This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](https://jekyllrb.com/)
+Nullpointer Blog, the blog where I write about things that interest me - mainly Power Platform and related technology.
 
-You can find the source code for Minima at GitHub:
-[jekyll][jekyll-organization] /
-[minima](https://github.com/jekyll/minima)
-
-You can find the source code for Jekyll at GitHub:
-[jekyll][jekyll-organization] /
-[jekyll](https://github.com/jekyll/jekyll)
+Blog created in Jekyll, theme [Minima v2.5.1.](https://github.com/jekyll/minima/blob/v2.5.1/). Hosted in Github Pages.
 
 
-[jekyll-organization]: https://github.com/jekyll
