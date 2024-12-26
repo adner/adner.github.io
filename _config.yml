@@ -27,8 +27,14 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://nullpointer.se" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  adner
 repository: adner/adner.github.io
+google_analytics: G-T51V1G8E8E
 
 theme: minima
+
+markdown: GFM
+
+plugins:
+  - jekyll-sitemap
 
 # Exclude from processing.
 # The following items will not be processed, by default.
