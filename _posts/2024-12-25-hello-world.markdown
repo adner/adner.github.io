@@ -26,17 +26,19 @@ docker run --rm --volume="$(PWD):/srv/jekyll" -it jekyll/jekyll sh -c "chown -R 
 source "https://rubygems.org"
 
 gem "github-pages", "~> 232", group: :jekyll_plugins
+gem "kramdown-parser-gfm" 
 ```
+
 - Update the `_config.yml` file and add the following:
+
 ```ruby
 theme: minima
-
-markdown: GFM
 
 plugins:
   - jekyll-sitemap
 ```
-This changes the default markdown processor to GFM, and explicitly tells Jekyll to use the `jekyll-sitemap` plugin, which for some reason is not enabled by default (like most other plugins that comes with the github-pages gem is).
+
+This explicitly tells Jekyll to use the `jekyll-sitemap` plugin, which for some reason is not enabled by default (like most other plugins that comes with the github-pages gem is).
 # Serving the site locally
 You can now use the following command to build and serve the site locally on `http://localhost:4000`.
 ```bash

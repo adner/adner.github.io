@@ -33,8 +33,6 @@ excerpt_separator: <!--end_excerpt-->
 
 theme: minima
 
-markdown: GFM
-
 plugins:
   - jekyll-sitemap
 
