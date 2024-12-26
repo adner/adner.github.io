@@ -28,6 +28,8 @@ url: "https://nullpointer.se" # the base hostname & protocol for your site, e.g.
 github_username:  adner
 repository: adner/adner.github.io
 google_analytics: G-T51V1G8E8E
+show_excerpts: true
+excerpt_separator: <!--end_excerpt-->
 
 theme: minima
 

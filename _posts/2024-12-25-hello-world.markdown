@@ -4,7 +4,7 @@ title:  "How to create a site using Jekyll running in a container and host the s
 date:   2024-12-25
 categories: blog setup
 ---
-This blog is created in [Jekyll](https://jekyllrb.com/), and hosted in Github Pages. The setup is as simple as possible and is limited to the [versions of the plugins](https://pages.github.com/versions/) that are included in the [github-pages](https://rubygems.org/gems/github-pages/versions/228) gem. 
+This blog is created in [Jekyll](https://jekyllrb.com/), and hosted in Github Pages. The setup is as simple as possible and is limited to the [versions of the plugins](https://pages.github.com/versions/) that are included in the [github-pages](https://rubygems.org/gems/github-pages/versions/228) gem.<!--end_excerpt-->
 
 When the files are commited to my github repo the site is automatically built and deployed to Github Pages.
 
