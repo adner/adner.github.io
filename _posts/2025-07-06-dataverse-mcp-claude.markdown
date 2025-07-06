@@ -24,7 +24,7 @@ Now let's make sure that the MCP Server works! A simple way is to use the [MCP I
 ![MCP Inspector](/images/250706_1.webp)
 
 ### Step 2 - Fork the repo
-The repo containing the code and configurations for the demo can be found [here](https://github.com/adner/ClaudeDemo). Go ahead and fork the repo and clone it locally. The repo contains a Dataverse plugin that formats a mobile phone number, but that has a subtle bug that throws exception in certain situations.
+The repo containing the code and configurations for the demo can be found [here](https://github.com/adner/Claude_Demo). Go ahead and fork the repo and clone it locally. The repo contains a Dataverse plugin that formats a mobile phone number, but that has a subtle bug that throws exception in certain situations.
 
 Now, update `dataverseMcp.sh` to point to the location of your `McpServer.csproj` file, from the previous step. This makes sure that Claude Code can access the MCP Server in the next step.
 
