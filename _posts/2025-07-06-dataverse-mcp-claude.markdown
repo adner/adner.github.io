@@ -3,8 +3,10 @@ layout: post
 title:  "Self healing plugins in Dataverse using Claude, MCP and Github"
 date:   2025-07-06
 categories: dataverse mcp
-image: /images/250706_2.webp
+image: /images/250706_0.png
 ---
+![title](/images/250706_0.png)
+
 A while back I posted a [video](https://www.linkedin.com/posts/andreas-adner-70b1153_claudecode-github-copilot-activity-7340113552575193089-MU7B?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) to LinkedIn, showing how Claude Code could be used to 'self heal' Dataverse plugins. The post was a little sparse on detail, so in this blog post my intention is to provide a step-by-step instruction on how to get this demo up and running in your own environment. <!--end_excerpt-->
 
 ### Step 1 - Setting up a local Dataverse MCP Server
