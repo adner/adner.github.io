@@ -13,21 +13,21 @@ Although there is a great [MCP Server for Dataverse](https://learn.microsoft.com
 - **WhoAmI** - Executes a `WhoAmI` request and returns the result.
 - **ExecuteFetch** - Executes a FetchXml request and returns the result. 
 
-Modify `Program.cs` and provide your own environment URL, Client ID and Client Secret. It is assumed that the Client ID is setup as an [application user](https://learn.microsoft.com/en-us/power-platform/admin/manage-application-users?tabs=new#create-an-application-user) in your environment.
+Now, modify `Program.cs` and provide your own environment URL, Client ID and Client Secret. It is assumed that the Client ID is setup as an [application user](https://learn.microsoft.com/en-us/power-platform/admin/manage-application-users?tabs=new#create-an-application-user) in your environment, with sufficient security roles.
 
 Build the MCP Server and make a note of the location of `McpServer.csproj` file. This will be used later to setup the MCP Server in Claude Code.
 
-Now let's make sure that the MCP Server works! A simple way is to use the [MCP Inspector](https://github.com/modelcontextprotocol/inspector).
+Now let's make sure that the MCP Server works! A simple way is to use the [MCP Inspector](https://github.com/modelcontextprotocol/inspector). Do a WhoAmI-request to make sure everything is running:
 
 ![MCP Inspector](/images/250706_1.webp)
 
 ### Step 2 - Fork the repo
-The repo containing the code and configurations for the demo can be found [here](https://github.com/adner/ClaudeDemo). Fork the repo and clone it locally.
+The repo containing the code and configurations for the demo can be found [here](https://github.com/adner/ClaudeDemo). Go ahead and fork the repo and clone it locally. The repo contains a Dataverse plugin that formats a mobile phone number, but that has a subtle bug that throws exception in certain situations.
 
-Now, update `dataverseMcp.sh` to point to the location of your `McpServer.csproj` file, from the previous step. This makes sure that Claude Code can access the MCP Server, in the next step.
+Now, update `dataverseMcp.sh` to point to the location of your `McpServer.csproj` file, from the previous step. This makes sure that Claude Code can access the MCP Server in the next step.
 
 ### Step 3 - Get Claude Code running
-[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) is a CLI tool from Anthropic, that is included in the Claude Pro-subscription and that can be used - among other things - to use MCP Servers. At this time, Claude Code cannot run natively in Windows - it requires Windows Subsystem for Linux (WSL).
+[Claude Code](https://docs.anthropic.com/en/docs/claude-code/overview) is a CLI tool from Anthropic, that is included in the Claude Pro-subscription (and Claude Max also, if you can afford that...) and that can be used - among other things - to utilize MCP Servers. At this time, Claude Code cannot run natively in Windows - it requires Windows Subsystem for Linux (WSL):
 
 - Instructions on how to install WSL can be found [here](https://learn.microsoft.com/en-us/windows/wsl/install).
 - Setup instructions for Claude Code can be found [here](https://docs.anthropic.com/en/docs/claude-code/setup).
@@ -51,7 +51,7 @@ We have now deployed a plugin with a subtle issue - if the mobilephone number *+
 
 ![Pluginissue](/images/250706_4.webp)
 
-Make sure that plugin in tracing is enabled, as described [here](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/logging-tracing#enable-trace-logging).
+Make sure that plugin in tracing is enabled, as described [here](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/logging-tracing#enable-trace-logging), so that the AI can analyze the exceptions thrown by the plugin.
 
 ### Step 5 - Overview of the repo, and some additional config.
 
@@ -86,6 +86,8 @@ If you look in your repo, you should see that a PR has been opened, and that the
 Once the merge has been completed, you can tell Claude to get the latest code and update the assembly in Dataverse:
 
 ![image](/images/250706_9.webp)
+
+That's it! 
 
 
 
