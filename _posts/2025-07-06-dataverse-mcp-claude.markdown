@@ -18,7 +18,7 @@ Build the MCP Server and make a note of the location of the resulting `McpServer
 
 Now let's make sure that the MCP Server works! A simple way is to use the [MCP Inspector](https://github.com/modelcontextprotocol/inspector).
 
-![MCP Inspector](/_posts/images/250706_1.gif)
+![MCP Inspector](/images/250706_1.gif)
 
 
  
