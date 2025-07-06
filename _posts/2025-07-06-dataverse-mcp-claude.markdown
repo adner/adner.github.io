@@ -15,7 +15,7 @@ Although there is a great [MCP Server for Dataverse](https://learn.microsoft.com
 - **WhoAmI** - Executes a `WhoAmI` request and returns the result.
 - **ExecuteFetch** - Executes a FetchXml request and returns the result. 
 
-Now, modify `Program.cs` and provide your own environment URL, Client ID and Client Secret. It is assumed that the Client ID is setup as an [application user](https://learn.microsoft.com/en-us/power-platform/admin/manage-application-users?tabs=new#create-an-application-user) in your environment, with sufficient security roles.
+So, clone this repo, modify `Program.cs` and provide your own environment URL, Client ID and Client Secret. It is assumed that the Client ID is setup as an [application user](https://learn.microsoft.com/en-us/power-platform/admin/manage-application-users?tabs=new#create-an-application-user) in your environment, with sufficient security roles.
 
 Build the MCP Server and make a note of the location of `McpServer.csproj` file. This will be used later to setup the MCP Server in Claude Code.
 
@@ -81,7 +81,7 @@ You can now ask Claude if there are any issues, and the AI should identify them,
 
 ![movie](/images/250706_7.webp)
 
-If you look in your repo, you should see that a PR has been opened, and that the tests are running automatically, and once they success the PR is ready to be merged:
+If you look in your repo, you should see that a PR has been opened, and that the tests are running automatically, and once they succeed the PR is ready to be merged:
 
 ![image](/images/250706_8.png)
 
