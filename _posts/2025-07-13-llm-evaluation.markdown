@@ -3,7 +3,7 @@ layout: post
 title:  "Evaluation of large language models with Dataverse MCP Server"
 date:   2025-07-13
 categories: dataverse mcp llm
-image: /images/250706_0.png
+image: /images/250713/titleimage.png
 ---
 ![title](/images/250713/titleimage.png)
 
