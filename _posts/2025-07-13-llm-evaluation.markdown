@@ -18,6 +18,8 @@ So, this begs the question - which Large Language Model is best when it comes to
 
 If you are interested in the technical setup of the demo, I plan to do a separate blog post on that topic. 
 
+**Pro-tip**: Right-click the animated gifs, and select "Open in new browser window", to see a zoomed in version.
+
 ## Model evaluation
 First, a few notes on the evaluation methodology. There are, of course, countless ways to evaluate LLMs, and there are surely much better methods than the one I am using here. Additionally, the non-deterministic nature of LLMs means you might get completely different results on different evaluation runs. In other words—evaluation is hard to do right, and your mileage may vary. 🙂
 
