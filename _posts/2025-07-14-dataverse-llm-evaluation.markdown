@@ -67,7 +67,7 @@ This model is off to a fantastic start and uses the knowledge source to answer t
 ![](/images/250713/gpt4omini_verdict.png)
 
 ### gpt-4o
-So, let's also test the "big brother" of gpt-4o-mini, which is probably also the model that is most most often by normal people in the ChatGPT client. This is the most expensive model I have tested, at $2 input and $10 output.
+So, let's also test the "big brother" of gpt-4o-mini, [gpt-4o](https://platform.openai.com/docs/models/gpt-4o), which is probably also the model that is most most often by normal people in the ChatGPT client. This is the most expensive model I have tested, at $2 input and $10 output.
 
 ![](/images/250713/gpt4o.webp)
 
