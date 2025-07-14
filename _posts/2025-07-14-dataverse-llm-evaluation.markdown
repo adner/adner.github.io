@@ -62,7 +62,7 @@ For normal people, GPT-3 was the model that truly ignited the Gen-AI revolution,
 So let's try the model that according to OpenAI superseded gpt-3.5-turbo - [**gpt-4o-mini**](https://platform.openai.com/docs/models/gpt-4o-mini). Not to be confused with [o4-mini](https://platform.openai.com/docs/models/o4-mini) which is a more sophisticated *reasoning* model. It is a mystery to me how OpenAI names their models. 🤔
 
 ![gpt-4o-mini](/images/250713/gpt4omini.webp)
-This model is off to a fantastic start and uses the knowledge source to answer the first couple of questions without issues or hint. However, it crashes and burns on the final question where it is suppose to go outside the scope of the pizza party data model and include the *Opportunity* and *Account* tables as well. **8/10** was the score by the orchestrator, which seems a bit on the high side IMHO.
+This model is off to a fantastic start and uses the knowledge source to answer the first couple of questions without issues or hints. However, it crashes and burns on the final question where it is supposed to go outside the scope of the pizza party data model and include the *Opportunity* and *Account* tables as well. **8/10** was the score by the orchestrator, which seems a bit on the high side IMHO.
 
 ![](/images/250713/gpt4omini_verdict.png)
 
