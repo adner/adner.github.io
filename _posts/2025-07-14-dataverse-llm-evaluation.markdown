@@ -134,5 +134,9 @@ It's really fascinating to watch R1 go at it, and see the planning, the reasonin
 ![](/images/250713/deepseekr1_verdict.png)
 
 ## Summary
-If token cost is not an issue, then go for gpt-4.1 or gpt-4o. But since gpt-4.1-mini is so much cheaper (0.4$ input, 1.6$ output compared to 2$/8$ for gpt-4.1) then gpt-4.1-mini must really be the recommendation when it comes to using the Dataverse MCP Server.
+If token cost is not an issue, then go for gpt-4.1 or gpt-4o. But since gpt-4.1-mini is so much cheaper (0.4$ input, 1.6$ output compared to 2$/8$ for gpt-4.1) then gpt-4.1-mini must really be the recommendation when it comes to using the Dataverse MCP Server. Or is it? 
+
+The reality is actually a bit more complicated. If we look at the costs for running this particular scenario, we can see that gpt-4o (4.2 cents) and gpt-4.1 (4.4 cents) are actually **cheaper** than gpt-4.1-mini (6.2 cents). Why is this? Probably due to more intelligent tool calling - avoiding verbose tool calls like `list_tables` and offloading reasoning work by using knowledge sources (like gpt-4o excelled at) might mean lower token consumption, at least is in this limited scenario.
+
+So, which model to recommend? The recommendation is probably to test your particular scenario with gpt-4.1, gpt-40 and gpt-4.1-mini, and check whether the more intelligent tool calling of the expensive models actually means lower overall costs. 
 
