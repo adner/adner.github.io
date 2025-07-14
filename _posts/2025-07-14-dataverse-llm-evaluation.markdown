@@ -82,7 +82,7 @@ The orchestrator was also very impressed.
 
 ![](/images/250713/gpt41.webp)
 
-The evaluate this model, I had to switch the model for the orchestrator agent from gpt-4.1 to gpt-4o - since using the same model for both at the same time hit the per-model rate limit of the 4.1-model.
+In order to evaluate this model, I had to switch the model for the orchestrator agent from gpt-4.1 to gpt-4o - since using the same model for both at the same time hit the per-model rate limit of the 4.1-model.
 
 The model had no problems whatsoever with the questions and completed the evaluation with a perfect score of **10/10**.
 
