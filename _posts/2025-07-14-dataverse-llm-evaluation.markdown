@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Evaluation of large language models with Dataverse MCP Server"
-date:   2025-07-13
+date:   2025-07-14
 categories: dataverse mcp llm
 image: /images/250713/titleimage.png
 ---
@@ -16,7 +16,7 @@ While the Dataverse MCP Server allows access to Dataverse by exposing several [t
 
 So, this begs the question - which Large Language Model is best when it comes to using the Dataverse MCP Server? I tried to evaluate this, and showed some quick demonstrations in [this](https://www.linkedin.com/posts/andreas-adner-70b1153_benchmark-of-llms-using-dataverse-mcp-server-activity-7348442438119665665-lLhZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) and [this](https://www.linkedin.com/posts/andreas-adner-70b1153_dataversemcp-semantickernel-llmevaluation-activity-7349537355499745281-42j8?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) post on LinkedIn. These posts just scraped the surface of the topic, and in this blog post I intend to dive a bit deeper and evaluate a couple more models.
 
-If you are interested in the technical setup of the demo, I plan to do a separate blog post on that topic. 
+If you are interested in the technical setup of the demo, I plan to do a separate blog post on that topic. In the meantime, feel free to check out the code in the `llmorchestrator` branch of my [SemanticKernelMcp](https://github.com/adner/SemanticKernelMcp/tree/llm-orchestrator) repo in GitHub.
 
 **Pro-tip**: Right-click the animated gifs, and select "Open in new browser window", to see a zoomed in version.
 
