@@ -5,7 +5,6 @@ date:   2025-07-19
 image: /images/250719/title.png
 ---
 ![title](/images/250719/title.png)
-# Semantic Kernel - what it is and how to use it for MCP
 The [Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/overview/) from Microsoft is an *AI orchestration framework* designed to simplify the development of applications powered by **Large Language Models** (LLMs). It serves a similar purpose as frameworks like [LangChain](https://www.langchain.com/), providing tools and abstractions to integrate LLMs, connect to external data sources like Model Context Protocol (MCP) Servers<!--end_excerpt-->, and to orchestrate AI agents.
 
 Semantic Kernel has been around for a while, and has recently been updated so that it uses [*Microsoft.Extensions.AI*](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai) - a library of standard AI interfaces and abstractions for .NET.
