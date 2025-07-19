@@ -1,22 +1,22 @@
 ---
 layout: post
-title:  "Evaluation of large language models with Dataverse MCP Server"
+title:  "Semantic Kernel - what it is and how to use it for MCP"
 date:   2025-07-19
 image: /images/250719/title.png
 ---
 ![title](/images/250719/title.png)
 # Semantic Kernel - what it is and how to use it for MCP
-The [Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/overview/) from Microsoft is an *AI orchestration framework* designed to simplify the development of applications powered by **Large Language Models** (LLMs). It serves a similar purpose as frameworks like [LangChain](https://www.langchain.com/), providing tools and abstractions to integrate LLMs, connect to external data sources like Model Context Protocol (MCP) Servers, and to orchestrate AI agents.
+The [Semantic Kernel](https://learn.microsoft.com/en-us/semantic-kernel/overview/) from Microsoft is an *AI orchestration framework* designed to simplify the development of applications powered by **Large Language Models** (LLMs). It serves a similar purpose as frameworks like [LangChain](https://www.langchain.com/), providing tools and abstractions to integrate LLMs, connect to external data sources like Model Context Protocol (MCP) Servers, and to orchestrate AI agents.<!--end_excerpt-->
 
 Semantic Kernel has been around for a while, and has recently been updated so that it uses [*Microsoft.Extensions.AI*](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai) - a library of standard AI interfaces and abstractions for .NET.
 
-Microsoft.Extensions.AI is a *foundational* AI library that provide the basic building blocks for integrating AI into your applications, while Semantic Kernel is a *specialized SDK* that provides higher-level features for Agentic AI orchestration, etc. A series of good blog post from Microsoft that explains when to use which one can be found [here](https://devblogs.microsoft.com/semantic-kernel/semantic-kernel-and-microsoft-extensions-ai-better-together-part-1/).
+Microsoft.Extensions.AI is a *foundational* AI library that provides the basic building blocks for integrating AI into your applications, while Semantic Kernel is a *specialized SDK* that provides higher-level features for Agentic AI orchestration, etc. A series of good blog posts from Microsoft that explains when to use which one can be found [here](https://devblogs.microsoft.com/semantic-kernel/semantic-kernel-and-microsoft-extensions-ai-better-together-part-1/).
 
-As anyone who has read my blog or seen my posts on LinkedIn knows, I have explored the MCP protocol lately, and I therefore wanted to explore the capabilities of Semantic Kernel in that context.
+If you’ve followed my blog or LinkedIn posts, you have seen that I have explored the MCP protocol lately. I wanted to learn more about the capabilities of Semantic Kernel in that context, and specifically how it can be used with the [Dataverse MCP Server](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp).
 
-While the Semantic Kernel [documentation](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/adding-mcp-plugins?pivots=programming-language-csharp#add-plugins-from-a-local-mcp-server) is currently lacking any examples on how to use MCP Servers, the Semantic Kernel [Github repo](https://github.com/microsoft/semantic-kernel/tree/79d3dde556e4cdc482d83c9f5f0a459c5cc79a48/dotnet/samples/Demos/ModelContextProtocolClientServer) has a lot of sample code that describes how to use the tools exposes by MCP Servers as *functions* in Semantic Kernel - that can be called by an LLM.
+While the Semantic Kernel [documentation](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/adding-mcp-plugins?pivots=programming-language-csharp#add-plugins-from-a-local-mcp-server) is currently lacking any examples on how to use MCP Servers, the Semantic Kernel [Github repo](https://github.com/microsoft/semantic-kernel/tree/79d3dde556e4cdc482d83c9f5f0a459c5cc79a48/dotnet/samples/Demos/ModelContextProtocolClientServer) has a lot of sample code that describes how to use the tools exposed by MCP Servers as *functions* in Semantic Kernel - that can be called by an LLM.
 
-I wanted to explore how well various LLMs could use the [Dataverse MCP Server](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp), and I wanted to use Semantic Kernel for this purpose. This resulted in:
+I wanted to explore how well various LLMs could use the Dataverse MCP Server, and I wanted to use Semantic Kernel for this purpose. This resulted in:
 
 - A [LinkedIn post](https://www.linkedin.com/posts/andreas-adner-70b1153_dataversemcp-semantickernel-llmevaluation-activity-7349537355499745281-42j8?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) with a video that demonstrated how a number of LLMs were evaluated by an *Orchestrator agent*.
 - A [blog post](https://nullpointer.se/dataverse/mcp/llm/2025/07/14/dataverse-llm-evaluation.html) where even more models were evaluated.
@@ -73,7 +73,7 @@ I tried to connect to my local Dataverse MCP Server using the STDIO transport, a
         return client;
     }
 ```
-This time, however, it didn't work. It turns out that the way the MCP C# SDK uses `cmd.exe`to setup the STDIO transport with the Dataverse MCP Server doesn't play well with the parameters that needs to be supplied to the MCP Server - specifically the *ampersand* (&) character in the `ConnectionUrl` parameter breaks things, since ´cmd.exe´ interprets this a chaining of commands, at it fails.
+This time, however, it didn't work. It turns out that the way the MCP C# SDK uses `cmd.exe`to setup the STDIO transport with the Dataverse MCP Server doesn't play well with the parameters that needs to be supplied to the MCP Server - specifically the *ampersand* (&) character in the `ConnectionUrl` parameter breaks things, since ´cmd.exe´ interprets this a chaining of commands, and it fails.
 
 I raised this as an [issue](https://github.com/issues/created?issue=modelcontextprotocol%7Ccsharp-sdk%7C594) and forked the [Modelcontext Protocol C# SDK](https://github.com/adner/csharp-sdk) to see if I could fix the issue myself, in the meantime. 
 
@@ -159,11 +159,11 @@ public class OrchestratorKernelPlugin
     }
 }
 ```
-These tools allows the orchestorator agent to:
+These tools allow the orchestrator agent to:
 - Send messages to the LLM that it is currently evaluating.
 - Switch to a new model that should be evaluated.
 
-The evaluation is done in a simple web app that uses SignalR to stream responses from LLMs, and a lot of really ugly Javascript that facilitates the communication between the orchestrator and the LLM that is being evaluted. 
+The evaluation is done in a simple web app that uses SignalR to stream responses from LLMs, and a lot of really ugly JavaScript that facilitates the communication between the orchestrator and the LLM that is being evaluated. 
 
 The result can be seen in this video:
 
