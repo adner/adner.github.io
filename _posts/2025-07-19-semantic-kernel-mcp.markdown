@@ -72,7 +72,7 @@ I tried to connect to my local Dataverse MCP Server using the STDIO transport, a
         return client;
     }
 ```
-This time, however, it didn't work. It turns out that the way the MCP C# SDK uses `cmd.exe`to setup the STDIO transport with the Dataverse MCP Server doesn't play well with the parameters that needs to be supplied to the MCP Server - specifically the *ampersand* (&) character in the `ConnectionUrl` parameter breaks things, since ´cmd.exe´ interprets this a chaining of commands, and it fails.
+This time, however, it didn't work. It turns out that the way the MCP C# SDK uses `cmd.exe` to setup the STDIO transport with the Dataverse MCP Server doesn't play well with the parameters that needs to be supplied to the MCP Server - specifically the *ampersand* (&) character in the `ConnectionUrl` parameter breaks things, since `cmd.exe` interprets this a chaining of commands, and it fails.
 
 I raised this as an [issue](https://github.com/issues/created?issue=modelcontextprotocol%7Ccsharp-sdk%7C594) and forked the [Modelcontext Protocol C# SDK](https://github.com/adner/csharp-sdk) to see if I could fix the issue myself, in the meantime. 
 
@@ -167,6 +167,8 @@ The evaluation is done in a simple web app that uses SignalR to stream responses
 The result can be seen in this video:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xmCX85DCBt8?si=j-_FtcfZfZomXnvR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+This was a technical deep dive, as promised. My impression so far is that the Semantic Kernel is a really capable framework, and I look forward to exploring it further.
 
 
 
