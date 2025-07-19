@@ -13,7 +13,7 @@ Microsoft.Extensions.AI is a *foundational* AI library that provides the basic b
 
 If you’ve followed my blog or LinkedIn posts, you have seen that I have explored the MCP protocol lately. I wanted to learn more about the capabilities of Semantic Kernel in that context, and specifically how it can be used with the [Dataverse MCP Server](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp).
 
-While the Semantic Kernel [documentation](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/adding-mcp-plugins?pivots=programming-language-csharp#add-plugins-from-a-local-mcp-server) is currently lacking any examples on how to use MCP Servers, the Semantic Kernel [Github repo](https://github.com/microsoft/semantic-kernel/tree/79d3dde556e4cdc482d83c9f5f0a459c5cc79a48/dotnet/samples/Demos/ModelContextProtocolClientServer) has a lot of sample code that describes how to use the tools exposed by MCP Servers as *functions* in Semantic Kernel - that can be called by an LLM.
+While the Semantic Kernel [documentation](https://learn.microsoft.com/en-us/semantic-kernel/concepts/plugins/adding-mcp-plugins?pivots=programming-language-csharp#add-plugins-from-a-local-mcp-server) is currently lacking any examples on how to use MCP Servers in .NET, the Semantic Kernel [Github repo](https://github.com/microsoft/semantic-kernel/tree/79d3dde556e4cdc482d83c9f5f0a459c5cc79a48/dotnet/samples/Demos/ModelContextProtocolClientServer) has a lot of sample code that describes how to use the tools exposed by MCP Servers as *functions* in Semantic Kernel - that can be called by an LLM.
 
 I wanted to explore how well various LLMs could use the Dataverse MCP Server, and I wanted to use Semantic Kernel for this purpose. This resulted in:
 
