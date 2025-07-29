@@ -6,14 +6,16 @@ image: /images/250729/title.png
 ---
 ![title](/images/250729/title.png)
 
-[Jonas Rapp](https://www.linkedin.com/in/rappen/) has just released an update to [FetchXML Builder](https://fetchxmlbuilder.com/) that includes the possibility to use AI to construct FetchXml queries - see the [release notes](https://fetchxmlbuilder.com/releases/1-2025-7/) and his post on [LinkedIn](https://www.linkedin.com/posts/rappen_ai-chat-in-fetchxml-builder-getting-to-activity-7355935874234171393-wfZW?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w). As I have [mentioned](https://www.linkedin.com/posts/andreas-adner-70b1153_fetchxmlbuilder-infused-with-ai-activity-7353891922370793472-PgcI?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w), I have had the pleasure of helping Jonas with implementing this functionality, which was fun in all kinds of ways.<!--end_excerpt--> In this blog post I will try to explain a little bit about how the AI-functionality is built - specifically from an AI function calling perspective. 
+[Jonas Rapp](https://www.linkedin.com/in/rappen/) has just released an update to [FetchXML Builder](https://fetchxmlbuilder.com/) that makes it possible to use AI to construct FetchXml queries - see the [release notes](https://fetchxmlbuilder.com/releases/1-2025-7/) and his post on [LinkedIn](https://www.linkedin.com/posts/rappen_ai-chat-in-fetchxml-builder-getting-to-activity-7355935874234171393-wfZW?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w). 
 
-Jonas has blogged about the AI capabilities in FXB, and have some insights on how the AI-code found in the XTB Helpers library can be utilized also by other tools, check it out [here](https://jonasr.app/ai-code-helpers/). Also, take a look at his [video](https://www.youtube.com/watch?v=E4Lj9C1ZMVU) that gives a great overview.
+As I have [mentioned](https://www.linkedin.com/posts/andreas-adner-70b1153_fetchxmlbuilder-infused-with-ai-activity-7353891922370793472-PgcI?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w), I have had the pleasure of helping Jonas to implement this functionality, which has been fun in all kinds of ways.<!--end_excerpt--> In this blog post I intend to explain a bit more about how the AI-functionality was built - specifically from an AI function calling perspective. 
+
+Jonas has blogged about the AI capabilities in FXB, and shared some insights on how the AI-code found in the XTB Helpers library can be utilized also by other tools - check it out [here](https://jonasr.app/ai-code-helpers/). Also, take a look at his [video](https://www.youtube.com/watch?v=E4Lj9C1ZMVU) that gives a great overview.
 
 ## General architecture 
 The AI functionality in FetchXML Builder is based on the abstractions in [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai) - a library that is used throughout the Microsoft AI stack - for example in:
 
-- [**Semantic Kernel**](https://learn.microsoft.com/en-us/semantic-kernel/overview/) - the AI (agent) orchestration framework from Microsoft, which is have [blogged](https://nullpointer.se/2025/07/19/semantic-kernel-mcp.html) about. 
+- [**Semantic Kernel**](https://learn.microsoft.com/en-us/semantic-kernel/overview/) - the AI (agent) orchestration framework from Microsoft, which I have [blogged](https://nullpointer.se/2025/07/19/semantic-kernel-mcp.html) about. 
 
 - [**The C# Model Context Protocol SDK**](https://github.com/modelcontextprotocol/csharp-sdk) that I have used in a number of tech demos, for example [this one](https://nullpointer.se/dataverse/mcp/2025/07/06/dataverse-mcp-claude.html).
 
@@ -24,7 +26,7 @@ This version of FXB supports two model providers - **OpenAI** and **Anthropic** 
 - [Anthropic](https://github.com/tryAGI/Anthropic)
 - [Microsoft.Extensions.AI.OpenAI](https://www.nuget.org/packages/Microsoft.Extensions.AI.OpenAI/9.7.1-preview.1.25365.4?_src=template)
 
-These libraries allow the use of these models - hosted by Anthropic and OpenAI - through a common API and using the `IChatClient` interface in *Microsoft.Extensions.AI*. This allows us to create instances of `IChatClient` uniformly, regardless of supplier:
+The libraries allow the use of models hosted by Anthropic and OpenAI, through a common API and using the `IChatClient` interface in *Microsoft.Extensions.AI*. This allows us to create instances of `IChatClient` uniformly, regardless of supplier:
 
 ```csharp
 private static ChatClientBuilder GetChatClientBuilder(string supplier, string model, string apikey)
@@ -41,11 +43,11 @@ private static ChatClientBuilder GetChatClientBuilder(string supplier, string mo
     });
 }
 ```
-At the moment, FXB is targeting the API:s of OpenAI and Anthropic directly, but the design makes should make it easy to use models deployed to e.g. [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/) in the future.
+At the moment FXB is targeting the API:s of OpenAI and Anthropic directly, but the design makes it easy to use models deployed to e.g. [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/) in the future.
 
 ## Function calling
 
-*Microsoft.Extensions.AI* also makes it simple to wire up **function calling** for the IChatClient, which is used extensively in FXB:
+*Microsoft.Extensions.AI* also makes it easy to wire up **function calling** for the IChatClient, a feature that is used extensively in FXB:
 
 ```csharp
   using (IChatClient chatClient = clientBuilder.UseFunctionInvocation().Build())
