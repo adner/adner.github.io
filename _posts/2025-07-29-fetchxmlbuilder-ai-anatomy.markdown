@@ -41,7 +41,7 @@ private static ChatClientBuilder GetChatClientBuilder(string supplier, string mo
     });
 }
 ```
-At the moment, we are targeting the API:s of OpenAI and Anthropic directly, but the design makes should make it easy to use models deployed to e.g. [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/) in the future.
+At the moment, FXB is targeting the API:s of OpenAI and Anthropic directly, but the design makes should make it easy to use models deployed to e.g. [Azure AI Foundry](https://learn.microsoft.com/en-us/azure/ai-foundry/) in the future.
 
 ## Function calling
 
@@ -68,9 +68,9 @@ This gives the LLM of choice access to a number of internal *functions*, that ar
 
 - **GetMetadataForUnknownAttribute** - Called by the AI to retrieve metadata for one or many fields, matching the user's request.
 
-Borrowing a page from the Model Context Protocol (MCP) playbook - the tools above have the ability to themself do *internal* calls to the LLM, similar to the concept [***sampling***](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling) in MCP. 
+Borrowing a page from the Model Context Protocol (MCP) playbook - the functions above have the ability to themself do *internal* calls to the LLM, similar to the concept [***sampling***](https://modelcontextprotocol.io/specification/2025-06-18/client/sampling) in MCP. For more on sampling, check out this [post](https://www.linkedin.com/posts/andreas-adner-70b1153_vscode-vscode-modelcontextprotocol-activity-7343352802733084673-hUiV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w).
 
-In FXB this is used to search for fields based on the user's (sometimes very vague and ambiguous) descriptions. For example, if a user asks "to add the field that contains the users mobile number", the tool can internally query the LLM to resolve which attribute best matches that description.
+In FXB this is used to search for fields based on the user's (sometimes very vague and ambiguous) descriptions. For example, if a user asks "to add the field that contains the users mobile number", the function can internally query the LLM to resolve which attribute best matches that description.
 
 The metadata that is returned to the LLM contains information such as logical names, display names and optionset display values, which allows the AI to handle queries such as "only return the accounts that are in the industry 'agriculture', etc.
 
