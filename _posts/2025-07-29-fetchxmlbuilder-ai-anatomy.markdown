@@ -1,23 +1,23 @@
 ---
 layout: post
-title:  "The anatomy of FetchXmlBuilder with AI"
+title:  "The anatomy of FetchXML Builder with AI"
 date:   2025-07-29
 image: /images/250729/title.png
 ---
 ![title](/images/250729/title.png)
 
-[Jonas Rapp](https://www.linkedin.com/in/rappen/) has just released an update to [FetchXmlBuilder](https://fetchxmlbuilder.com/) that includes the possibility to use AI to construct FetchXml queries - see the [release notes](https://fetchxmlbuilder.com/releases/1-2025-7/) and his post on [LinkedIn](https://www.linkedin.com/posts/rappen_ai-chat-in-fetchxml-builder-getting-to-activity-7355935874234171393-wfZW?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w). As I have [mentioned](https://www.linkedin.com/posts/andreas-adner-70b1153_fetchxmlbuilder-infused-with-ai-activity-7353891922370793472-PgcI?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w), I have had the pleasure of helping Jonas with implementing this functionality, which was fun in all kinds of ways.<!--end_excerpt--> In this blog post I will try to explain a little bit about how the AI-functionality is built - specifically from an AI function calling perspective. 
+[Jonas Rapp](https://www.linkedin.com/in/rappen/) has just released an update to [FetchXML Builder](https://fetchxmlbuilder.com/) that includes the possibility to use AI to construct FetchXml queries - see the [release notes](https://fetchxmlbuilder.com/releases/1-2025-7/) and his post on [LinkedIn](https://www.linkedin.com/posts/rappen_ai-chat-in-fetchxml-builder-getting-to-activity-7355935874234171393-wfZW?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w). As I have [mentioned](https://www.linkedin.com/posts/andreas-adner-70b1153_fetchxmlbuilder-infused-with-ai-activity-7353891922370793472-PgcI?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w), I have had the pleasure of helping Jonas with implementing this functionality, which was fun in all kinds of ways.<!--end_excerpt--> In this blog post I will try to explain a little bit about how the AI-functionality is built - specifically from an AI function calling perspective. 
 
 Jonas has blogged about the AI capabilities in FXB, and have some insights on how the AI-code found in the XTB Helpers library can be utilized also by other tools, check it out [here](https://jonasr.app/ai-code-helpers/). Also, take a look at his [video](https://www.youtube.com/watch?v=E4Lj9C1ZMVU) that gives a great overview.
 
 ## General architecture 
-The AI functionality in FetchXmlBuilder is based on the abstractions in [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai) - a library that is used throughout the Microsoft AI stack - for example in:
+The AI functionality in FetchXML Builder is based on the abstractions in [Microsoft.Extensions.AI](https://learn.microsoft.com/en-us/dotnet/ai/microsoft-extensions-ai) - a library that is used throughout the Microsoft AI stack - for example in:
 
 - [**Semantic Kernel**](https://learn.microsoft.com/en-us/semantic-kernel/overview/) - the AI (agent) orchestration framework from Microsoft, which is have [blogged](https://nullpointer.se/2025/07/19/semantic-kernel-mcp.html) about. 
 
 - [**The C# Model Context Protocol SDK**](https://github.com/modelcontextprotocol/csharp-sdk) that I have used in a number of tech demos, for example [this one](https://nullpointer.se/dataverse/mcp/2025/07/06/dataverse-mcp-claude.html).
 
-*Microsoft.Extensions.AI* contains abstractions that are generally useful when developing AI stuff, and Tanguy Tozard - the maintainer of [XrmToolBox](https://www.xrmtoolbox.com/) - has been kind enough to include this library "out-of-the-box" in the latest version of XTB, so that other plugins can use it as well.
+*Microsoft.Extensions.AI* contains abstractions that are generally useful when developing AI stuff, and Tanguy Touzard - the maintainer of [XrmToolBox](https://www.xrmtoolbox.com/) - has been kind enough to include this library "out-of-the-box" in the latest version of XTB, so that other plugins can use it as well.
 
 This version of FXB supports two model providers - **OpenAI** and **Anthropic** - through the use of the following libraries that are built on top of *Microsoft.Extensions.AI*:
 
@@ -106,7 +106,7 @@ The AI correctly identifies that the field `industrycode` and the optionset valu
 
 If you want to check out the code for yourself, see these two repo:s in Jonas Rapp's GitHub. And as mentioned above, check out his [blog post](https://jonasr.app/ai-code-helpers/) on how to use AI in your own XTB plugins.
 
-- [FetchXml](https://github.com/rappen/FetchXMLBuilder)
+- [FetchXML Builder](https://github.com/rappen/FetchXMLBuilder)
 - [Rappen.XTB.Helper](https://github.com/rappen/Rappen.XTB.Helper)
 
 But there is one more thing... What is this, is OpenAI using our FXB requests to train their upcoming **ChatGPT 5** model?? What is `gpt-5-mini-bench-chatcompletions-gpt41m-api-ev3`?
