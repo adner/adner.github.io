@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Semantic Kernel - what it is and how to use it for MCP"
-date:   2025-07-19
+title:  "The anatomy of FetchXmlBuilder with AI"
+date:   2025-07-29
 image: /images/250729/title.png
 ---
 ![title](/images/250729/title.png)
