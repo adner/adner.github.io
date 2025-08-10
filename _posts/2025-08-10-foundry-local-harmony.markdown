@@ -5,7 +5,7 @@ date:   2025-08-10
 image: /images/250810/title.png
 ---
 ![title](/images/250810/title.png)
-
+![alt text](image.png)
 ### Foundry Local, the new OpenAI models and the Harmony format
 
 About a week ago (prior to the release of the highly anticipated GPT-5 model), OpenAI released its first open weights model since GPT-2, the `gpt-oss-20b` and `gpt-oss-120b` models.
