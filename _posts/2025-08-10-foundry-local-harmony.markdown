@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Foundry Local, the new OpenAI models and the Harmony format"
+title:  "Foundry Local, the new OpenAI models and the Harmony response format"
 date:   2025-08-10
 image: /images/250810/title.png
 ---
