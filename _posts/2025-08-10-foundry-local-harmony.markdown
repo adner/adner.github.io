@@ -5,12 +5,11 @@ date:   2025-08-10
 image: /images/250810/title.png
 ---
 ![title](/images/250810/title.png)
-![alt text](image.png)
-### Foundry Local, the new OpenAI models and the Harmony format
+## Foundry Local, the new OpenAI models and the Harmony format
 
 About a week ago (prior to the release of the highly anticipated GPT-5 model), OpenAI released its first open weights model since GPT-2, the `gpt-oss-20b` and `gpt-oss-120b` models.
 
-I tried out the 20 billion parameter model using **LM Studio**, and recorded a [video](https://youtu.be/Gj388QWF1Kw?si=Py_Z-wMryXwcalOD) showing how well the model handles tool calling, using the [Dataverse MCP Server](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp). It turned out to work very well - at least in comparison to other models in my [Pizza Party benchmark](https://nullpointer.se/dataverse/mcp/llm/2025/07/14/dataverse-llm-evaluation.html). 
+I tried out the 20 billion parameter model using **LM Studio**, and recorded a [video](https://youtu.be/Gj388QWF1Kw?si=Py_Z-wMryXwcalOD) showing how well the model handles tool calling, using the [Dataverse MCP Server](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp).<!--end_excerpt--> It turned out to work very well - at least in comparison to other models in my [Pizza Party benchmark](https://nullpointer.se/dataverse/mcp/llm/2025/07/14/dataverse-llm-evaluation.html). 
 
 A week from its release, the reviews of the OpenAI oss-models are somewhat [mixed](https://www.perplexity.ai/search/summarize-the-general-feedback-b_zgi73iRLOa5945YUiMPA), but mostly positive. My overall feeling is that the model (I have only done very limited tests of the 120b model) is capable, especially when it comes to tool calling - and it is very fast!
 
