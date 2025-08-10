@@ -5,6 +5,7 @@ date:   2025-08-10
 image: /images/250810/title.png
 ---
 ![title](/images/250810/title.png)
+
 About a week ago (prior to the release of the highly anticipated GPT-5 model), OpenAI released its first open weights model since GPT-2, the `gpt-oss-20b` and `gpt-oss-120b` models.
 
 I tried out `gpt-oss-20b` (the 20 billion parameter model) using **LM Studio**, and recorded a [video](https://youtu.be/Gj388QWF1Kw?si=Py_Z-wMryXwcalOD) showing how well the model handles tool-calling, using the [Dataverse MCP Server](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp).<!--end_excerpt--> It turned out to work very well - at least in comparison to other models in my [Pizza Party benchmark](https://nullpointer.se/dataverse/mcp/llm/2025/07/14/dataverse-llm-evaluation.html). 
