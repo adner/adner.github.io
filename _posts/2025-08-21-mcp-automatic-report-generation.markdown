@@ -19,7 +19,7 @@ And there are so many more... For example, I am currently evaluating how an MCP 
 In this blog, on my channel on [Youtube](https://www.youtube.com/channel/UCDQSTOqQRFNRIQzkkrw4oYA) and on [LinkedIn](https://www.linkedin.com/in/andreas-adner-70b1153/) I have explored the *[tool calling](https://modelcontextprotocol.io/docs/learn/server-concepts#tools-ai-actions)* part of MCP in great detail, especially in the context of Power Platform and Dataverse:
 
 - In numerous posts (see [here](https://www.linkedin.com/posts/andreas-adner-70b1153_mvp-agenticai-powerplatform-activity-7318953890094235650-g8ut?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w), [here](https://www.linkedin.com/posts/andreas-adner-70b1153_agenticai-mcp-dataverse-activity-7319027765075165185-QCBR?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) and [here](https://www.linkedin.com/posts/andreas-adner-70b1153_mcp-agenticai-dataverse-activity-7319281911330185216-kQ_O?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w)) I have explored how a custom built MCP Server can query Dataverse using FetchXml queries. It turns out that many LLM s are *very* proficient in FetchXml which makes this a very effective pattern for getting data from Dataverse using natural language. The [Claude models](https://docs.anthropic.com/en/docs/about-claude/models/overview) are especially good at this, in my experience. 
-- When Microsoft released the preview version of the [Dataverse MCP server](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp) I tested the capabilities of this server in great detail, putting it through its paces in several different scenarios - see [here](https://www.linkedin.com/posts/andreas-adner-70b1153_dataversemcpserver-activity-7344003681740075008-W3x4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) and [here](https://www.linkedin.com/posts/andreas-adner-70b1153_benchmark-of-llms-using-dataverse-mcp-server-activity-7348442438119665665-lLhZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w). I also did a pretty thorough benchmark of which LLMs (at that time, before the release of GPT-5) that worked best with the Dataverse MCP Server, which can be found in [this blog post](https://nullpointer.se/dataverse/mcp/llm/2025/07/14/dataverse-llm-evaluation.html). I have also participated in the [private preview](https://msdynamicsworld.com/story/microsoft-enhance-dataverse-mcp-server-major-capabilities) of a new version of this server - and I intend to write more about it once it reaches general availability.
+- When Microsoft released the preview version of the [Dataverse MCP server](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp) I tested the capabilities of this server at depth, putting it through its paces in several different scenarios - see [here](https://www.linkedin.com/posts/andreas-adner-70b1153_dataversemcpserver-activity-7344003681740075008-W3x4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) and [here](https://www.linkedin.com/posts/andreas-adner-70b1153_benchmark-of-llms-using-dataverse-mcp-server-activity-7348442438119665665-lLhZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w). I also did a pretty thorough benchmark of which LLMs (at that time, before the release of GPT-5) that worked best with the Dataverse MCP Server, which can be found in [this blog post](https://nullpointer.se/dataverse/mcp/llm/2025/07/14/dataverse-llm-evaluation.html). I have also participated in the [private preview](https://msdynamicsworld.com/story/microsoft-enhance-dataverse-mcp-server-major-capabilities) of a new version of this server - and I intend to write more about it once it reaches general availability.
 - An especially fun experiment was to use the [Dataverse MCP Server from Excel](https://www.linkedin.com/posts/andreas-adner-70b1153_dataverse-mcp-server-running-from-excel-activity-7345177569844953088-H3Y9?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w), showing that MCP is truly a USB-C for data that can be used from anywhere - not only from AI chatbots.
 
 ### Beyond Tool Calling: Advanced MCP Features
@@ -29,7 +29,7 @@ The posts and articles mentioned above focused strictly on the *tool calling* pa
 The MCP features that I have tried out lately are:
 
 - [**Sampling**](https://modelcontextprotocol.io/docs/learn/client-concepts#sampling) - The ability for an MCP tool to do an **internal** call to an LLM is an extremely powerful feature. In [this](https://www.linkedin.com/posts/andreas-adner-70b1153_vscode-vscode-modelcontextprotocol-activity-7343352802733084673-hUiV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) post I explored how sampling can be used to allow an MCP tool to orchestrate its own **internal** tools.
-- [**Elicitation**](https://modelcontextprotocol.io/docs/learn/client-concepts#elicitation) - This feature allows an MCP tool to ask questions to the user, and return the responses to the server. I first explored this feature in my post about [Data migration using MCP](https://www.linkedin.com/posts/andreas-adner-70b1153_vscode-vscode-modelcontextprotocol-activity-7343352802733084673-hUiV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) where the user was asked how to handle duplicate records.
+- [**Elicitation**](https://modelcontextprotocol.io/docs/learn/client-concepts#elicitation) - This feature allows an MCP tool to ask questions to the user, and return the responses to the server. I first explored this feature in my post about [Data migration using MCP](https://www.linkedin.com/posts/andreas-adner-70b1153_vscode-vscode-modelcontextprotocol-activity-7343352802733084673-hUiV?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) where the user was asked by the AI how to handle duplicate record, when doing migration.
 - [**Resources**](https://modelcontextprotocol.io/docs/learn/server-concepts#resources-context-data) - Allows the server to provide *structured information* to the client that can be added to the AI context window. I wrote about this in [this post](https://www.linkedin.com/posts/andreas-adner-70b1153_new-video-exploring-advanced-features-activity-7362558514013138944-4GD5?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) where the MCP server optionally can return the results of Dataverse queries as Resources, and the user decided whether to add these to the AI context window.
 
 ### Bringing It All Together
@@ -67,7 +67,7 @@ Let's examine the tool `CreateReportFromQuery` that includes a couple of the MCP
 ```
 The server uses the nifty [**Progress**](https://modelcontextprotocol.io/specification/2025-03-26/basic/utilities/progress) feature in MCP to write to the client that the query is being executed and that the report is being generated:
 
-![alt text](image-1.png)
+![alt text](/images/250821/image-1.png)
 
 The notification is sent to the client, and since no `total` parameter is supplied, this simply becomes an information message and no progress indication is displayed, which is kind of useful if you just want to display informational messages to the client.
 
@@ -125,6 +125,8 @@ VS Code allows you to see what the sampling call to the LLM looked like:
 
 It is also possible in VS Code to [select the model that will be used for the sampling call](https://code.visualstudio.com/api/extension-guides/ai/mcp#sampling-preview) that will be used for the sampling call, so if the reports it generates look poor, you can always try a better model.
 
+### Publishing the report
+
 The resulting HTML file is then served as both an MCP Resource...
 
 ```csharp
@@ -133,8 +135,6 @@ var uri = await ResourceAdder.AddHtmlFile(server, DateTime.Now.ToString(), repor
 
 ...
 }
-
-### Publishing the report
 
 public static async Task<string> AddHtmlFile(IMcpServer server, string resourceName, string content, CancellationToken ct, string description)
     {
