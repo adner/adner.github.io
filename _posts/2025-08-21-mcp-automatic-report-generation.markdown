@@ -123,7 +123,7 @@ VS Code allows you to see what the sampling call to the LLM looked like:
 
 ![](/images/250821/1.gif)
 
-It is also possible in VS Code to [select the model that will be used for the sampling call](https://code.visualstudio.com/api/extension-guides/ai/mcp#sampling-preview) that will be used for the sampling call, so if the reports it generates look poor, you can always try a better model.
+It is also possible in VS Code to [select the model that will be used for the sampling call](https://code.visualstudio.com/api/extension-guides/ai/mcp#sampling-preview), so if the generated report looks poor, you can always try a better AI model.
 
 ### Publishing the report
 
