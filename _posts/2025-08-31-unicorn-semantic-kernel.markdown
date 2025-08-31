@@ -147,7 +147,7 @@ So which format is correct? I tried to find a formal specification of the input 
 ### Using Semantic Kernel and the Responses API locally
 If you have read my blog and my posts on LinkedIn, you know that I like to run LLMs locally. I have blogged about [Foundry Local](https://nullpointer.se/2025/08/10/foundry-local-harmony.html) and [experimented](https://www.linkedin.com/feed/update/urn:li:activity:7357383421557465088/) with using the open weights OpenAI gpt-oss models together with the Dataverse MCP Server. So, of course I had to try if it was possible to call the [gpt-oss](https://github.com/openai/gpt-oss) models using the Responses API somehow. These models are [compatible](https://openai.com/index/introducing-gpt-oss/) with the Responses API, so it should be possible to do, right?
 
-As it turns out, the [Hugging Face Transformers](https://huggingface.co/docs/transformers/en/index) framework has [experimental support](https://huggingface.co/docs/transformers/en/serving#responses-api) for the Responses API and there even is an OpenAI [cookbook](https://cookbook.openai.com/articles/gpt-oss/run-transformers) that explains how to run gpt-oss locally using Transformers! So let's try it out!
+The [Hugging Face Transformers](https://huggingface.co/docs/transformers/en/index) framework has [experimental support](https://huggingface.co/docs/transformers/en/serving#responses-api) for the Responses API and there even is an OpenAI [cookbook](https://cookbook.openai.com/articles/gpt-oss/run-transformers) that explains how to run gpt-oss locally using Transformers! So let's try it out!
 
 ### Setting up the Hugging Face Transformers library
 
@@ -190,12 +190,12 @@ Content-Type: application/json
 Request Content:
 {"instructions":"","model":"openai/gpt-oss-20b","input":[{"type":"message","role":"user","content":[{"type":"input_text","text":"Tell me a joke!"}]}],"stream":true,"user":"UnnamedAgent","store":false}
 ```
-As it turns out, the Transformers Responses API doesn't like this format. As we saw before, it works fine with the simpler format - but for some reason this doesn't work. Probably because it is experimental. I logged an [issue](https://github.com/huggingface/transformers/issues/40571), so we'll have to see what happens.
+Unfortunately, the Transformers Responses API doesn't like this format. As we saw before, it works fine with the simpler format - but for some reason this doesn't work. Probably because it is experimental. I logged an [issue](https://github.com/huggingface/transformers/issues/40571), so we'll have to see what happens.
 
 So what should we do? 
 
 ### Forking the C# OpenAI SDK and Semantic Kernel
-I really wanted to make this work, and I thought that my only option was to make sure that the request sent from Semantic Kernel was in the simplified format that Transformers like. So, I [forked](https://github.com/adner/openai-dotnet) the [OpenAI .NET API library](https://github.com/openai/openai-dotnet) and tried to tweak it to make sure that it works in my scenario.
+I really wanted to make this work, and I thought that my only option was to make sure that the request sent from Semantic Kernel was in the simplified format that Transformers (currently) supports. So, I [forked](https://github.com/adner/openai-dotnet) the [OpenAI .NET API library](https://github.com/openai/openai-dotnet) and tried to tweak it to make sure that it works in my scenario.
 
 It turns out that [OpenAIResponse.Serialization.cs](https://github.com/adner/openai-dotnet/blob/main/src/Generated/Models/Responses/OpenAIResponse.Serialization.cs) is responsible for serializing the input, and could be tweaked to emit the simplified format instead. Note that this is not a bug in the serializer - it has been automatically generated based on the OpenAI API spec, so it works as it should.
 
