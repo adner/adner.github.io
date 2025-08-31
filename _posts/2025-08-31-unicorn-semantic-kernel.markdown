@@ -221,3 +221,5 @@ Because he was outstanding in his field! 🌾😄
 So, at the depth of the Responses API rabbit hole, it was finally possible to ask the AI to create some short stories about unicorns, some emojis and some nice, bright colors. A repo containing this demo, as well as the tweaked forks of the C# OpenAI SDK and Semantic Kernel can be found [here](https://github.com/adner/SemanticKernel_OpenAiResponsesApi). Here's the result:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/0s08c9sEh3U?si=GN3udxSicLwGs2KA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+It feels like I probably spent way too much time to be able to ask the AI about unicorns, but at least I learned some things about Docker, Transformers and got a chance to dive deeply into the SK and OpenAI .NET codebases. 😄
