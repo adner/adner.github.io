@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Automatic report generation using advanced MCP features"
-date:   2025-08-21
+title:  "Unicorn story generation using the Semantic Kernel"
+date:   2025-08-31
 image: /images/250831/unicorn.png
 ---
 ![title](/images/250831/unicorn_small.png)
