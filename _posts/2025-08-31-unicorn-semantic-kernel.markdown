@@ -25,7 +25,7 @@ Another interesting thing was the support for the OpenAI Responses API in SK, th
 This led me down a rabbit hole exploring experimental libraries, running Transformers locally, creating Dockerfiles, forking of both the Semantic Kernel and the C# Open AI SDK and in the end - short stories of unicorns and rainbows... 🦄🌈
 
 ### The OpenAI Responses API and Semantic Kernel
-I have wanted to look into the [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses) for a while. OpenAI describes it as  **"...the most advanced interface for generating model responses"* and it has a lot of cool features, for example:
+I have wanted to look into the [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses) for a while. OpenAI describes it as  *"...the most advanced interface for generating model responses"* and it has a lot of cool features, for example:
 
 - You don't have to pass all previous messages with every call (like you have to do with the [Chat Completions API](https://platform.openai.com/docs/api-reference/chat)), the service keeps track of the conversations for you.
 - It has built-in support for [file search](https://platform.openai.com/docs/guides/tools-file-search), [web search](https://platform.openai.com/docs/guides/tools-web-search?api-mode=responses), [computer use](https://platform.openai.com/docs/guides/tools-computer-use) and [code execution](https://platform.openai.com/docs/guides/tools-code-interpreter). So there are some cool things that the LLM can do internally, without having to rely on external MCP Servers for these things.
@@ -190,7 +190,7 @@ Content-Type: application/json
 Request Content:
 {"instructions":"","model":"openai/gpt-oss-20b","input":[{"type":"message","role":"user","content":[{"type":"input_text","text":"Tell me a joke!"}]}],"stream":true,"user":"UnnamedAgent","store":false}
 ```
-Unfortunately, the Transformers Responses API doesn't like this format. As we saw before, it works fine with the simpler format - but for some reason this doesn't work. Probably because it is experimental. I logged an [issue](https://github.com/huggingface/transformers/issues/40571), so we'll have to see what happens.
+Unfortunately, the Transformers Responses API doesn't like this format. As we saw before, it works fine with the simpler format - but for some reason this doesn't work. Probably because it is experimental. I logged an [issue](https://github.com/huggingface/transformers/issues/40571), so we'll have to see what happens. **UPDATE: 2 hours after raising the issue, there is already a [PR with a fix](https://github.com/huggingface/transformers/pull/40575) - these guys are fast!**
 
 So what should we do? 
 
