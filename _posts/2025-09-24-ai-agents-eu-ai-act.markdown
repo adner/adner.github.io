@@ -81,7 +81,9 @@ Microsoft's cloud stack already provides a strong foundation here. Tools such as
 
 Yes, let’s talk about EU AI Act risk classifications. The legislation divides AI systems into four categories — **Unacceptable Risk**, **High Risk**, **Limited Risk**, and **Minimal/No Risk** — and understanding where your AI initiatives fall is critical. At first glance, it might seem like your use-cases land safely in the “No Risk” bucket, with no special regulatory obligations. But the devil is in the details. A surprisingly large number of real-world workloads actually belong to higher categories. For example: AI in recruitment or employee evaluation is classified as **high risk**. AI in credit scoring, healthcare, or law enforcement is likewise high risk, with strict obligations around documentation, human oversight, and conformity assessments.
 
-A solid architectural foundation for your AI infrastructure is not just important — it’s essential. Without it, you risk building impressive proofs of concept that can’t survive contact with real-world compliance, scalability, or security demands.
+So, Just like with GDPR, organizations need to do the hard work with the EU AI Act: understand their AI workloads and what’s required to comply. But compliance alone isn’t enough — these workloads also need to make it into production.
+
+That’s why a solid AI architecture isn’t just nice to have, it’s essential. Without it, even the most impressive proof of concept will collapse when it meets real-world compliance, scalability, or security demands.
 
 A layered architecture, as illustrated below, enables organizations to move from isolated AI experiments to enterprise-grade deployments that are scalable, secure, and compliant with both GDPR and the EU AI Act.
 
