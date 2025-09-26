@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Fun with AI Agents and the EU AI Act"
-date:   2025-09-24
+date:   2025-09-26
 image: /images/250924/250924_splash.png
 ---
 {% if page.image %}
@@ -54,4 +54,8 @@ M365 Agents SDK can be used whether you want to create an agent using a low-code
 
 In [this](https://www.youtube.com/watch?v=wR_6xDDlHwo) and [this](https://www.youtube.com/watch?v=wR_6xDDlHwo)  YouTube videos I demonstrate how the the [Copilot Studio Client](https://github.com/microsoft/Agents/tree/main/samples/dotnet/copilotstudio-client) (that is part of the SDK) can be used as the orchestrator for a custom agent UI running in the browser. This is a really powerful pattern where the Copilot Studio can be used to quickly add new capabilities to a completely custom AI UI experience, without having to write any code.
 
-[TO BE CONTINUED]
+![](/images/250924/Picture3.png)
+
+![](/images/250924/Picture4.png)
+
+![](/images/250924/Picture5.png)
