@@ -89,4 +89,4 @@ A layered architecture, as illustrated below, could serve as an example of how o
 
 Thanks for reading!
 
-![](/images/250924/Picture5.png)
+<a href="/images/250924/Picture5.png" target="_blank">![](/images/250924/Picture5.png)</a>
