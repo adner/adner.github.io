@@ -87,7 +87,7 @@ So, Just like with GDPR, organizations need to do the hard work with the EU AI A
 
 So, a solid AI architecture isn’t just nice to have, it’s essential. Without it, taking the step from proofs of concept to organization wide AI usage will be a challenge.
 
-A layered architecture, such as the one as illustrated below, could serve as an example of how organizations can set up an infrastructure that enables the move from isolated AI experiments to enterprise-grade deployments that are scalable, secure, and compliant with both GDPR and the EU AI Act.
+A layered architecture, like the one depicted below, could serve as an example of how organizations can set up an infrastructure that enables the move from isolated AI experiments to enterprise-grade deployments that are scalable, secure, and compliant with both GDPR and the EU AI Act.
 
 Thanks for reading!
 
