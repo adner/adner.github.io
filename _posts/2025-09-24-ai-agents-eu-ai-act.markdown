@@ -83,11 +83,11 @@ Microsoft's cloud stack already provides a strong foundation here. Tools such as
 
 Yes, let’s talk about EU AI Act risk classifications. The legislation divides AI systems into four categories — **Unacceptable Risk**, **High Risk**, **Limited Risk**, and **Minimal/No Risk** — and understanding where your AI initiatives fall within this range is critical. At first glance, it might seem like your use-cases land safely in the “No Risk” bucket, that comes with no special regulatory obligations. But the devil is in the details. A surprisingly large number of real-world workloads actually belong to higher categories. For example: AI in recruitment or employee evaluation is classified as **high risk**. AI in credit scoring, healthcare, or law enforcement is likewise high risk, with strict obligations around documentation, human oversight, and conformity assessments.
 
-So, Just like with GDPR, organizations need to do the hard work with the EU AI Act: understand their AI workloads and what’s required to comply. But compliance alone isn’t enough — these workloads also need to make it into production.
+So, Just like with GDPR, organizations need to do the hard work with the EU AI Act: understand their AI workloads and what’s required to comply. But compliance alone isn’t enough — these workloads also need to make it into production. And without a solid architecture in place, your AI efforts will not scale and compliance will be hard to achieve.
 
-That’s why a solid AI architecture isn’t just nice to have, it’s essential. Without it, even the most impressive proof of concept will collapse when it meets real-world compliance, scalability, or security demands.
+So, a solid AI architecture isn’t just nice to have, it’s essential. Without it, taking the step from proofs of concept to organization wide AI usage will be a challenge.
 
-A layered architecture, as illustrated below, could serve as an example of how organizations can move from isolated AI experiments to enterprise-grade deployments that are scalable, secure, and compliant with both GDPR and the EU AI Act.
+A layered architecture, such as the one as illustrated below, could serve as an example of how organizations can set up an infrastructure that enables the move from isolated AI experiments to enterprise-grade deployments that are scalable, secure, and compliant with both GDPR and the EU AI Act.
 
 Thanks for reading!
 
