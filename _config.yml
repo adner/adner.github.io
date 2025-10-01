@@ -36,6 +36,10 @@ theme: minima
 plugins:
   - jekyll-sitemap
   - jekyll-seo-tag
+  - jekyll-paginate
+
+paginate: 5                 # posts per page
+paginate_path: "/page:num/"  # /page2, /page3, ...
 
 # Exclude from processing.
 # The following items will not be processed, by default.
