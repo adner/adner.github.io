@@ -26,7 +26,7 @@ This is the full instruction to the Copilot Studio model:
  ```
  You are an agent that sends all requests from the user to a remote large language model that is running in Azure Foundry Local and returns the responses from this model without modifying them. You should always call the "RemoteLLMAdmin" topic if the user wants to perform administrative operations on Foundry Local, for example:
 - List the available models in the Foundry Local catalog.
-- LIst the models that are currently loaded in Foundry Local.
+- List the models that are currently loaded in Foundry Local.
 
 Otherwise, you should always call the "RemoteLLMChatCompletion" topic. You should NEVER look in any knowledge sources - there can be no exceptions to this.
  ``` 
@@ -42,7 +42,7 @@ Since we want the Copilot Studio to be a mere proxy for calls to the local LLM, 
 
 ![alt text](/images/251003/image-2.png)
 
-The **RemoteLLMAdmin** topic consists of an instruction telling Copilot Studio to invoke this topic when the user wants to performs administrative tasks in Foundry Local. 
+The **RemoteLLMAdmin** topic consists of an instruction telling Copilot Studio to invoke this topic when the user wants to perform administrative tasks in Foundry Local. 
 - The variable `TheText` is set to the input text `Activity.Text`, which will be used to add the text dynamically in the HTTP request to the Azure Function. 
 - The input message is passed as an HTTP Request to an Azure Function, which then passes the message on to the local model using Azure Relay (see below). 
 - The response from the local LLM is then passed back to the user.
@@ -67,11 +67,11 @@ We need function calling to make the agent do stuff locally, for example  intera
 Both topics send HTTP Post requests to an Function App - [**RelayClient**](https://github.com/adner/CopilotStudioWithFoundryLocal/tree/main/RelayClient) -  running in Azure. The Function has a simple job - to pass on the HTTP request to my local machine using Azure Relay.
 
 ### Azure Relay - passing the prompt to the local machine
-[Azure Relay](https://learn.microsoft.com/en-us/azure/azure-relay/relay-what-is-it) is a nifty technology for creating Hybrid Connections between the cloud and on-premise, bypassing firewalls, etc. In addition to the RelayClient described above, a Relay Server - [**LocalRelayServer**](https://github.com/adner/CopilotStudioWithFoundryLocal/tree/main/LocalRelayServer) - is created, a console application that runs continously on my local machine and receives HTTP requests passed on from the Azure Function.
+[Azure Relay](https://learn.microsoft.com/en-us/azure/azure-relay/relay-what-is-it) is a nifty technology for creating Hybrid Connections between the cloud and on-premise, bypassing firewalls, etc. In addition to the RelayClient described above, a Relay Server - [**LocalRelayServer**](https://github.com/adner/CopilotStudioWithFoundryLocal/tree/main/LocalRelayServer) - is created, a console application that runs continuously on my local machine and receives HTTP requests passed on from the Azure Function.
 
 The Azure Relay client and server are based on the [.NET HTTP sample](https://learn.microsoft.com/en-us/azure/azure-relay/relay-hybrid-connections-http-requests-dotnet-get-started) found in the Azure Relay documentation. The docs describe the steps necessary to configure an Azure Relay Hybrid connection.
 
-It might be interesting to know what an Azure Relay resource cost - this information is found on the [Azure Service Bus pricing page](https://azure.microsoft.com/en-us/pricing/details/service-bus/):
+It might be interesting to know what an Azure Relay resource costs - this information is found on the [Azure Service Bus pricing page](https://azure.microsoft.com/en-us/pricing/details/service-bus/):
 
 ![alt text](/images/251003/image-7.png)
 
@@ -83,7 +83,7 @@ The [LocalRelayServer](https://github.com/adner/CopilotStudioWithFoundryLocal/tr
 - To receive the HTTP messages that are relayed from Copilot Studio.
 - To route the messages to the correct LLM.
 
-The router inspects to JSON structure, and propagates the call to the correct LLM client:
+The router inspects the JSON structure, and propagates the call to the correct LLM client:
 
 ```csharp
 public static async Task RunAsync(IConfiguration configuration)
@@ -217,7 +217,7 @@ As an example, here is the definition for the tool that loads Foundry Local mode
         {
             FoundryLocalClient.currentlyActiveModel = LocalOpenAiClient.manager.LoadModelAsync(modelAlias).Result;
 
-            return "The model " + modelAlias + "has been loaded and is now active.";
+            return "The model " + modelAlias + " has been loaded and is now active.";
         }
         catch (Exception ex)
         {
