@@ -227,9 +227,11 @@ As an example, here is the definition for the tool that loads Foundry Local mode
 ```
 This way of defining tools is very verbose and is the result of me not using any orchestration framework - for example [Microsoft Agent Framework](https://github.com/microsoft/agent-framework) - and instead using the "bare metal" OpenAI SDK. 
 
-All in all, this way fairly simple to setup but pretty powerful. There are quite a few scenarios where running models locally can be a good idea - for example data privacy and security when working with sensitive information, cost optimization for high-volume workloads, reduced latency for real-time applications, or offline capability when internet connectivity is limited or unreliable.
+All in all, this is fairly simple to setup but pretty powerful. There are quite a few scenarios where running models locally can be a good idea - for example data privacy and security when working with sensitive information, cost optimization for high-volume workloads, reduced latency for real-time applications, or offline capability when internet connectivity is limited or unreliable. 
 
-Try it out for yourself, all code can be found in [this repo](https://github.com/adner/CopilotStudioWithFoundryLocal/tree/main). Happy hacking!
+**Disclaimer:** This is a proof-of-concept for demonstration purposes only. Never expose local infrastructure to LLMs without proper security controls and threat modeling.
+
+That being said, try it out for yourself - all code can be found in [this repo](https://github.com/adner/CopilotStudioWithFoundryLocal/tree/main). Happy hacking!
 
 Here is a video that shows how it looks when everything is running:
 
