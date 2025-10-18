@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "The Teams AI Library, M365 Agents SDK and Toolkit and running Doom in Teams"
+title:  "The Teams AI Library, M365 Agents SDK & Toolkit and how to run Doom in Teams"
 date:   2025-10-18
 image: /images/251018/splash.png
 ---
