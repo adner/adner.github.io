@@ -18,6 +18,8 @@ One way of making a Copilot Studio agent available in a custom channel, such as 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6B60HVbnHmw?si=xjlSpgjeRbzQOHOc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+### Deploying agents to Microsoft Teams
+
 In many cases, Microsoft Teams is the channel of choice when deploying AI agents. So what options are available if you want to create an AI agent that should be available in Teams? As mentioned above, Copilot Studio is a good option, especially if you want a no-code approach. But what if you want more control? Let's explore some other options available for publishing agents in Teams:
 
 - The [Microsoft 365 Agents SDK](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/agents-sdk-overview?tabs=csharp) - An extensive framework that allows for the creation of AI agents that can be deployed to many different channels, Microsoft Teams being one of them.
@@ -164,6 +166,7 @@ If we want streaming responses, we can change the code like this:
  ```
  The AI framework found in Teams AI SDK is pretty limited, but it has support for [function calling](https://learn.microsoft.com/en-us/microsoftteams/platform/teams-ai-library/csharp/in-depth-guides/ai/function-calling), some basic conversation state management and even [MCP](https://learn.microsoft.com/en-us/microsoftteams/platform/teams-ai-library/csharp/in-depth-guides/ai/mcp/overview). It's not by any means a full blown agent orchestration framework, but if you only need basic AI functionality, and only OpenAI models, this might be a useful way of adding AI to your agent, without too much work. The way that it handles function calling, and the extent that the framework is configurable leaves a bit to be desired, to be honest. We'll simply have to see how this framework evolves, and how usable it will be in the future.
 
+### Running Doom in Teams
  So, how can we make it run Doom? The demo that I [posted to LinkedIn](https://www.linkedin.com/posts/andreas-adner-70b1153_microsoftteams-ai-llm-activity-7384658863293231104-SUyb?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) showed how to embed Doom in Teams, and the code that illustrates how to do this can be found in [this repo](https://github.com/adner/TeamsDoom). It uses the plumbing described in the docs for using [Adaptive Cards](https://learn.microsoft.com/en-us/microsoftteams/platform/teams-ai-library/csharp/in-depth-guides/adaptive-cards/overview) to allow the user to launch a [Dialog](https://learn.microsoft.com/en-us/microsoftteams/platform/teams-ai-library/csharp/in-depth-guides/dialogs/overview) containing the WASM Doom-application, that is hosted as a [Web App](https://learn.microsoft.com/en-us/microsoftteams/platform/teams-ai-library/csharp/essentials/hosting-web-apps) inside a tab in Teams. It is based on [this sample](https://github.com/microsoft/teams.net/tree/main/Samples/Samples.Tab) that can be found in the [Teams SDK .NET repo](https://github.com/microsoft/teams.net/).
 
  To summarize, Microsoft offers several approaches for deploying AI agents in Teams, each with different tradeoffs:
