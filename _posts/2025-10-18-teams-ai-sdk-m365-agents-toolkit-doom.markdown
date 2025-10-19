@@ -35,7 +35,7 @@ Currently, the VS Code version can only scaffold Python and TypeScript projects 
 
 ![alt text](/images/251018/image2.png)
 
-If we create a project based on this particular template, it gives us the option to use OpenAI models deployed to either Azure AI Foundry, or using the OpenAI API directly. The template scaffolds up **a lot** of code. The template defaults to the very old model `gpt-35-turbo`, and I tried it out this model, deployed to Azure AI Foundry. Hitting F5 allows us to debug the agent locally, using the [Microsoft 365 Agent Playground](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/create-test-basic-agent?tabs=csharp):
+If we create a project based on this particular template, it gives us the option to use OpenAI models deployed to either Azure AI Foundry, or using the OpenAI API directly. The template scaffolds up **a lot** of code. The template defaults to the very old model `gpt-35-turbo`, and I tried it out using this model, deployed to Azure AI Foundry. Hitting F5 allows us to debug the agent locally, using the [Microsoft 365 Agent Playground](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/create-test-basic-agent?tabs=csharp):
 
 ![alt text](/images/251018/image3.png)
 
@@ -61,9 +61,9 @@ It does a number of things, for example:
 
 - Creates an **app registration** in Azure AD, with a **client secret**. Also, creates a **Bot Framework bot** (visible in [dev.botframework.com](https://dev.botframework.com/)) that is tied to this app registration, and that uses this client secret.
 
-This is all a bit confusing, as there are so many moving parts when deploying the agent to Teams. Although the toolkit simplifies deployment, it is not super-clear what is going on, and how the different parts in the infrastructure relate to each-other. For example, the bot can be configured in multiple places - both at [dev.botframework.com](https://dev.botframework.com/) and [dev.teams.microsoft.com/tools/bots](https://dev.teams.microsoft.com/tools/bots). The toolkit uses the Bot Framework bot, but parts of the documentation instead talks about creating the bot in Azure Bot Service. 
+This is all a bit confusing, as there are so many moving parts when deploying the agent to Teams. Although the toolkit simplifies deployment, it is not super-clear what is going on, and how the different parts in the infrastructure relate to each-other. For example, the bot can be configured in multiple places - both at [dev.botframework.com](https://dev.botframework.com/) and [dev.teams.microsoft.com/tools/bots](https://dev.teams.microsoft.com/tools/bots), as well as an Azure Bot Service. The toolkit uses the Bot Framework bot, but parts of the documentation instead talks about creating the bot in Azure Bot Service. 
 
-One snag that I hit was that the provisioning failed until I manually created a **dev tunnel** in Visual Studio:
+One snag that I hit was that the provisioning failed until I manually created a **dev tunnel** in Visual Studio (and removed the one that already existed):
 
 ![alt text](/images/251018/devtunnel.png)
 
