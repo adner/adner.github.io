@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Custom knowledge sources in Copilot Studio"
-date:   2025-10-25
+date:   2025-10-18
 image: /images/251025/splash.png
 ---
 {% if page.image %}
