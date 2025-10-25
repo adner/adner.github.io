@@ -80,10 +80,7 @@ The Azure Function has code for extracting the aliased column values from the qu
 
 This is what it looks like when it is running in Copilot Studio:
 
-<iframe width="315" height="560"
-src="https://youtube.com/shorts/FLCd1vWAhnw?si=ESTkU1aG-9vNwW65"
-title="YouTube video player"
-frameborder="0"
-allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HDKKP5wIlw0?si=PGd09MT8kKFbcaUx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+Pretty useful! 
 
