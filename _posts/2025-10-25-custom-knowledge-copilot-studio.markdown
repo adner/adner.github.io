@@ -18,7 +18,7 @@ I posted a [video on **LinkedIn**](https://www.linkedin.com/posts/andreas-adner-
 
 ### Creating the custom Knowledge Source Topic in Copilot Studio
 
-There isn't much documentation available on how to use the OnKnowledgeRequested trigger, but I found [a great post by Samir Pathak](https://www.linkedin.com/pulse/adding-custom-enterprise-knowledge-sources-copilot-samir-pathak-pmp-j4oze/), as well as [a blog post](https://microsoft.github.io/mcscatblog/posts/copilot-studio-custom-knowledge-source/) from the Microsoft Copilot Studio CAT team, that provides guidance.
+There isn't much documentation available on how to use the OnKnowledgeRequested trigger, but I found [a great post by Samir Pathak](https://www.linkedin.com/pulse/adding-custom-enterprise-knowledge-sources-copilot-samir-pathak-pmp-j4oze/) on LinkedIn, as well as [a blog post](https://microsoft.github.io/mcscatblog/posts/copilot-studio-custom-knowledge-source/) from the Microsoft Copilot Studio CAT team, that provides guidance.
 
 The Microsoft blog post writes the following about the OnKnowledgeRequested trigger:
 
@@ -26,7 +26,18 @@ The Microsoft blog post writes the following about the OnKnowledgeRequested trig
 
 This means that in order to create a custom Knowledge Source we need to create a new Topic in Copilot Studio, and use the code editor to configure the Topic to use the OnKnowledgeRequested trigger:
 
-![alt text](/images/251025/image-1.png)
+```yaml
+kind: AdaptiveDialog
+beginDialog:
+  kind: OnKnowledgeRequested
+  id: main
+  intent: {}
+  actions:
+    # Actions will go here
+    
+inputType: {}
+outputType: {}
+```
 
 When this configuration is done, the rest of the Topic can be configured using the graphical editor. First, we set a variable that contains the FetchXml query that we want to use:
 
@@ -64,7 +75,7 @@ As can be seen above, we only return the **Content** and **ContentLocation** att
 
 `ContactName:Rene Valdes (sample), contactid:7abc6bf7-8a7b-f011-b4cc-7c1e5237e7bd, CompanyName:A. Datum Corporation (sample)`
 
-This means that we can make the results easier to understand for Copilot Studio by making the column names as illustrative as possible. A good way of doing this is to ***alias*** the column names in the FetchXml query:
+This means that we can make the results easier to understand for Copilot Studio by making sure that the column names are as clear and illustrative as possible. A good way of doing this is to ***alias*** the column names in the FetchXml query:
 
 ```xml
 <fetch top="50">
@@ -82,5 +93,5 @@ This is what it looks like when it is running in Copilot Studio:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HDKKP5wIlw0?si=PGd09MT8kKFbcaUx" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Pretty useful! 
+Pretty cool, right? This approach opens up possibilities for integrating custom knowledge sources into your Copilot Studio agents, and using FetchXml to talk to Dataverse is just one example. Give it a try and see what creative knowledge sources you can build!
 
