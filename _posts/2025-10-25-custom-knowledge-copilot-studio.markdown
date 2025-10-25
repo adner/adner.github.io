@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Custom knowledge sources in Copilot Studio"
-date:   2025-10-18
+date:   2025-10-25
 image: /images/251025/splash.png
 ---
 {% if page.image %}
@@ -10,11 +10,11 @@ image: /images/251025/splash.png
   </a>
 {% endif %}
 
-A while back, there was an [interesting discussion on Matthew Devaney's LinkedIn post](https://www.linkedin.com/posts/matthew-devaney_copilotstudio-fetchxml-activity-7385652147083866112-0w0l/), regarding whether it was possible to use FetchXml Dataverse queries as the basis for Knowledge Sources in Copilot Studio. [Andreas Aschauer](https://www.linkedin.com/in/aaschauer/) suggested in a comment that the OnKnowledgeRequested trigger in Copilot Studio could be used to create a custom Knowledge Source, so I thought I'd try it out for myself. 
-
-I posted a [video on **LinkedIn**](https://www.linkedin.com/posts/andreas-adner-70b1153_copilotstudio-dataverse-activity-7387129735799091201-Uav9) that shows how a custom knowledge source can be created in Copilot Studio, that calls Dataverse using FetchXml. This blog post describes in detail how this was accomplished, so that you can try it out for yourself.
+A while back, there was an [interesting discussion on Matthew Devaney's LinkedIn post](https://www.linkedin.com/posts/matthew-devaney_copilotstudio-fetchxml-activity-7385652147083866112-0w0l/), regarding whether it was possible to use FetchXml Dataverse queries as the basis for Knowledge Sources in Copilot Studio. [Andreas Aschauer](https://www.linkedin.com/in/aaschauer/) suggested in a comment that the **OnKnowledgeRequested** trigger in Copilot Studio could be used to create a custom Knowledge Source, so I thought I'd try it out for myself. 
 
 <!--end_excerpt-->
+
+I posted a [video on **LinkedIn**](https://www.linkedin.com/posts/andreas-adner-70b1153_copilotstudio-dataverse-activity-7387129735799091201-Uav9) that demonstrates how a custom knowledge source can be created in Copilot Studio, that calls Dataverse using FetchXml, and returns Knowledge Source data. This blog post describes in detail how this was accomplished, so that you can try it out for yourself.
 
 ### Creating the custom Knowledge Source Topic in Copilot Studio
 
@@ -32,7 +32,7 @@ When this configuration is done, the rest of the Topic can be configured using t
 
 ![alt text](/images/251025/image-2.png)
 
-Then, we use the HTTP Request action to call an Azure Function that is responsible for calling Dataverse and respond in a format that Copilot Studio understands (more on the Azure Function below), and saves the response to a variable:
+Then, we use the HTTP Request action to call an Azure Function that is responsible for calling Dataverse and responds in a format that Copilot Studio understands (more on the Azure Function below), and saves the response to a variable:
 
 ![alt text](/images/251025/image-3.png)
 
@@ -42,7 +42,7 @@ Lastly, we set the system variable `System.SearchResults` to the variable that c
 
 It should be noted that my implementation differs from what is described in the Microsoft [blog post](https://microsoft.github.io/mcscatblog/posts/copilot-studio-custom-knowledge-source/) in a number of ways:
 
-- I actually don't use the `System.SearchQuery` and `System.KeywordSearchQuery` system variables at all in this example. I simply call the Azure Function with the FetchXml query that is set in the Topic, regardless of the actual query that was made by the user. So, this means that Copilot Studio checks the custom Knowledge Source regardless of what the user was actually asking for. This could be improved so that the knowledge source is only called when it is relevant for the query. 
+- I actually don't use the `System.SearchQuery` and `System.KeywordSearchQuery` system variables at all in this example. I simply call the Azure Function with the FetchXml query that is set in the Topic, regardless of the users's actual query. So, this means that Copilot Studio checks the custom knowledge source regardless of what the user was actually asking for. This could be improved so that the knowledge source is only called when it is relevant for the query. 
 
 - In the blog post the result from the knowledge source is transformed to the format that is required for the `System.SearchResults` variable, and this transformation is done in the Topic. In my example, the Azure Function is responsible for doing this transformation. 
 
