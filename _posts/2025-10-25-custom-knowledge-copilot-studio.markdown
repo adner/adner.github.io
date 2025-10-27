@@ -3,6 +3,7 @@ layout: post
 title:  "Custom knowledge sources in Copilot Studio"
 date:   2025-10-25
 image: /images/251025/splash.png
+permalink: /2025/10/18/custom-knowledge-copilot-studio.html
 ---
 {% if page.image %}
   <a href="{{ page.url | relative_url }}">
