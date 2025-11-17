@@ -197,7 +197,11 @@ Code Gen Agent Elapsed Time: 48390ms (48,39s)
 ```
 Now the tool calling agent consumes 73907 tokens! And the code-gen agent consumes 7785 tokens. That is 90% tokens saved!!! 
 
-So, is this the death of MCP? Well, I really don't think so and I think there are many ways of evolving the specification that could address the current issues, for example making batch operations a part of the specification, and specifying ways of doing tool calls that are not added to the context. And perhaps most important - making it possible to pass results between tool calls without polluting the context. I have the feeling that existing primitives in the MCP specification - especially Resources - have a role to play here.
+So, is this the death of MCP? Well, I really don't think so and I think there are many ways of evolving the specification that could address the current issues. For example making batch operations a part of the specification, and ways of doing tool calls that are excluded from to the context. 
+
+And perhaps most important - making it possible to pass results between tool calls without polluting the context. I have the feeling that existing primitives in the MCP specification - especially Resources - have a role to play here. Imagine if an LLM could pass MCP Resource Links as parameters to subsequent tool calls, that would make parameter passing really light-weight!
+
+Anyways, this was a fun experiment and I learned a thing or two about tool calling and context windows. Thanks for reading, and happy hacking!
 
 
 
