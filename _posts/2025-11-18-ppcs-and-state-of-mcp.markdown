@@ -201,7 +201,9 @@ So, is this the death of MCP? Well, I really don't think so and I think there ar
 
 And perhaps most important - making it possible to pass results between tool calls without polluting the context. I have the feeling that existing primitives in the MCP specification - especially Resources - have a role to play here. Imagine if an LLM could pass MCP Resource Links as parameters to subsequent tool calls, that would make parameter passing really light-weight!
 
-Anyways, this was a fun experiment and I learned a thing or two about tool calling and context windows. Thanks for reading, and happy hacking!
+So, MCP is probably not dead but it could use some new features to handle these kind of scenarios better. 
+
+Anyways, this was a fun experiment and I learned a thing or two about tool calling and context windows. As always, thanks for reading! The code for the examples above can be found [here](https://github.com/adner/McpCodeGenTest).  Happy hacking!
 
 
 
