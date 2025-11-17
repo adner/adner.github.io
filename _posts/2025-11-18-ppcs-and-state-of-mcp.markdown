@@ -50,7 +50,7 @@ To make sure that the agent generated C# code that plays well with the Roslyn C#
 
 The execution in Claude Desktop was much faster, to be sure, but how can we know that it actually consumes less tokens? Claude Desktop doesn't tell me the amount of tokens, so we'll have to try it out in a different way. So, I went ahead and created two agents using the [Microsoft Agent Framework](https://github.com/microsoft/agent-framework), one agent that calls the tools one by one, MCP-style, and one that generates code instead. The code can be found [here](https://github.com/adner/McpCodeGenTest/tree/main/AgentSDK).
 
-Let's try the tool calling agent first. We give it the following prompt, and then feed it a [text file with all the speakers and events](https://github.com/adner/McpCodeGenTest/blob/main/AgentSDK/past_events.txt):
+We give the agents the following prompt, and then feed it a [text file with all the speakers and events](https://github.com/adner/McpCodeGenTest/blob/main/AgentSDK/past_events.txt):
 
 ```text
 Please go through these past events and create the Events and Speakers in Dataverse. When done with all, just say 'Done!
