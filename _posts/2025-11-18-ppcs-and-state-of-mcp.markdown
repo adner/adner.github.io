@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The PPCS agent, dynamic C# code generation and the state of MCP"
-date:   2025-11-18
+date:   2025-11-17
 image: /images/251117/splash.png
 permalink: /ppcs-and-state-of-mcp.html
 ---
