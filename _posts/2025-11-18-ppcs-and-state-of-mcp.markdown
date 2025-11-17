@@ -3,6 +3,7 @@ layout: post
 title:  "The PPCS agent, dynamic C# code generation and the state of MCP"
 date:   2025-11-18
 image: /images/251117/splash.png
+permalink: /ppcs-and-state-of-mcp.html
 ---
 {% if page.image %}
   <a href="{{ page.url | relative_url }}">
