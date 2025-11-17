@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The PPCS agent, dynamic C# code generation and the state of MCP"
-date:   2025-11-17
+date:   2025-11-18
 image: /images/251117/splash.png
 ---
 {% if page.image %}
@@ -10,9 +10,9 @@ image: /images/251117/splash.png
   </a>
 {% endif %}
 
-<!--end_excerpt-->
-
 Last week was really fun, I had the privilege of presenting at the [Power Platform Community Sweden (PPCS)](https://powerplatformsweden.se/) event in Stockholm on the 12th of November, and I took the chance to discuss some topics that have interested me over the last couple of months - the [Microsoft 365 Agent SDK](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/), the [Teams AI SDK](https://learn.microsoft.com/en-us/microsoftteams/platform/teams-ai-library/welcome) and the [Microsoft Agent SDK](https://learn.microsoft.com/en-us/agent-framework/overview/agent-framework-overview) - as well as a few words about AI architecture. 
+
+<!--end_excerpt-->
 
 [Sara Lagerquist](https://www.linkedin.com/in/saralagerquist/) is the driving force behind the Power Platform Community in Sweden, and it really is an amazing community that she has created, with so many nice people and an amazing vibe overall. 14-time MVP [Gustaf Westerlund](https://www.linkedin.com/in/gustafwesterlund/) held a great presentation about Principal Object Access (POA), a veeery techical topic that he still managed to make very entertaining and fun!
  
