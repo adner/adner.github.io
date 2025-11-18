@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "The PPCS agent, dynamic C# code generation and the state of MCP"
-date:   2025-11-17
+date:   2025-11-18
 image: /images/251117/splash.png
 permalink: /ppcs-and-state-of-mcp.html
 ---
@@ -11,36 +11,36 @@ permalink: /ppcs-and-state-of-mcp.html
   </a>
 {% endif %}
 
-Last week was really fun, I had the privilege of presenting at the [Power Platform Community Sweden (PPCS)](https://powerplatformsweden.se/) event in Stockholm on the 12th of November, and I took the chance to discuss some topics that have interested me over the last couple of months - the [Microsoft 365 Agent SDK](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/), the [Teams AI SDK](https://learn.microsoft.com/en-us/microsoftteams/platform/teams-ai-library/welcome) and the [Microsoft Agent SDK](https://learn.microsoft.com/en-us/agent-framework/overview/agent-framework-overview) - as well as a few words about AI architecture. 
+Last week was really fun, I had the privilege of presenting at the [Power Platform Community Sweden (PPCS)](https://powerplatformsweden.se/) event in Stockholm on the 12th of November, and I took the chance to discuss some topics that have interested me over the last couple of months - the [Microsoft 365 Agent SDK](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/), the [Teams AI SDK](https://learn.microsoft.com/en-us/microsoftteams/platform/teams-ai-library/welcome) and the [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/overview/agent-framework-overview), as well as a few words about AI architecture. 
 
 <!--end_excerpt-->
 
-[Sara Lagerquist](https://www.linkedin.com/in/saralagerquist/) is the driving force behind the Power Platform Community in Sweden, and it really is an amazing community that she has created, with so many nice people and an amazing vibe overall. 14-time MVP [Gustaf Westerlund](https://www.linkedin.com/in/gustafwesterlund/) held a great presentation about Principal Object Access (POA), a veeery techical topic that he still managed to make very entertaining and fun!
+[Sara Lagerquist](https://www.linkedin.com/in/saralagerquist/) is the driving force behind the Power Platform Community in Sweden, and it really is an amazing community that she has built, with so many nice people and an amazing vibe overall. 14-time MVP [Gustaf Westerlund](https://www.linkedin.com/in/gustafwesterlund/) held a great presentation about Principal Object Access (POA), a very techical topic that he still managed to make very entertaining and fun! Kudos to Gustaf!
  
-In my presentation I showed a lot of demos (videos - doing live-demos is scary), basically a "best of" what I have posted to LinkedIn in the last couple of months. If you are interested, here is a "supercut" containing all the demos that I showed at the event:
+In my presentation I showed a lot of demos (videos - doing live-demos is scary), basically a "best of" what I have posted to LinkedIn in the last couple of months. If you are interested, here is a "supercut" with all the demos from the event:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/GJLqc2VH9CA?si=DBsFGrOUnNiiEM5C" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-One of the main themes of the presentation was the creation of the "Power Platform Community Sweden" agent - a chatbot that could help Sara plan events, using a lot of different channels - like Claude Desktop, Teams, Copilot and a custom web app. I created an MCP Server for this purpose, that had a couple of simple tools that the agent can use:
+One of the main themes of my presentation was the creation of the "Power Platform Community Sweden" agent - a chatbot that could help Sara plan events and that can be deployed to a lot of different channels - like Claude Desktop, Teams, Copilot and a custom web app. I created a MCP Server for this purpose, that had a couple of simple tools that the agent can use:
 
 - CreateEvent 
 - CreateSpeaker
 - AddSpeakerToEvent
 - ExecuteFetch - for querying Dataverse using FetchXml.
 
-In the first demo I showed this MCP Server used from Claude Desktop, using the list of past events and speakers from the [PPCS website](https://powerplatformsweden.se/) and adding them to the database using MCP. The code for the MCP Server can be found in [this repo](https://github.com/adner/PPCS_251112/tree/main/PPCS_MCP). The demo looked like this:
+In the first demo I showed this MCP Server used from Claude Desktop. I gave Claude a list of past events and speakers from the [PPCS website](https://powerplatformsweden.se/) and it added them to Dataverse. The code for the MCP Server can be found in [this repo](https://github.com/adner/PPCS_251112/tree/main/PPCS_MCP). The demo:
  
 <iframe width="560" height="315" src="https://www.youtube.com/embed/aRRVufV1UMw?si=ZtLRllMFHgbi66dK" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-Good thing it was a pre-recorded video that could be sped up, for the process of creating the events and speakers was painfully slow - it took almost eight minutes to create everything, and Claude Desktop was getting more and more sluggish as it went along, eventually almost grinding to a complete halt. Apparently, the really simple process of enumerating ~20 events and ~40 speakers and adding them to Dataverse in a loop, one at a time, using an MCP tool is real hard work for Claude. Why is that?
+Good thing it was a pre-recorded video that could be sped up, for the process of creating the events and speakers was painfully slow - it took almost eight minutes in total, and Claude Desktop was getting more and more sluggish as it went along, eventually almost grinding to a complete halt. Apparently, the really simple process of enumerating ~20 events and ~40 speakers and adding them to Dataverse in a loop, one at a time, using an MCP tool is real hard work for Claude. Why is that?
 
-Perhaps this [article from Anthropic](https://www.anthropic.com/engineering/code-execution-with-mcp) sheds some light on this issue, and if you are into internet flamewars [this YouTube video](https://www.youtube.com/watch?v=1piFEKA9XL0) is also worth a watch. 
+Perhaps this [article from Anthropic](https://www.anthropic.com/engineering/code-execution-with-mcp) sheds some light on this issue. It discusses the challenge of using many MCP Servers and tools, and the consequence this has on the LLM context window. The article led to quite a lot of discussion - and if you are into internet flamewars [this YouTube video](https://www.youtube.com/watch?v=1piFEKA9XL0) is worth a watch. 
 
-With MCP gaining a lot of popularity, agents often have quite a lot of MCP Servers connected to them, and the tool definitions get added to the context, potentially eating up so much context that the model spends more time parsing and interpreting tool metadata than actually solving the task at hand. And the results of tool calls, which may be large, also gets added to the context – and the result is a sluggish, barely usable agent. This sounds exactly like what happened in my demo: each individual MCP call was simple, but the cumulative overhead grew with every tool call, eventually overwhelming the context window. Not good, not good at all. Is there a better option?
+The article argues that MCP is so popular, agents often have quite a lot of MCP Servers connected to them, and the tool definitions get added to the context, potentially eating up so much context that the model spends more time parsing and interpreting tool metadata than actually solving the task at hand. And the results of tool calls, which may be large, also gets added to the context – and the result is a sluggish, barely usable agent. This sounds exactly like what happened in my demo: each individual MCP call was simple, but the cumulative overhead grew with every tool call, eventually overwhelming the context window. And it should be noted that I only had one (1) MCP Server. Not good, not good at all. Is there a better option?
 
-The article outlines an interesting idea – instead of letting the LLM perform repeated MCP tool calls, instead let the LLM dynamically write code that executes the tool calls. That way, the tool definitions and tool call results are kept out of the context window. Pure genius! But does it work? 
+The article outlines an interesting idea – instead of letting the LLM perform repeated MCP tool calls, let the LLM dynamically write code that executes the tool calls and handles the results. That way, the tool definitions and tool call results are kept out of the context window. Pure genius! But does it work? 
 
-I wanted to try it out for myself, so I [rewrote the PPCS MCP Server](https://github.com/adner/McpCodeGenTest/tree/main/PPCS_MCP) from my demo and modified it so that it only has one tool - `RunScript` - that can be used to run C# code that has been dynamically generated by the LLM. The `ScriptRunnerLib` contains a [small library](https://github.com/adner/McpCodeGenTest/blob/main/ScriptRunnerLib/ScriptRunnerLib.cs) that makes it possible to execute this code at runtime. The secret sauce here is the [Roslyn](https://github.com/dotnet/roslyn/) C# Scripting SDK, such a cool library!
+I wanted to try it out for myself, so I [rewrote the PPCS MCP Server](https://github.com/adner/McpCodeGenTest/tree/main/PPCS_MCP) from my demo and modified it so that it only has one tool - `RunScript` - that can be used to run C# code that has been dynamically generated by the LLM. The `ScriptRunnerLib` contains a [small library](https://github.com/adner/McpCodeGenTest/blob/main/ScriptRunnerLib/ScriptRunnerLib.cs) that makes it possible to execute this code at runtime. The secret sauce here is the [Roslyn](https://github.com/dotnet/roslyn/) C# Scripting SDK that makes it easy to run C# code on the fly at runtime, such a cool library!
 
 So, I hooked up the new and improved MCP Server to Claude and the results were actually quite amazing! Instead of 8 minutes, it took only 41 seconds to add all events and speakers:
 
@@ -48,7 +48,7 @@ So, I hooked up the new and improved MCP Server to Claude and the results were a
 
 To make sure that the agent generated C# code that plays well with the Roslyn C# compiler, I gave it [very detailed (and verbose) instructions](https://github.com/adner/McpCodeGenTest/blob/main/AgentSDK/agent_instructions_codegen.md) - a couple of thousand tokens worth. 
 
-The execution in Claude Desktop was much faster, to be sure, but how can we know that it actually consumes less tokens? Claude Desktop doesn't tell me the amount of tokens, so we'll have to try it out in a different way. So, I went ahead and created two agents using the [Microsoft Agent Framework](https://github.com/microsoft/agent-framework), one agent that calls the tools one by one, MCP-style, and one that generates code instead. The code can be found [here](https://github.com/adner/McpCodeGenTest/tree/main/AgentSDK).
+The execution in Claude Desktop was much faster, to be sure, but how can we know that it actually consumes less tokens? Claude Desktop doesn't output the amount of tokens spent, so we'll have to try it out in a different way. So, I went ahead and created two agents using the [Microsoft Agent Framework](https://github.com/microsoft/agent-framework), one agent that calls the tools one by one, MCP-style, and one that does the tool calls from dynamically generated code instead. The code for both the agents can be found [here](https://github.com/adner/McpCodeGenTest/tree/main/AgentSDK).
 
 We give the agents the following prompt, and then feed it a [text file with all the speakers and events](https://github.com/adner/McpCodeGenTest/blob/main/AgentSDK/past_events.txt):
 
@@ -119,7 +119,7 @@ Hmm, the tool calling agent took 34 seconds, and it consumed 7495 tokens. And th
 
 Actually, the LLM (GPT-5.1 in this case) is actually super smart. What actually seems to happen here is that the LLM does **parallel tool calling** and lets the client do all tool calls without passing the results back to the LLM! It is smart enough to figure out that the tool calls are actually "fire-and-forget" and it doesn't have to act on the results! Kind of clever! It seems that GPT-5.1 is doing a much better job than Claude Desktop for this particular scenario.
 
-So, what happens if we give the LLM explicit instructions to actually evaluate the result from all tool calls? Let's change the prompt accordingly:
+So, what happens if we give the LLM explicit instructions to actually **evaluate** the result from all tool calls? Let's change the prompt accordingly:
 
 ```text
 Please go through these past events and create the Events and Speakers in Dataverse. After creating each Event or Speaker, make sure that it returns 'OK', before continuing to the next one. When done with all, just say 'Done!'
@@ -195,15 +195,15 @@ Done!
 - Total tokens (Streaming): 7785
 Code Gen Agent Elapsed Time: 48390ms (48,39s)
 ```
-Now the tool calling agent consumes 73907 tokens! And the code-gen agent consumes 7785 tokens. That is 90% tokens saved!!! 
+Now the tool calling agent consumes 73907 tokens! And the code-gen agent consumes 7785 tokens. That is 90% tokens saved!!! This aligns well with the "97% less tokens" claim from the article.  
 
-So, is this the death of MCP? Well, I really don't think so and I think there are many ways of evolving the specification that could address the current issues. For example making batch operations a part of the specification, and ways of doing tool calls that are excluded from to the context. 
+So, is this the death of MCP? Well, I really don't think so and I think there should be ways to evolve the specification that could potentially address the current issues. For example making batch operations a part of the specification, and ways of doing tool calls that are excluded from to the context, among other things. And we shouldn't forget that MCP is only part of the solution, much can probably be done at the LLM layer also with regard to tool calling.  
 
-And perhaps most important - making it possible to pass results between tool calls without polluting the context. I have the feeling that existing primitives in the MCP specification - especially Resources - have a role to play here. Imagine if an LLM could pass MCP Resource Links as parameters to subsequent tool calls, that would make parameter passing really light-weight!
+Perhaps most important - make it possible to pass results between tool calls without polluting the context. I have the feeling that existing primitives in the MCP specification - especially [Resources](https://modelcontextprotocol.io/specification/2025-06-18/server/resources) - have a role to play here. Imagine if an LLM could pass MCP Resource Links as parameters to subsequent tool calls, that would make parameter passing really light-weight! 
 
 So, MCP is probably not dead but it could use some new features to handle these kind of scenarios better. 
 
-Anyways, this was a fun experiment and I learned a thing or two about tool calling and context windows. As always, thanks for reading! The code for the examples above can be found [here](https://github.com/adner/McpCodeGenTest).  Happy hacking!
+Anyways, this was a fun experiment and I learned a thing or two about tool calling and context windows. As always, thanks for reading! The code for the examples above can be found [here](https://github.com/adner/McpCodeGenTest).  Until next time, happy hacking!
 
 
 
