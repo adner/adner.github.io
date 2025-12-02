@@ -12,8 +12,8 @@ permalink: /agent-365-mcp-servers-part-1.html
 {% endif %}
 
 ### Microsoft Agent 365
-At Microsoft Ignite a couple of weeks ago, Microsoft released [Agent 665](https://www.microsoft.com/en-us/microsoft-365/blog/2025/11/18/microsoft-agent-365-the-control-plane-for-ai-agents/) - the "control plane for AI agents". Currently available only through the [Frontier program](https://adoption.microsoft.com/en-us/copilot/frontier-program/), the long-term goal is that Agent 365 should be the framework for governing AI agents in the enterprise, at scale. So if you are into entrerprise architecture and governance, Agent 365 is for you. 
-
+At Microsoft Ignite a couple of weeks ago, Microsoft released [Agent 665](https://www.microsoft.com/en-us/microsoft-365/blog/2025/11/18/microsoft-agent-365-the-control-plane-for-ai-agents/) - the "control plane for AI agents". Currently available only through the [Frontier program](https://adoption.microsoft.com/en-us/copilot/frontier-program/), the long-term goal is that Agent 365 should be the framework for governing AI agents in the enterprise, at scale. So if you are into enterprise architecture and governance, Agent 365 is for you. 
+<!--end_excerpt-->
 Diving into the [docs for Agent 365](https://learn.microsoft.com/en-us/microsoft-agent-365/), there are quite a few interesting nuggets also for us that are more into the tech than the enterprise governance stuff:
 
 - There is a [new SDK](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/) for Agent 365, called the *Microsoft Agent 365 SDK*. Not to be confused with the [Microsoft 365 Agents SDK](https://learn.microsoft.com/en-us/microsoft-365/agents-sdk/), which is somewhat related - but still something completely different. Let that sink in - Microsoft has released two different SDKs with nearly identical names... 
