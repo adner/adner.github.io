@@ -44,7 +44,7 @@ Let's connect to this endpoint in [MCP Inspector](https://github.com/modelcontex
 
 ![alt text](/images/251202/image-2.png)
 
-In the metadata we can see some interesting information, such as the available scopes and the authentication- and token request endpoints. We can continue to run the authentication wizard, but it fails directly in the next step, since the MCP Server doesn't support [Dynamic Client Registration](https://datatracker.ietf.org/doc/html/rfc7591), which is [mandatory](https://modelcontextprotocol.info/specification/draft/basic/authorization/) in the MCP specification. MCP Inspector is pretty strict, and since the MCP Server is not 100% up to spec, we need to explore other options.
+In the metadata we can see information such as the available scopes and the authentication- and token request endpoints. We can continue to run the authentication wizard, but it fails directly in the next step, since the MCP Server doesn't support [Dynamic Client Registration](https://datatracker.ietf.org/doc/html/rfc7591), which it [SHOULD](https://modelcontextprotocol.info/specification/draft/basic/authorization/) according to the MCP specification. MCP Inspector is pretty strict, and since the MCP Server is not 100% up to spec, we need to explore other options.
 
 ![alt text](/images/251202/image-3.png)
 
@@ -88,7 +88,7 @@ Click "Connect" and you should be able to access the Management MCP Server, and 
 
 ![alt text](/images/251202/image-12.png)
 
-Now we can use the `GetMcpServers` tool to list all available tools and their details, such as endpoint addresses.
+Now we can use the `GetMcpServers` tool to list all available tools and their details, such as endpoint addresses:
 
 ![alt text](/images/251202/image-13.png)
 
