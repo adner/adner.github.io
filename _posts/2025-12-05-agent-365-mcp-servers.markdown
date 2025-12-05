@@ -80,7 +80,7 @@ However, if we run this - it fails! The reason for the failure is that the  Entr
 
 The C# MCP SDK actually follows the MCP specification, which [mandates](/images/251205https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization#resource-parameter-implementation) that the `resource` parameter should be passed. But Entra doesn't accept it. There actually is a [proposal](/images/251205https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1614) to make this parameter optional, not mandatory, for MCP Clients so we'll have to see where this ends up... In the meantime - and in the interest of finishing the demo, I simply forked the C# MCP SDK and did [this change](/images/251205https://github.com/modelcontextprotocol/csharp-sdk/pull/940/files#diff-c50d00a1141a07ed23e1e5169c0c9af516ab09162628ecd0b0dae70724de1dd3):
 
-![alt text](/images/251205image.png)
+![alt text](/images/251205/image.png)
 
 With this fixed, the backend is working and we can move on to to implementing the frontend using CopilotKit.
 
@@ -125,7 +125,7 @@ useDefaultTool({
 ```
 This looks like this when we call one of the tools in the MCP Management MCP Server:
 
-![alt text](/images/251205image-1.png)
+![alt text](/images/251205/image-1.png)
 
 It also has built in support for handling "human in the loop" flows, using this code:
 
@@ -145,11 +145,11 @@ It also has built in support for handling "human in the loop" flows, using this 
 ```
 This is what happens when I tell the agent that I want to go to the moon, the custom UI is rendered:
 
-![alt text](/images/251205image-2.png)
+![alt text](/images/251205/image-2.png)
 
 And when the button is clicked:
 
-![alt text](/images/251205image-3.png)
+![alt text](/images/251205/image-3.png)
 
 This is a video of the agent, accessing different Agent 365 MCP Servers:
 
