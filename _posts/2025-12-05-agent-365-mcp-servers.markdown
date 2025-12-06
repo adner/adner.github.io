@@ -17,7 +17,7 @@ In my [last blog post](https://nullpointer.se/agent-365-mcp-servers-part-1.html)
 
 We start by creating a web app that exposes an AG-UI endpoint, and that implements an agent using Microsoft Agent Framework. The code for the backend can be found in [this](https://github.com/adner/Agent365McpServers/tree/main/AgentBackend) repo. To wire up the AG-UI middleware, we follow the instructions [here](https://learn.microsoft.com/en-us/agent-framework/integrations/ag-ui/getting-started?pivots=programming-language-csharp) in the docs. There is also some sample code in the [Microsoft Agent Framework repo](https://github.com/microsoft/agent-framework/tree/8c6b12e6646e05be557750638ae893ac793ded18/dotnet/samples/AGUIClientServer/AGUIServer).
 
-To wire up the authorization flow with the MCP Servers, I took inspiration from the [Protected MCP Client sample code](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/samples/ProtectedMcpClient) in the C# MCP SDK repo.  
+To wire up the authorization flow with the MCP Servers, I took inspiration from the [Protected MCP Client sample code](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/samples/ProtectedMcpClient) in the C# MCP SDK repo.
 
 ```csharp
 using ModelContextProtocol.Client;
@@ -35,7 +35,7 @@ using var httpClientWithContentLength = new HttpClient(new ContentLengthEnforcin
 
 We add the plumbing for handling the OAuth2 flow. We implement a special authentication handler called [OAuthAuthorizationHandler](https://github.com/adner/Agent365McpServers/blob/e214db3a5bafb9603cf70593c6de999e52048060/AgentBackend/Program.cs#L116) for this purpose, that among other things opens up a browser so that the user can authenticate and consent to the scopes that are required to access the servers.
 
-In this particular example, we set up the authorization logic to be able to access the Agent 365 MCP Management MCP Server. See the [last blog post](https://nullpointer.se/agent-365-mcp-servers-part-1.html) for details on how to setup the prerequisites (App Registration, API permissions) in Entra ID. A client secret is also needed here, in the last blog post we used Authorization Code Flow with PKCE, this time we use Authorization Code Flow. In the code in the [repo](https://github.com/adner/Agent365McpServers/tree/main/AgentBackend) there are also examples on how to connect to the Word, Teams and Dataverse MCP Servers.
+In this particular example, we set up the authorization logic to be able to access the Agent 365 MCP Management MCP Server. See the [last blog post](https://nullpointer.se/agent-365-mcp-servers-part-1.html) for details on how to set up the prerequisites (App Registration, API permissions) in Entra ID. A client secret is also needed here, in the last blog post we used Authorization Code Flow with PKCE, this time we use Authorization Code Flow. In the code in the [repo](https://github.com/adner/Agent365McpServers/tree/main/AgentBackend) there are also examples on how to connect to the Word, Teams and Dataverse MCP Servers.
 
 ```csharp
 // Create OAuth handler with semaphore to serialize auth flows (they share the same redirect port)
@@ -58,7 +58,7 @@ var managementMcpTransport = new HttpClientTransport(new()
 }, httpClientWithContentLength, consoleLoggerFactory);
 ```
 
-We connect to the MCP Server and enumerate the available tools, so we can add them to the agent that we created in the next step.
+We connect to the MCP Server and enumerate the available tools, so we can add them to the agent that we create in the next step.
 
 ```csharp
 await using var managementMcpClient = await McpClient.CreateAsync(managementMcpTransport, loggerFactory: consoleLoggerFactory);
@@ -95,9 +95,9 @@ With this fixed, the backend is working and we can move on to implementing the f
 
 As mentioned above, we use CopilotKit to create the frontend, a framework that can use the [AG-UI protocol](https://github.com/ag-ui-protocol/ag-ui) to talk to our backend. AG-UI greatly simplifies the process of building UIs for agents, by automatically handling e.g. streaming, state management and tool calling - and it is integrated into CopilotKit. CopilotKit has lots of [hooks](https://docs.copilotkit.ai/reference) that can be used to do all kinds of cool stuff:
 
-- Render custom UI when [LLM tool calls happens](https://docs.copilotkit.ai/reference/hooks/useRenderToolCall)
-- Define [*front end tools*](https://docs.copilotkit.ai/reference/hooks/useFrontendTool) - tools that are defined in CopilotKit and that allows the LLM to execute code on the frontend.
-- Handling [*human in the loops*](https://docs.copilotkit.ai/reference/hooks/useHumanInTheLoop) scenarios.
+- Render custom UI when [LLM tool calls happen](https://docs.copilotkit.ai/reference/hooks/useRenderToolCall)
+- Define [*front end tools*](https://docs.copilotkit.ai/reference/hooks/useFrontendTool) - tools that are defined in CopilotKit and that allow the LLM to execute code on the frontend.
+- Handling [*human in the loop*](https://docs.copilotkit.ai/reference/hooks/useHumanInTheLoop) scenarios.
 
 The frontend is based on the [quickstart code](https://docs.copilotkit.ai/microsoft-agent-framework/quickstart) for the CopilotKit/AG-UI integration with Microsoft Agent Framework, and can be found in [this repo](https://github.com/adner/Agent365McpServers/tree/main/copilotkitagentframework).
 
@@ -138,7 +138,7 @@ If the LLM calls one of the tools in the MCP Management MCP Server, it renders l
 
 ![alt text](/images/251205/image-1.png)
 
-As mentioned above, CopilotStudio also has built-in support for handling "human in the loop" flows:
+As mentioned above, CopilotKit also has built-in support for handling "human in the loop" flows:
 
 ```typescript
   useHumanInTheLoop(
@@ -154,7 +154,7 @@ As mentioned above, CopilotStudio also has built-in support for handling "human 
     [themeColor],
   );
 ```
-Wehen we tell the agent that I want to go to the moon, the custom UI is rendered:
+When we tell the agent that we want to go to the moon, the custom UI is rendered:
 
 ![alt text](/images/251205/image-2.png)
 
@@ -162,7 +162,7 @@ And when the button is clicked:
 
 ![alt text](/images/251205/image-3.png)
 
-This is a video of the finsihed agent, that is accessing different Agent 365 MCP Servers:
+This is a video of the finished agent, that is accessing different Agent 365 MCP Servers:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/fPwdB1N0AgM?si=qLLKqGQFjz5zM_ai" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
