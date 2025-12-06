@@ -17,7 +17,7 @@ In my [last blog post](https://nullpointer.se/agent-365-mcp-servers-part-1.html)
 
 We start by creating a web app that exposes an AG-UI endpoint, and that implements an agent using Microsoft Agent Framework. The code for the backend can be found in [this](https://github.com/adner/Agent365McpServers/tree/main/AgentBackend) repo. To wire up the AG-UI middleware, we follow the instructions [here](https://learn.microsoft.com/en-us/agent-framework/integrations/ag-ui/getting-started?pivots=programming-language-csharp) in the docs. There is also some sample code in the [Microsoft Agent Framework repo](https://github.com/microsoft/agent-framework/tree/8c6b12e6646e05be557750638ae893ac793ded18/dotnet/samples/AGUIClientServer/AGUIServer).
 
-To wire up the authorization flow with the MCP Servers, I took inspiration from the [Protected MCP Client sample code](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/samples/ProtectedMcpClient) in the C# MCP SDK repo.
+To implement the authorization flow with the MCP Servers, I took inspiration from the [Protected MCP Client sample code](https://github.com/modelcontextprotocol/csharp-sdk/tree/main/samples/ProtectedMcpClient) in the C# MCP SDK repo.
 
 ```csharp
 using ModelContextProtocol.Client;
@@ -33,9 +33,9 @@ using var httpClient = new HttpClient();
 using var httpClientWithContentLength = new HttpClient(new ContentLengthEnforcingHandler());
 ```
 
-We add the plumbing for handling the OAuth2 flow. We implement a special authentication handler called [OAuthAuthorizationHandler](https://github.com/adner/Agent365McpServers/blob/e214db3a5bafb9603cf70593c6de999e52048060/AgentBackend/Program.cs#L116) for this purpose, that among other things opens up a browser so that the user can authenticate and consent to the scopes that are required to access the servers.
+We then add the plumbing for handling the OAuth2 flow. We implement a special authentication handler - [OAuthAuthorizationHandler](https://github.com/adner/Agent365McpServers/blob/e214db3a5bafb9603cf70593c6de999e52048060/AgentBackend/Program.cs#L116) - for this purpose, that among other things opens up a browser so that the user can authenticate and consent to the scopes that are required to access the servers.
 
-In this particular example, we set up the authorization logic to be able to access the Agent 365 MCP Management MCP Server. See the [last blog post](https://nullpointer.se/agent-365-mcp-servers-part-1.html) for details on how to set up the prerequisites (App Registration, API permissions) in Entra ID. A client secret is also needed here, in the last blog post we used Authorization Code Flow with PKCE, this time we use Authorization Code Flow. In the code in the [repo](https://github.com/adner/Agent365McpServers/tree/main/AgentBackend) there are also examples on how to connect to the Word, Teams and Dataverse MCP Servers.
+In this particular example, we set up the authorization logic to be able to access the Agent 365 MCP Management MCP Server. See the [last blog post](https://nullpointer.se/agent-365-mcp-servers-part-1.html) for details on how to set up the prerequisites (App Registration, API permissions, etc) in Entra ID. In the last blog post we used Authorization Code Flow with PKCE, this time we use Authorization Code Flow - so a Client Secret is also required here. In the [repo](https://github.com/adner/Agent365McpServers/tree/main/AgentBackend) there are also examples on how to connect to the Word, Teams and Dataverse MCP Servers.
 
 ```csharp
 // Create OAuth handler with semaphore to serialize auth flows (they share the same redirect port)
@@ -83,9 +83,7 @@ However, if we run this - it fails! The reason for the failure is that Entra ID 
 
 The C# MCP SDK actually follows the MCP specification, which [mandates](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization#resource-parameter-implementation) that the `resource` parameter should be passed when authorizing. But Entra doesn't accept the parameter... 
 
-Actually, there is a [proposal](https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1614) to make this parameter **optional** and not mandatory for MCP Clients.
-
-But rather than waiting for the MCP spec to change, and in the interest of finishing the demo, I simply forked the C# MCP SDK and did [this change](https://github.com/modelcontextprotocol/csharp-sdk/pull/940/files#diff-c50d00a1141a07ed23e1e5169c0c9af516ab09162628ecd0b0dae70724de1dd3) that simply removes the `resource` parameter:
+Actually, there is a [proposal](https://github.com/modelcontextprotocol/modelcontextprotocol/issues/1614) to make this parameter **optional** and not mandatory for MCP Clients. But rather than waiting for the MCP spec to change, and in the interest of finishing the demo, I simply forked the C# MCP SDK and did [this change](https://github.com/modelcontextprotocol/csharp-sdk/pull/940/files#diff-c50d00a1141a07ed23e1e5169c0c9af516ab09162628ecd0b0dae70724de1dd3) that simply removes the `resource` parameter:
 
 ![alt text](/images/251205/image.png)
 
@@ -93,10 +91,10 @@ With this fixed, the backend is working and we can move on to implementing the f
 
 ### Creating the frontend
 
-As mentioned above, we use CopilotKit to create the frontend, a framework that can use the [AG-UI protocol](https://github.com/ag-ui-protocol/ag-ui) to talk to our backend. AG-UI greatly simplifies the process of building UIs for agents, by automatically handling e.g. streaming, state management and tool calling - and it is integrated into CopilotKit. CopilotKit has lots of [hooks](https://docs.copilotkit.ai/reference) that can be used to do all kinds of cool stuff:
+As mentioned above we use CopilotKit to create the frontend, a framework that can use the [AG-UI protocol](https://github.com/ag-ui-protocol/ag-ui) to talk to our backend. AG-UI greatly simplifies the process of building UIs for agents, by automatically handling e.g. streaming, state management and tool calling - and it is integrated into CopilotKit. CopilotKit has lots of [hooks](https://docs.copilotkit.ai/reference) that can be used to do all kinds of cool stuff:
 
-- Render custom UI when [LLM tool calls happen](https://docs.copilotkit.ai/reference/hooks/useRenderToolCall)
-- Define [*front end tools*](https://docs.copilotkit.ai/reference/hooks/useFrontendTool) - tools that are defined in CopilotKit and that allow the LLM to execute code on the frontend.
+- Render custom UI when [LLM tool calls happen.](https://docs.copilotkit.ai/reference/hooks/useRenderToolCall)
+- Define [*front end tools*](https://docs.copilotkit.ai/reference/hooks/useFrontendTool) - tools that are implemented in React and that allow the LLM to execute code on the frontend.
 - Handling [*human in the loop*](https://docs.copilotkit.ai/reference/hooks/useHumanInTheLoop) scenarios.
 
 The frontend is based on the [quickstart code](https://docs.copilotkit.ai/microsoft-agent-framework/quickstart) for the CopilotKit/AG-UI integration with Microsoft Agent Framework, and can be found in [this repo](https://github.com/adner/Agent365McpServers/tree/main/copilotkitagentframework).
@@ -134,7 +132,7 @@ useDefaultTool({
   },
 });
 ```
-If the LLM calls one of the tools in the MCP Management MCP Server, it renders like this:
+If the LLM calls one of the tools in the MCP Management MCP Server, it renders a custom UI:
 
 ![alt text](/images/251205/image-1.png)
 
