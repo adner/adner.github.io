@@ -114,4 +114,6 @@ And lo and behold - a Word document has been created in our Onedrive!
 
 Amazing, now we have what we need to (hopefully) be able to call these MCP Servers from an agent created in Microsoft Agent Framework! Stay tuned, in my next blog post I intend to show how this was accomplished - as demonstrated in [this video](https://www.linkedin.com/posts/andreasadner_agent365-microsoftagentframework-activity-7401354948849889282-Nd2D?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w).
 
+Check out my [next blog post](https://nullpointer.se/agent-365-mcp-servers-part-2.html), where I discuss how this agent is implemented.
+
 Until then, happy hacking!
