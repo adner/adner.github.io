@@ -116,4 +116,4 @@ Amazing, now we have what we need to (hopefully) be able to call these MCP Serve
 
 Check out my [next blog post](https://nullpointer.se/agent-365-mcp-servers-part-2.html), where I discuss how this agent is implemented.
 
-Until then, happy hacking!
+Until next time, happy hacking!
