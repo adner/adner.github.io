@@ -19,12 +19,12 @@ These are the same MCP Servers that you can use from Copilot Studio, which I [tr
 
 These experiments involved using the **Agent 365 MCP Management MCP Server** to programmatically retrieve information about these first-party MCP Servers, so I could connect to them using the MCP plumbing in Agent Framework. 
 
-While exploring the (pretty sparse, to be honest) [documentation](https://learn.microsoft.com/en-us/microsoft-agent-365/mcp-server-reference/mcpmanagement) on the A365 MCP Management MCP Server, it is clear that the Management MCP Server has quite a lot of interesting tools, for example:
+While exploring the (pretty sparse, to be honest) [documentation](https://learn.microsoft.com/en-us/microsoft-agent-365/mcp-server-reference/mcpmanagement) on the A365 MCP Management MCP Server, it is clear that this serer has quite a lot of interesting tools, for example:
 
 - [CreateMcpServer](https://learn.microsoft.com/en-us/microsoft-agent-365/mcp-server-reference/mcpmanagement#createmcpserver) - *"Creates a new MCP server instance in the current environment"*.
 - [CreateToolWithCustomAPI](https://learn.microsoft.com/en-us/microsoft-agent-365/mcp-server-reference/mcpmanagement#createtoolwithcustomapi) - *"Creates a new tool with a custom API in an MCP server"*.
 
- These tools sure sound interesting, but there isn't any real information on how to use them in the documentation, as far as I can see. The [section](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview#build-scenario-focused-custom-mcp-servers-with-the-microsoft-mcp-management-server) *Build scenario-focused custom MCP servers with the Microsoft MCP Management Server* contains a high-level overview of the capabilities for creating custom MCP Servers, including the ability to create MCP Servers based on:
+ These tools sure sound interesting, but there isn't any real information on how to use them in the documentation, as far as I can see. The [section](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview#build-scenario-focused-custom-mcp-servers-with-the-microsoft-mcp-management-server) *"Build scenario-focused custom MCP servers with the Microsoft MCP Management Server"* contains a high-level overview of the capabilities for creating custom MCP Servers, including the ability to create MCP Servers based on:
  
  - Existing connectors
  - Dataverse custom APIs
@@ -32,17 +32,21 @@ While exploring the (pretty sparse, to be honest) [documentation](https://learn.
 
  There is [excellent documentation](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview#connect-to-mcp-management-server-in-visual-studio-code) available on how to hook up the Management MCP Server from VS Code, so let's try that and explore some of the available tools in the MCP Server.
 
- The documentation is missing one detail - how to enable so that the GitHub Copilot MCP Client is allowed to communicate with Dataverse. Luckily, this instruction can be found [here](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp-disable#configure-and-manage-the-dataverse-mcp-server-for-an-environment) in the Dataverse MCP Client docs.
+ The documentation is missing one detail - how to enable it so that the GitHub Copilot MCP Client is allowed to communicate with Dataverse. Luckily, this instruction can be found [here](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp-disable#configure-and-manage-the-dataverse-mcp-server-for-an-environment) in the Dataverse MCP Server docs.
 
- We connect to the Management MCP server for one of our Dataverse environments, and ask it to provide detailed information about the `CreateMcpServer` tool: 
+ ### Creating the custom MCP Server
+
+ In VS Code, we connect to the Management MCP server for one of our Dataverse environments, and ask it to provide detailed information about the `CreateMcpServer` tool: 
 
 ![alt text](/images/251216/image.png)
 
-So, let's try to create a new MCP Server with the name "AddesCoolMcpServer". We get a somewhat cryptic error message - `Export key attribute name for component MCPServer must start with a valid customization prefix.`. 
+So, let's try to use this tool to create a new MCP Server with the name "AddesCoolMcpServer". 
+
+When doing so, we get a somewhat cryptic error message - `Export key attribute name for component MCPServer must start with a valid customization prefix.`. 
 
 ![alt text](/images/251216/image-1.png)
 
-Interesting... Could it be that the prefix of the logical name of the MCP Server must be associated with an existing [**Publisher**](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/create-solution#solution-publisher)? Let's try to use the prefix of a custom publisher in this particular Dataverse environment - `adde_`. Excellent, this worked:
+Interesting... Could it be that the prefix of the logical name of the MCP Server must be associated with an existing [**Publisher**](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/create-solution#solution-publisher)? Let's try to use the prefix of an existing publisher in this particular Dataverse environment - `adde_`. Excellent, this worked:
 
 ![alt text](/images/251216/image-2.png)
 
@@ -66,7 +70,7 @@ Great, now we have a custom MCP Server with a tool! Let's get some info about th
 
 ![alt text](/images/251216/image-7.png)
 
-Now that we know the URL of the newly created MCP Server we can easily add it to VS Code:
+Now that we know the URL of the newly created MCP Server we can easily [add it to VS Code](https://code.visualstudio.com/docs/copilot/customization/mcp-servers):
 
 ![alt text](/images/251216/image-8.png)
 
@@ -86,11 +90,13 @@ That worked perfectly! But how do we call our custom MCP Server from Copilot Stu
 
 - Create an App Registration and make note of the Application ID. Note - make sure that the Application Registration is **Multitenant**.
 - Create a secret and make note of it.
-- Add the `McpServers.DataverseCustom.All` scope (since it is required by the tools, see the screenshot above) and consent to it:
+- Add the `McpServers.DataverseCustom.All` scope (since it is required by the tools, see the screenshot above) and consent to it. This scope can be found by adding an API Permission, clicking "APIs that my organization uses" and then search for "Agent 365":
 
 ![alt text](/images/251216/image-12.png)
 
-Create a new agent in Copilot Studio and add a new MCP tool. Enter the HTTP streaming endpoint (as can be seen from the screenshot with the tool info above) and configure it to use manual OAuth2:
+### Using the MCP Server in Copilot Studio
+
+Now we can create a new agent in Copilot Studio and add our MCP server as a tool. Add a new tool of type "Model Context Protocol", enter the HTTP streaming endpoint (as can be seen from the screenshot with the tool info above) and configure it to use manual OAuth2:
 
 ![alt text](/images/251216/image-13.png)
 
