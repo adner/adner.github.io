@@ -24,19 +24,19 @@ While exploring the (pretty sparse, to be honest) [documentation](https://learn.
 - [CreateMcpServer](https://learn.microsoft.com/en-us/microsoft-agent-365/mcp-server-reference/mcpmanagement#createmcpserver) - *"Creates a new MCP server instance in the current environment"*.
 - [CreateToolWithCustomAPI](https://learn.microsoft.com/en-us/microsoft-agent-365/mcp-server-reference/mcpmanagement#createtoolwithcustomapi) - *"Creates a new tool with a custom API in an MCP server"*.
 
- These tools sure sound interesting, but there isn't any real information on how to use them in the documentation, as far as I can see. The [section](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview#build-scenario-focused-custom-mcp-servers-with-the-microsoft-mcp-management-server) *"Build scenario-focused custom MCP servers with the Microsoft MCP Management Server"* contains a high-level overview of the capabilities for creating custom MCP Servers, including the ability to create MCP Servers based on:
+These tools sure sound interesting, but there isn't any real information on how to use them in the documentation, as far as I can see. The [section](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview#build-scenario-focused-custom-mcp-servers-with-the-microsoft-mcp-management-server) *"Build scenario-focused custom MCP servers with the Microsoft MCP Management Server"* contains a high-level overview of the capabilities for creating custom MCP Servers, including the ability to create MCP Servers based on:
  
- - Existing connectors
- - Dataverse custom APIs
- - Microsoft Graph APIs
+- Existing connectors
+- Dataverse custom APIs
+- Microsoft Graph APIs
 
- There is [excellent documentation](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview#connect-to-mcp-management-server-in-visual-studio-code) available on how to hook up the Management MCP Server from VS Code, so let's try that and explore some of the available tools in the MCP Server.
+There is [excellent documentation](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview#connect-to-mcp-management-server-in-visual-studio-code) available on how to hook up the Management MCP Server from VS Code, so let's try that and explore some of the available tools in the MCP Server.
 
- The documentation is missing one detail - how to enable it so that the GitHub Copilot MCP Client is allowed to communicate with Dataverse. Luckily, this instruction can be found [here](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp-disable#configure-and-manage-the-dataverse-mcp-server-for-an-environment) in the Dataverse MCP Server docs.
+The documentation is missing one detail - how to enable it so that the GitHub Copilot MCP Client is allowed to communicate with Dataverse. Luckily, this instruction can be found [here](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp-disable#configure-and-manage-the-dataverse-mcp-server-for-an-environment) in the Dataverse MCP Server docs.
 
- ### Creating the custom MCP Server
+### Creating the custom MCP Server
 
- In VS Code, we connect to the Management MCP server for one of our Dataverse environments, and ask it to provide detailed information about the `CreateMcpServer` tool: 
+In VS Code, we connect to the Management MCP server for one of our Dataverse environments, and ask it to provide detailed information about the `CreateMcpServer` tool: 
 
 ![alt text](/images/251216/image.png)
 
