@@ -103,7 +103,7 @@ Now we can create a new agent in Copilot Studio and add our MCP server as a tool
 Enter the authorization URL and the token URL (if you want to know how to get these URLs using MCP Inspector, check out [this blog post](https://nullpointer.se/agent-365-mcp-servers-part-1.html)). 
 
 - The *Refresh URL* can be set to the same URL as the *Token URL Template*. 
-- The `ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/.default` scope is a blanket request to get all scopes that we previously defined for our App Registration (we only added - the `McpServers.DataverseCustom.All` scope, which is the one that is needed here, but `.default` is a shorthand for getting all of them). 
+- The `ea9ffc3e-8a23-4a7d-836d-234d7c7565c1/.default` scope is a blanket request to get all scopes that we previously defined for our App Registration (we only added one - the `McpServers.DataverseCustom.All` scope, which is the one that is needed here, but `.default` is a shorthand for getting all of them). 
 - The GUID `ea9ffc3e-8a23-4a7d-836d-234d7c7565c1` is simply the ID of the `Agent 365 Tools` application, which we added as an API permission to our app registration earlier. 
 
 ![alt text](/images/251216/image-14.png)
