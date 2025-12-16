@@ -126,6 +126,6 @@ Great success! We now have a Copilot Studio agent that uses the MCP Server that 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/GFpyN8P3pr0?si=iyqVQHMLxuyiXtyk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-It was fun tinkering around with this and the possibility to create dynamic MCP Servers is really powerful. It's early days for this technology, but the potential is clear and I expect the tooling and documentation to mature rapidly.
+It was fun tinkering around with this and the possibility to create dynamic MCP Servers is really powerful. The documentation is still catching up with all the capabilities, but that's to be expected for such new technology. I'm excited to see how this evolves as Agent 365 matures.
 
 Until next time, happy hacking!
