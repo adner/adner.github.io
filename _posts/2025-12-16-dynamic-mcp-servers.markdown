@@ -19,7 +19,7 @@ These are the same MCP Servers that you can use from Copilot Studio, which I [tr
 
 These experiments involved using the **Agent 365 MCP Management MCP Server** to programmatically retrieve information about these first-party MCP Servers, so I could connect to them using the MCP plumbing in Agent Framework. 
 
-While exploring the (pretty sparse, to be honest) [documentation](https://learn.microsoft.com/en-us/microsoft-agent-365/mcp-server-reference/mcpmanagement) on the A365 MCP Management MCP Server, it is clear that this serer has quite a lot of interesting tools, for example:
+While exploring the (pretty sparse, to be honest) [documentation](https://learn.microsoft.com/en-us/microsoft-agent-365/mcp-server-reference/mcpmanagement) on the A365 MCP Management MCP Server, it is clear that this server has quite a lot of interesting tools, for example:
 
 - [CreateMcpServer](https://learn.microsoft.com/en-us/microsoft-agent-365/mcp-server-reference/mcpmanagement#createmcpserver) - *"Creates a new MCP server instance in the current environment"*.
 - [CreateToolWithCustomAPI](https://learn.microsoft.com/en-us/microsoft-agent-365/mcp-server-reference/mcpmanagement#createtoolwithcustomapi) - *"Creates a new tool with a custom API in an MCP server"*.
