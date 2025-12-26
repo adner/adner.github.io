@@ -17,7 +17,7 @@ Ever since Agent 365 was announced at this year's Microsoft Ignite, I have wante
 
 - In the blog post [*Creating dynamic MCP Servers using Agent 365*](https://nullpointer.se/agent-365-dynamic-mcp-servers.html) I checked out the possibilities of dynamically creating *custom* MCP Servers in Agent 365, servers that can use the many out-of-the-box operations provided by Dataverse and the Graph API. I also demonstrated how to use this dynamically created MCP Server in a Copilot Studio agent.
 
-However, the MCP servers are just one piece of the Agent 365 puzzle. The real game-changer in Agent 365 is the ability to onboard *agentic users* in your tenant - agents that can act on your behalf, or autonomously, in a governed and secure way.  
+However, the MCP servers are just one piece of the Agent 365 puzzle. Another game-changer in Agent 365 is the ability to onboard *agentic users* in your tenant - agents that can act on your behalf, or autonomously, in a governed and secure way.  
 
 During the last year I have [written quite a bit](https://nullpointer.se/2025/09/26/ai-agents-eu-ai-act.html) about the need for governance when building an AI agent infrastructure, and Agent 365 is the technology in the Microsoft stack that enables this. Exciting times!
 
