@@ -41,8 +41,7 @@ As we start exploring Agent 365, there are a number of SDKs that we should be aw
   - [Notifications](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/notification) - An agent can be notified when e.g. a mail is sent to the agent, or when a comment is requested in a Word document. 
   - [Observability](https://learn.microsoft.com/en-us/microsoft-agent-365/developer/observability) - tracing, caching and monitoring of agents - stuff that I haven't tried out yet but hope to be able to soon.
   - [Tooling](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview) - Libraries for using the A365 tooling servers from your agent. 
-
-<br>
+ 
 - [The Microsoft 365 Agents SDK](https://github.com/microsoft/Agents-for-net) - This is the foundational SDK that the A365 SDK is built on top of, and that allows for creating agents that can be deployed to a myriad of channels. In the blog post [*The Teams AI Library, M365 Agents SDK & Toolkit and how to run Doom in Teams*](https://nullpointer.se/2025/10/18/teams-ai-sdk-m365-agents-toolkit-doom.html) that I wrote back in October, I took a look at this SDK and the associated tooling, with specific focus on deploying chatbots to the Teams channel. 
 
 As I noted in my previous blog post, the M365 Agents SDK "*comes with a steep learning curve and involves considerable 'black box infra voodoo'*". When working with A365, that feeling is still there - though it's somewhat less pronounced... More on that below.
