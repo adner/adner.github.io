@@ -29,7 +29,7 @@ There are quite a few [SDK packages](https://learn.microsoft.com/en-us/microsoft
 
 There are lots of other libraries available that handle observability and telemetry, but these were omitted from this demo for the sake of simplicity.
 
-### The code
+### Bootstrapping the agent
 
 As I mentioned in my last blog post, [devtunnels](https://learn.microsoft.com/en-us/azure/developer/dev-tunnels/overview) is a useful tool. The post describes the setup needed to utilize devtunnels to debug your agent locally, so check it out if you haven't done so already.
 
@@ -94,6 +94,8 @@ public MyAgent(AgentApplicationOptions options,
 ```
 The order of the handlers is important - the notification handlers need to come before the general `OnMessageAsync` handler, so that this generic one doesn't swallow the notification messages. 
 
+### The notification handlers
+
 **OnAgenticWordNotification** is called when the agent is @-tagged in a Word comment:
 
 ```csharp
@@ -141,7 +143,7 @@ Agent response: I’ve reviewed the full document and located the comment with I
 I’ve replied directly to that comment explaining that this is incorrect: the Commodore 64 did not include built-in Ethernet. Any networking was done via external peripherals such as modems (e.g., over RS‑232) or much later third-party network adapters. I also noted that the text should be corrected to remove the Ethernet claim.
 ```
 
-Moving on to the `HandleEmailNotificationAsync` handler:
+Moving on to the **HandleEmailNotificationAsync** handler:
 
 ```csharp
 private async Task HandleEmailNotificationAsync(
@@ -170,7 +172,7 @@ Here we simply instruct the agent to reply to the email message it has received 
 
 ![alt text](/images/251230/image-1.png)
 
-The last handler, `OnMessageAsync`, is for responding to messages from all other channels, for example Teams. 
+The last handler, **OnMessageAsync**, is for responding to messages from all other channels, for example Teams. 
 
 ```csharp
 protected async Task OnMessageAsync(ITurnContext turnContext, ITurnState turnState, CancellationToken cancellationToken)
