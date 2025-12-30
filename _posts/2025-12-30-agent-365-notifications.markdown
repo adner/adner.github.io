@@ -97,34 +97,34 @@ The order of the handlers is important - the notification handlers need to come 
 **OnAgenticWordNotification** is called when the agent is @-tagged in a Word comment:
 
 ```csharp
-  private async Task HandleWordCommentNotificationAsync(
-           ITurnContext turnContext,
-           ITurnState turnState,
-           AgentNotificationActivity activity,
-           CancellationToken cancellationToken)
-        {
-            var comment = activity.WpxCommentNotification;
+private async Task HandleWordCommentNotificationAsync(
+ITurnContext turnContext,
+ITurnState turnState,
+AgentNotificationActivity activity,
+CancellationToken cancellationToken)
+{
+    var comment = activity.WpxCommentNotification;
 
-            var attachments = turnContext.Activity.Attachments;
+    var attachments = turnContext.Activity.Attachments;
 
-            var contentUrl = attachments[0].ContentUrl;
+    var contentUrl = attachments[0].ContentUrl;
 ...
-            var userText = turnContext.Activity.Text?.Trim() ?? string.Empty;
-            var _agent = await GetClientAgent(turnContext, turnState, _toolService, AgenticIdAuthHandler);
+    var userText = turnContext.Activity.Text?.Trim() ?? string.Empty;
+    var _agent = await GetClientAgent(turnContext, turnState, _toolService, AgenticIdAuthHandler);
 ...
-            var response = await _agent.RunAsync(
-                $"""
-                Your task is to respond to a comment in a Word file. First, get the full content
-                of the Word file to understand the context and find out what the comment is
-                referring to. Use the tool WordGetDocumentContent for this purpose. The URL to
-                the document is {contentUrl}. Then find the text that the comment with id
-                {comment.CommentId} is referring to and respond with an answer.
-                """);
+    var response = await _agent.RunAsync(
+        $"""
+        Your task is to respond to a comment in a Word file. First, get the full content
+        of the Word file to understand the context and find out what the comment is
+        referring to. Use the tool WordGetDocumentContent for this purpose. The URL to
+        the document is {contentUrl}. Then find the text that the comment with id
+        {comment.CommentId} is referring to and respond with an answer.
+        """);
 
-            _logger?.LogInformation("Agent response: {Response}", response.ToString());
+    _logger?.LogInformation("Agent response: {Response}", response.ToString());
 
-            //Note that we don't respond at the end of this method - we instead let the Word MCP Server handle the reply to the comment.
-        }
+    //Note that we don't respond at the end of this method - we instead let the Word MCP Server handle the reply to the comment.
+}
 ```
 Unfortunately the `WpxCommentNotification` doesn't include all the information about the document that is needed by the `WordReplyToComment` tool in the `mcp_WordServer`. To solve this, we instruct the agent to first call the `WordGetDocumentContent` to retrieve this required info. This tool call also returns the full document, which enables the agent to pinpoint the exact text was highlighted in the Word comment and get the full context (at the expense of lots of tokens, of course...).
 
@@ -144,26 +144,26 @@ I’ve replied directly to that comment explaining that this is incorrect: the C
 Moving on to the `HandleEmailNotificationAsync` handler:
 
 ```csharp
-   private async Task HandleEmailNotificationAsync(
-   ITurnContext turnContext,
-   ITurnState turnState,
-   AgentNotificationActivity activity,
-   CancellationToken cancellationToken)
-        {
-            var email = activity.EmailNotification;
+private async Task HandleEmailNotificationAsync(
+ITurnContext turnContext,
+ITurnState turnState,
+AgentNotificationActivity activity,
+CancellationToken cancellationToken)
+{
+    var email = activity.EmailNotification;
 ...
-            var userText = turnContext.Activity.Text?.Trim() ?? string.Empty;
-            var _agent = await GetClientAgent(turnContext, turnState, _toolService, AgenticIdAuthHandler, "You are a helpful assistant.");
+    var userText = turnContext.Activity.Text?.Trim() ?? string.Empty;
+    var _agent = await GetClientAgent(turnContext, turnState, _toolService, AgenticIdAuthHandler, "You are a helpful assistant.");
 ...
-            var response = await _agent.RunAsync(
-                $"""
-                You have received a mail and your task is to reply to it. Please respond to the
-                mail using the ReplyToMessageAsync tool using HTML formatted content. The ID of
-                the email is {email.Id}. This is the content of the mail you received: {userText}
-                """);
+    var response = await _agent.RunAsync(
+        $"""
+        You have received a mail and your task is to reply to it. Please respond to the
+        mail using the ReplyToMessageAsync tool using HTML formatted content. The ID of
+        the email is {email.Id}. This is the content of the mail you received: {userText}
+        """);
 
-            _logger?.LogInformation("Agent response: {Response}", response.ToString());
-        }
+    _logger?.LogInformation("Agent response: {Response}", response.ToString());
+}
 ```
 
 Here we simply instruct the agent to reply to the email message it has received by invoking the `ReplyToMessageAsync` tool in the `mcp_MailTools` MCP Server. 
@@ -174,26 +174,25 @@ The last handler, `OnMessageAsync`, is for responding to messages from all other
 
 ```csharp
 protected async Task OnMessageAsync(ITurnContext turnContext, ITurnState turnState, CancellationToken cancellationToken)
-        {
+{
+    var userText = turnContext.Activity.Text?.Trim() ?? string.Empty;
+    var _agent = await GetClientAgent(turnContext, turnState, _toolService, AgenticIdAuthHandler);
 
-            var userText = turnContext.Activity.Text?.Trim() ?? string.Empty;
-            var _agent = await GetClientAgent(turnContext, turnState, _toolService, AgenticIdAuthHandler);
+    // Read or Create the conversation thread for this conversation.
+    AgentThread? thread = GetConversationThread(_agent, turnState);
 
-            // Read or Create the conversation thread for this conversation.
-            AgentThread? thread = GetConversationThread(_agent, turnState);
+    var response = await _agent!.RunAsync(userText, thread, cancellationToken: cancellationToken);
 
-            var response = await _agent!.RunAsync(userText, thread, cancellationToken: cancellationToken);
+    await turnContext.SendActivityAsync(response.ToString());
 
-            await turnContext.SendActivityAsync(response.ToString());
-
-            turnState.Conversation.SetValue("conversation.threadInfo", ProtocolJsonSerializer.ToJson(thread.Serialize()));
-        }
+    turnState.Conversation.SetValue("conversation.threadInfo", ProtocolJsonSerializer.ToJson(thread.Serialize()));
+}
 ```
 The handler also (de)serializes the conversation thread state, so that it can remember previous messages and keep the whole conversation "in memory". And of course, it can use all the MCP Servers that are registered.
 
 ![alt text](/images/251230/image-2.png)
 
-That’s pretty much all there is to it... With the infrastructure from the previous post in place, this guide gives you everything you need to build your first agent! 
+That’s pretty much all there is to it...  
 
 All the code can be found in [this repo](https://github.com/adner/Agent365_Notification_Sample), and here is a short video of the agent replying to a Word comment:
 
