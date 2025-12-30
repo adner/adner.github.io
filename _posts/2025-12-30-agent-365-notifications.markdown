@@ -190,7 +190,7 @@ protected async Task OnMessageAsync(ITurnContext turnContext, ITurnState turnSta
     turnState.Conversation.SetValue("conversation.threadInfo", ProtocolJsonSerializer.ToJson(thread.Serialize()));
 }
 ```
-The handler also (de)serializes the conversation thread state, so that it can remember previous messages and keep the whole conversation "in memory". And of course, it can use all the MCP Servers that are registered.
+The handler also (de)serializes the conversation thread state, so that it can remember previous messages and keep the whole conversation "in memory". And of course, it can use all the MCP Servers that are registered. In this example, it uses the `mcp_MailTools` MCP Server to send an email:
 
 ![alt text](/images/251230/image-2.png)
 
