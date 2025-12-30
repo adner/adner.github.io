@@ -41,10 +41,10 @@ We [wire up](https://github.com/adner/Agent365_Notification_Sample/blob/main/not
 
 ```csharp
 // Map the /api/messages endpoint to the AgentApplication
-app.MapPost("/api/messages", async (HttpRequest request, HttpResponse response, IAgentHttpAdapter adapter, IAgent agent, CancellationToken cancellationToken) =>
-{
-        await adapter.ProcessAsync(request, response, agent, cancellationToken);
-});
+    app.MapPost("/api/messages", async (HttpRequest request, HttpResponse response, IAgentHttpAdapter adapter, IAgent agent, CancellationToken cancellationToken) =>
+    {
+            await adapter.ProcessAsync(request, response, agent, cancellationToken);
+    });
 ...
     app.MapGet("/", () => "Agent Framework Notification Agent");
     app.UseDeveloperExceptionPage();
