@@ -4,3 +4,8 @@ _site
 .jekyll-metadata
 vendor
 Gemfile.lock
+
+# Image optimization script backups
+scripts/_backup_*/
+images/**/_backup_*/
+*.ps1~
