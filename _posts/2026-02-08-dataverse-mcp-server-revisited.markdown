@@ -334,6 +334,12 @@ Reducer                          |   Total In |  Total Out | Final Msgs |   Last
 ContentAwareChatReducer          |    119 321 |        509 |         25 |         24
 =========================================================================
 ```
+For this particular use-case, this reducer works really well, for a couple of reasons:
+
+- It doesn't clog down the context with tool call results, except for the most recent tool call(s). Data retrieved from Dataverse can be huge, so getting rid of this data as soon as it is irrelevant is extremely important.
+
+- A good understanding of the data model is super-important, and the metadata retrieval tool calls are they key to this understanding. That's why the reducerar keeps these intact in the context for a prolonged amount of time, until they are finally disregarded when they reach "old age".
+
 In total, **119321** input tokens are spent, which is slightly worse than the `ToolPreservingChatReducer` for this very limited scenario. But as the number of requests rise, and if the amount of data retrieved by the tools is huge then the `ContextAwareChatReducer` will vastly outperform the other reducers. The transcript can be found [here](/images/260208/contentawarereducer.txt).
 
 ### Summary
