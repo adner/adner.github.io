@@ -11,27 +11,29 @@ permalink: /dvmcpserver-context-reduction.html
   </a>
 {% endif %}
 
-## Dataverse MCP Server, context reduction strategies in Microsoft Agent Framework and the future of BizApps
+It has been a while since I last tried the Dataverse MCP Server. Last summer, when it was in preview, I experimented with it extensively and posted my experiences to LinkedIn and to my blog:
 
-It has been a while since I last tried the Dataverse MCP Server. Last summer, when it was in preview, I experimented with it extensively and posted my experiences <!--end_excerpt--> to LinkedIn and to my blog, for example:
+- In [this LinkedIn post](https://www.linkedin.com/posts/andreas-adner-70b1153_dataversemcpserver-activity-7344003681740075008-W3x4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w), I showed how the Dataverse MCP Server can be used from Claude Code, Claude Desktop and Gemini CLI. <!--end_excerpt--> 
 
-- In [this LinkedIn post](https://www.linkedin.com/posts/andreas-adner-70b1153_dataversemcpserver-activity-7344003681740075008-W3x4?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w), I showed how the Dataverse MCP Server can be used from Claude Code, Claude Desktop and Gemini CLI.
 - In [this](https://www.linkedin.com/posts/andreas-adner-70b1153_dataverse-mcp-server-running-from-excel-activity-7345177569844953088-H3Y9?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) fun experiment, I demonstrated how the Dataverse MCP Server can be used from anywhere - in this case from Excel, implemented as a VBA macro.
 
-I also did a test of how well different LLMs used the Dataverse MCP Server, and blogged about it [here](https://nullpointer.se/dataverse/mcp/llm/2025/07/14/dataverse-llm-evaluation.html). This was a looong time ago, and lots of stuff has happened since then, for example:
+I also did a test of how well different LLMs used the Dataverse MCP Server, and blogged about it [here](https://nullpointer.se/dataverse/mcp/llm/2025/07/14/dataverse-llm-evaluation.html). This was a looong time ago, and lots of stuff has happened since then:
 
 - The Dataverse MCP Server is now generally available.
-- Loads of new models have been released. Around New Year with the release of Opus 4.5, it felt like an inflection point was hit where models became so capable at coding that most developers, myself included, have largely transitioned from hand-coding to AI-assisted tools like Claude Code and OpenAI Codex.
-- It is becoming increasingly clear that we are rapidly moving towards a future where business applications will pretty much be **headless APIs** and that agentic applications with dynamically generated user interfaces will be the new UIs for BizApps. The writing was already on the wall last summer, when MSFT communicated that Power Platform would be [*API-first*](https://devblogs.microsoft.com/powerplatform/power-platform-api-and-sdks-from-ux-first-to-api-first/) rather than UX-first, moving forward.
 
-On that note, I spent a lot of time last autumn exploring the possibilities of agentic user interfaces and dynamically generated UIs. My experiments included [dynamic report generation](https://nullpointer.se/2025/08/21/mcp-automatic-report-generation.html) using MCP Resources and a [couple](https://www.youtube.com/watch?v=k5Tc3AsMBls) of [videos](https://www.youtube.com/watch?v=6B60HVbnHmw) showing various dynamic agent-driven UIs. At that time, there wasn't much available in terms of standardization and specifications for agentic UIs. Some attempts were made, like [MCP-UI](https://www.linkedin.com/posts/andreasadner_%F0%9D%90%8D%F0%9D%90%9E%F0%9D%90%B0-%F0%9D%90%AF%F0%9D%90%A2%F0%9D%90%9D%F0%9D%90%9E%F0%9D%90%A8-using-mcp-ui-to-add-ugcPost-7366158851672276993-_Fga) but it took a good couple of months until things started happening, and now we have a number of specs to choose from when designing our agentic UIs, like:
+- **Loads** of new models have been released. Around New Year with the release of [Opus 4.5](https://www.anthropic.com/news/claude-opus-4-5), it felt like an inflection point was hit where models became so capable at coding that most developers, myself included, have largely transitioned from hand-coding to AI-assisted tools like Claude Code and OpenAI Codex.
+
+- It is becoming increasingly clear that we are rapidly moving towards a future where business applications will pretty much be **headless APIs** and that agentic applications with dynamically generated user interfaces will be the BizApps. The writing was already on the wall last summer, when MSFT communicated that Power Platform would be [*API-first*](https://devblogs.microsoft.com/powerplatform/power-platform-api-and-sdks-from-ux-first-to-api-first/) rather than UX-first, moving forward.
+
+On that note, I spent a lot of time last autumn exploring the possibilities of agentic user interfaces and dynamically generated UIs. My experiments included [dynamic report generation](https://nullpointer.se/2025/08/21/mcp-automatic-report-generation.html) using MCP Resources and a [couple](https://www.youtube.com/watch?v=k5Tc3AsMBls) of [videos](https://www.youtube.com/watch?v=6B60HVbnHmw) showing various dynamic agent-driven UIs. At that time, there wasn't much available in terms of standardization and specifications for agentic UIs. Some attempts were made, like [MCP-UI](https://www.linkedin.com/posts/andreasadner_%F0%9D%90%8D%F0%9D%90%9E%F0%9D%90%B0-%F0%9D%90%AF%F0%9D%90%A2%F0%9D%90%9D%F0%9D%90%9E%F0%9D%90%A8-using-mcp-ui-to-add-ugcPost-7366158851672276993-_Fga) but it took a good couple of months until things started happening in this space. But then, it completely exploded and now we have an ever growing number of specs to choose from when designing our agentic UIs, like:
 
 - [A2-UI](https://a2ui.org/) - a protocol for declarative agent-driven interfaces from Google that was announced last year.
-- [MCP Apps](https://modelcontextprotocol.io/docs/extensions/apps) - the love-child of [**MCP-UI**](https://github.com/MCP-UI-Org/mcp-ui) (mentioned above), MCP Apps is an extension to the [Model Context Protocol](https://modelcontextprotocol.io/), that allows UIs to be served as [MCP Resources](https://modelcontextprotocol.io/specification/2025-11-25/server/resources). 
 
-So, quite a lot is happening in this space, and the protocol stack for agentic UIs is surely taking shape quickly. When I submitted my talk [*Creating rich agent user experiences using AG-UI: The Agent-User Interaction Protocol*](https://www.linkedin.com/posts/andreasadner_today-i-had-the-privilege-of-talking-about-activity-7424462809729523712-mFSQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) to the AgentCon Stockholm conference a while back, I thought it would be a really obscure topic. But it turned out to tie in pretty well with everything that is happening around agentic user interfaces lately, and that [AG-UI](https://docs.ag-ui.com/) could be the "protocol glue" that ties all these new agent user interface specs to the agent orchestrator backends. 
+- [MCP Apps](https://modelcontextprotocol.io/docs/extensions/apps) - the love-child of [**MCP-UI**](https://github.com/MCP-UI-Org/mcp-ui) (mentioned above), an extension to the [Model Context Protocol](https://modelcontextprotocol.io/) that allows UIs to be served as [MCP Resources](https://modelcontextprotocol.io/specification/2025-11-25/server/resources). 
 
-Right now, I think the [AG-UI demos](https://dojo.ag-ui.com/) and the [AG-UI MCP Apps](https://web-app-production-9af6.up.railway.app/) integration demos are probably the best way to get a feel for where this tech is heading, and what we can expect from agentic user interfaces in the future. Also, check out my [AG-UI demos](https://agent-con-demos.vercel.app) from AgentCon:
+With all these new specification, the protocol stack for agentic UIs is surely taking shape quickly. When I submitted my talk [*Creating rich agent user experiences using AG-UI: The Agent-User Interaction Protocol*](https://www.linkedin.com/posts/andreasadner_today-i-had-the-privilege-of-talking-about-activity-7424462809729523712-mFSQ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) to the AgentCon Stockholm conference a while back, I thought it would be a really obscure topic. But it turned out to tie in pretty well with everything that has been happening with agentic user interfaces lately. [AG-UI](https://docs.ag-ui.com/) seems to be the "protocol glue" that ties all these new agent user interface specs to the agent orchestrator backends. 
+
+So where is all of this going? At this point in time, I think the [AG-UI demos](https://dojo.ag-ui.com/) and the [AG-UI MCP Apps](https://web-app-production-9af6.up.railway.app/) demos are probably the best way to get a feel for where this tech is heading, and what we can expect from agentic user interfaces in the future. Also, check out my [AG-UI demos](https://agent-con-demos.vercel.app) from AgentCon:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/PeEE5kYwdgo?si=rlwU2zvLhyXpN1kV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -44,13 +46,13 @@ But before we dive into the tech, let's say some words about the licenses requir
 
 ![alt text](/images/260208/image.png)
 
-Rather than trying to untangle what this means for makers building agentic applications on Dataverse, I'll just point you to Jukka Niiranen's [blog post](https://licensing.guide/dataverse-mcp-server-licensing-requirements/) which covers it far more eloquently than I could. 
+Rather than trying to untangle what this means for makers building agentic applications on Dataverse, I'll just point you to Jukka Niiranen's [blog post](https://licensing.guide/dataverse-mcp-server-licensing-requirements/) which covers it far more eloquently than I ever could. 
 
-So, let's get started by following the [instructions](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp-other-clients) in the documentation for how to set up the Dataverse MCP Server to be used by non-Microsoft clients. Similar to the preview, this still involves creating a Dataverse connection in Power Automate, and using it when running the local STDIO Dataverse MCP Server. Unfortunately, the docs are super-confusing here:
+So, let's get started by following the [instructions](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp-other-clients) in the documentation for how to set up the Dataverse MCP Server to be used by non-Microsoft clients. Similar to the preview, this still involves creating a Dataverse connection in Power Automate, and using it when running the local STDIO Dataverse MCP Server. Unfortunately, the docs are somewhat confusing here:
 
 ![alt text](/images/260208/image-1.png)
 
-The URL mentioned here is not even remotely similar to the URL you see when you open up the Dataverse connection in Power Automate:
+The URL mentioned here differs slightly from the actual URL you see when you open up the Dataverse connection in Power Automate:
 
 ![alt text](/images/260208/image-2.png)
 
@@ -63,23 +65,27 @@ Using that connection string, we can make the Dataverse MCP Server work in Claud
 
 ![alt text](/images/260208/image-3.png)
 
-So what has changed? Well not much, there are a couple of new tools for schema manipulation but it is mostly the same. The big thing is probably the remote Dataverse MCP Server that can be used from Copilot Studio, but here I am using the good old STDIO Dataverse MCP Server (my prediction for 2026 is that STDIO support will be dropped from the MCP specification for security reasons, but we'll have to see what happens...) I guess that stuff has changed "under the hood", but functionality-wise the MCP Server is basically the same - including the limitation of being able to return maximum 20 records per call to `read_query`. When I participated in the private preview for the Dataverse MCP Server, one of my suggestions was to use MCP Resources to be able to return large result sets without weighing down the context, for example using [the pattern described here in the Copilot Studio CAT team blog](https://microsoft.github.io/mcscatblog/posts/mcp-resources-as-tool-inputs/). Hopefully this will be implemented some day!
+So what has changed? Well, not much. There are a couple of new tools for schema manipulation but apart from that, things are mostly the same. The big thing is probably the remote Dataverse MCP Server that can be used from [Copilot Studio](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp-copilot-studio), but in this example I am using the good old STDIO Dataverse MCP Server (my prediction for 2026 is that STDIO support will be dropped from the MCP specification for security reasons, but we'll have to see what happens...) 
+
+I assume that much has changed "under the hood", but functionality-wise the MCP Server is basically the same - including the limitation of being able to return maximum 20 records per call to `read_query`. 
+
+When I participated in the private preview for the Dataverse MCP Server, one of my suggestions was to use MCP Resources to be able to return large result sets without weighing down the context, for example using [the pattern described here in the Copilot Studio CAT team blog](https://microsoft.github.io/mcscatblog/posts/mcp-resources-as-tool-inputs/). Hopefully this will be implemented some day!
 
 But let's move on to using the Dataverse MCP Server from Microsoft Agent Framework! 
 
 ### The big shift to agentic user interfaces, and the need to manage agent context
 
-Lately, things have started to shift with regard to how we build business applications for our customers. The focus is no longer on creating model-driven apps on top of Dataverse - instead, most clients want to build AI chat interfaces on top of their existing Dataverse/Dynamics 365 applications. And honestly, it is easy to see why. Even with something as basic as a text input box, a natural language interface has some pretty compelling advantages over a traditional BizApp UI, especially when it comes to finding information:
+Lately, things have started to shift quickly with regard to how we build business applications for our customers. The focus is no longer mainly on creating model-driven apps on top of Dataverse - instead, many customers want to build AI chat interfaces on top of their existing Dataverse/Dynamics 365 applications. And honestly, it is easy to see why. Even with something as basic as a text input box, a natural language interface has some pretty compelling advantages over a traditional BizApp UIs, especially when it comes to finding information:
 
-- **Natural language search beats Advanced Find every day of the week** - Instead of navigating to Advanced Find, picking entities, adding filter conditions, choosing operators and remembering exact field names, etc - you just *ask*. "Show me all open opportunities over 500k that haven't been updated in the last 30 days." Done. No clicking through dropdown menus, no wondering whether it's "Modified On" or "Last Updated". The agent figures it out.
+- **Natural language search beats Advanced Find every day of the week** - Instead of navigating to Advanced Find, picking entities, adding filter conditions, choosing operators and remembering exact field names, etc - you just *ask* "Show me all open opportunities over 500k that haven't been updated in the last 30 days." Done. The agent figures it out.
 
 - **You don't need to know the application** - With a traditional model-driven app, there is a learning curve. Where is that view? Which tab has the field I need? How do I navigate to that related entity? With a chat interface, you just describe what you want in plain language and the agent handles the rest.
 
-And this is with *text input* - which, let's be honest, is not exactly the optimal user experience. But imagine what happens when **voice** input becomes the norm and you can just *talk* to your business applications. And when the dynamically generated agentic UIs that I discussed earlier start landing in the Microsoft stack - combining natural language interaction with rich user interfaces generated on the fly - that's when things get really interesting. We are not that far away from this becoming reality, I think (hope).
+And this is with *text input* - which honestly is not exactly the optimal user experience. But imagine what will happen when **voice** input becomes the norm and you can just *talk* to your business applications. And when the dynamically generated agentic UIs that I discussed earlier start landing in the Microsoft stack - combining natural language interaction with rich user interfaces generated on the fly - that's when things get really interesting. We are not that far away from this becoming reality, I think (hope).
 
 ![astro.gif](/images/260208/Astro.gif)
 
-So, a kind of project we have been doing quite a lot lately is chat agents that use tools to communicate with Dataverse, mainly for data retrieval purposes. Not much reasoning needed, and not much data manipulation going on. Such agents are characterized by:
+So, a kind of project we have been doing quite a lot lately is **chat agents that use tools to communicate with Dataverse**, mainly for data retrieval purposes. Not much reasoning needed, and not much data manipulation going on. Such agents are characterized by:
 
 - No real need for reasoning models, speed is important - the agent needs to be snappy!
 - Tool calling is frequent and tool calling accuracy is super-important, this kind of agent lives and dies with its ability to call tools.
@@ -90,15 +96,17 @@ The last bullet here is really interesting and begs the question - how can we ma
 ### Chat history reducers
 When using the [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/user-guide/agents/agent-memory?pivots=programming-language-csharp#chat-history-reduction-with-in-memory-storage), one option is to use chat reducers that implement the [`IChatReducer`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.ai.ichatreducer?view=net-9.0-pp) interface. There are some options available in [Microsoft.Extensions.AI](https://github.com/dotnet/extensions/tree/main/src/Libraries/Microsoft.Extensions.AI/ChatReduction):
 
-- [`MessageCountingChatReducer`](https://github.com/dotnet/extensions/blob/main/src/Libraries/Microsoft.Extensions.AI/ChatReduction/MessageCountingChatReducer.cs) - This is a reducer that at the end of each turn throws away all tool calls and their result, as well as truncating the message history if it exceeds a certain number.
+- [`MessageCountingChatReducer`](https://github.com/dotnet/extensions/blob/main/src/Libraries/Microsoft.Extensions.AI/ChatReduction/MessageCountingChatReducer.cs) - This is a reducer that at the end of each turn throws away all tool calls and their result, as well as truncating the message history if it exceeds a certain number of messages .
+
 - [`SummarizingChatReducer`](https://github.com/dotnet/extensions/blob/main/src/Libraries/Microsoft.Extensions.AI/ChatReduction/SummarizingChatReducer.cs) - This reducer uses an LLM to regularly summarize old messages into **one** message - and throw away the old messages.
 
 Danish AI guru Rasmus Wulff Jensen has a great [video](https://www.youtube.com/watch?v=a-7wyjpf5qQ&t=13s) about chat history reduction techniques in Microsoft Agent Framework, check it out! 
 
-The OOB reducers mentioned above are unfortunately not very suitable for our particular use case, for apparent reasons:
+The OOB reducers mentioned above are unfortunately not very suitable for our particular use case, for a couple of reasons:
 
 - Since tool calling is key to our use-case, throwing away all tool calls from the history like `MessageCountingChatReducer` does is not a good idea.
-- The `SummarizingChatReducer` - while usable for "normal" ChatGPT-style use-cases - doesn't really bring any value here. In the **Question -> Tool Call -> Response** loop, the LLM response is basically always a summary of the result of the tool call and are just a few tokens.
+
+- The `SummarizingChatReducer` - while usable for "normal" ChatGPT-style use-cases - doesn't really bring any value here. In the **Question -> Tool Call -> Response** loop, the LLM response is basically always a summary of the result of the tool call and are just a few tokens. LLM summarization doesn't bring much value here.
 
 So, let's explore other options! But while we are at it, let's also try out the reducers mentioned above so we can see how they behave in our scenario. I created a test harness for evaluating a number of context reducer techniques, that can be found [here](https://github.com/adner/ContextManagement). In addition to `MessageCountingChatReducer`, it also evaluates a couple of new reducers:
 
@@ -110,7 +118,7 @@ So, let's explore other options! But while we are at it, let's also try out the 
   - Certain tool calls are kept intact - specifically tool calls that retrieve data model metadata - so that the LLM doesn't have to call these tools repeatedly.
   - All messages older than a certain cutoff are thrown away, including metadata tool calls.
 
-In this example, I have set up a Dataverse environment that contains information about astronauts, rockets and space missions. The Dataverse MCP Server is used to retrieve data from Dataverse. We have a static set of questions that are asked in sequence:
+In this example, I have set up a Dataverse environment that contains information about **astronauts**, **rockets** and **space missions**. The **Dataverse MCP Server** is used to retrieve data from Dataverse. We have a static set of questions that are asked in sequence:
 
 - *"List all the astronauts in the system and their specialization!"*
 - *"What rockets are available?"*
@@ -123,7 +131,7 @@ Let's run the tests and see how these different reducers behave!
 
 ### DummyReducer
 
-As mentioned above, this reducer doesn't reduce at all but keeps the full context indefinitely. The full transcript of the run can be found [here](/images/260208/dummyreducer.txt). In the first turn we can see that the agent retrieves the metadata it needs, and since no reduction is ever done, the context just keeps growing as questions are asked.
+As mentioned above, this reducer doesn't reduce at all but keeps the full context indefinitely. In the first turn we can see that the agent retrieves the metadata it needs, and since no reduction is ever done, the context just keeps growing as questions are asked.
 
 ```text
 ── Turn 1 ──────────────────────────────────────────────────
@@ -158,10 +166,10 @@ Reducer                          |   Total In |  Total Out | Final Msgs |   Last
 DummyReducer                     |    160 054 |        547 |         32 |         31
 =========================================================================
 ```
-In total, **160054** input tokens are spent.
+In total, **160054** input tokens are spent. The full transcript of the run can be found [here](/images/260208/dummyreducer.txt).
 
 ### MessageCountingReducer
-As mentioned above, this reducer throws away all tool calls and their results while keeping a fixed number of regular messages. The full transcript of the run can be found [here](/images/260208/messagecountingreducer.txt).
+This reducer throws away all tool calls and their results while keeping a fixed number of regular messages. 
 
 Since all tool calls are stripped from the context, the agent needs to retrieve the data model metadata over and over again, as can be seen here:
 
@@ -194,7 +202,7 @@ info: MyMessageCountingChatReducer[0]
   Session messages: 12  |  Sent to LLM: 11
 ────────────────────────────────────────────────────────────────
 ```
-We can also see that when the reducer reaches its limit of regular messages, and starts dropping these, it is not able to respond to questions relating to data retrieved earlier in the conversation:
+We can also see that when the reducer reaches its limit of regular messages, and starts dropping these, it is (of course) not able to respond to questions relating to data retrieved earlier in the conversation:
 
 ```text
 ── Turn 4 ──────────────────────────────────────────────────
@@ -229,10 +237,10 @@ Reducer                          |   Total In |  Total Out | Final Msgs |   Last
 MyMessageCountingChatReducer     |    128 545 |        812 |         15 |         14
 =========================================================================
 ```
-In total, **128545** input tokens are spent, which is less than the `DummyReducer` but at the price of poor agent memory and worse answers. 
+In total, **128545** input tokens are spent, which is less than the `DummyReducer` but at the price of poor agent memory and worse answers. The full transcript of the run can be found [here](/images/260208/messagecountingreducer.txt).
 
 ### ToolPreservingChatReducer
-The `ToolPreservingChatReducer` works like the `MessageCountingReducer` but keeps the tool calls in context. It also has a mechanism for making sure that tool call result messages are not being orphaned by the tool call message being dropped. The transcript can be found [here](/images/260208/toolpreservingreducer.txt).
+The `ToolPreservingChatReducer` works like the `MessageCountingReducer` but keeps the tool calls in context. It also has a mechanism for making sure that tool call result messages are not being orphaned by the tool call message being dropped. 
 
 We can see that since the tool calls are kept in context, the agent doesn't have to call metadata tools repeatedly:
 
@@ -286,10 +294,10 @@ Reducer                          |   Total In |  Total Out | Final Msgs |   Last
 ToolPreservingChatReducer        |    111 812 |        600 |         14 |         13
 =========================================================================
 ```
-In total, **111812** input tokens are spent, which is less than the `MessageCountingReducer`, while the accuracy is the same.
+In total, **111812** input tokens are spent, which is less than the `MessageCountingReducer`, while the accuracy is the same. The transcript can be found [here](/images/260208/toolpreservingreducer.txt).
 
 ### ContextAwareChatReducer
-This reducer keeps recent tool calls intact, while condensing the results of older tool calls. It also keeps data model metadata tool calls completely intact. The transcript can be found [here](/images/260208/contentawarereducer.txt).
+This reducer keeps recent tool calls intact, while condensing the results of older tool calls. It also keeps data model metadata tool calls completely intact. 
 
 Here we can see the reducer in action, preserving the metadata tool calls (`list_tables` and `describe_table`) while condensing the other tool calls:
 
@@ -326,7 +334,7 @@ Reducer                          |   Total In |  Total Out | Final Msgs |   Last
 ContentAwareChatReducer          |    119 321 |        509 |         25 |         24
 =========================================================================
 ```
-In total, **119321** input tokens are spent, which is slightly worse than the `ToolPreservingChatReducer` for this very limited scenario. But as the number of requests rise, and if the amount of data retrieved by the tools is huge then the `ContextAwareChatReducer` will vastly outperform the other reducers. 
+In total, **119321** input tokens are spent, which is slightly worse than the `ToolPreservingChatReducer` for this very limited scenario. But as the number of requests rise, and if the amount of data retrieved by the tools is huge then the `ContextAwareChatReducer` will vastly outperform the other reducers. The transcript can be found [here](/images/260208/contentawarereducer.txt).
 
 ### Summary
 
