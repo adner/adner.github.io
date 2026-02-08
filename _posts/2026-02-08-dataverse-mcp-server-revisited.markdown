@@ -340,7 +340,7 @@ In total, **119321** input tokens are spent, which is slightly worse than the `T
 
 Context management is one of those things that every consumer LLM product already handles for you. ChatGPT, Claude, Gemini - they all silently summarize and compress your conversation history as it grows, and for general-purpose chat this works great. But when you're building agents that act as natural language interfaces on top of business data - where the conversation is dominated by tool calls returning large chunks of structured data - you can't just rely on generic summarization. The shape of these conversations is fundamentally different from a typical chat: it's a tight loop of questions, tool calls and data, where what matters is not the prose but the *results* and the *metadata* that enables future tool calls.
 
-For this kind of agent, you need to take control of context management yourself. The out-of-the-box reducers in `Microsoft.Extensions.AI` are a good starting point, but as the tests above show, a context reduction strategy that understands the semantics of your particular conversation pattern - what to keep, what to condense, and what to drop - will give you better accuracy at lower cost as conversations grow. 
+For this kind of agent, you need to take control of context management yourself. The out-of-the-box reducers in `Microsoft.Extensions.AI` are a good starting point, but as the tests above show, a context reduction strategy that understands the semantics of your particular conversation pattern - what to keep, what to condense, and what to drop - will give you better accuracy at lower cost as conversations grow. I hope you find this deep dive into context reducers useful!
 
 Until next time, happy hacking!
 
