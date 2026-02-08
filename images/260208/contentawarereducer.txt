@@ -1,0 +1,180 @@
+================================================================
+  CONTEXT REDUCER COMPARISON DEMO
+  Running 6 scripted questions against 1 reducers
+================================================================
+
+================================================================
+  REDUCER 1/1: ContentAwareChatReducer
+  Condenses historical data results, preserves schema tools, max 20 msgs
+================================================================
+
+
+── Turn 1 ──────────────────────────────────────────────────
+  Q: "List all the astronauts in the system and their specialization!"
+info: ContentAwareChatReducer[0]
+      Phase 1: 0 messages <= recentMessageCount (5), no reduction needed.
+  [Tool Call] list_knowledge_sources()
+  [Tool Call] list_tables()
+  [Tool Call] describe_table(tablename=contact)
+  [Tool Call] read_query(querytext=SELECT fullname, contact_specialization
+FROM contact
+WHERE contact_specializatio...)
+  A: "| Astronaut | Specialization | |---|---| | Alan Shepard | Pilot | | Amara Okafor | Payload Specialist | | Astrid Lindqvist | Commander | | Buzz Aldrin | Pilot | | Chris Hadfield | Mission Specialist |..."
+
+  Tokens:      Input: 21 917  |  Output:    223
+  Cumulative:  Input: 21 917  |  Output:    223
+  Session messages: 8  |  Sent to LLM: 7
+────────────────────────────────────────────────────────────────
+
+── Turn 2 ──────────────────────────────────────────────────
+  Q: "What rockets are available?"
+info: ContentAwareChatReducer[0]
+      Phase 2: 8 messages split into 3 historical + 5 recent. Condensing historical data tool results.
+info: ContentAwareChatReducer[0]
+        Condensed tool result: list_knowledge_sources (call_Ij9XqcyqCpOv6poFTpgCFJvh) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#expando","value":[]}
+info: ContentAwareChatReducer[0]
+      Phase 3: 8 messages within maxMessages (20), no trimming needed.
+info: ContentAwareChatReducer[0]
+      Reduction complete: 8 → 8 messages.
+  [Tool Call] describe_table(tablename=cr087_rocket)
+  [Tool Call] read_query(querytext=SELECT cr087_rocketname, statecode, statuscode
+FROM cr087_rocket
+ORDER BY cr087_...)
+  A: "The following rockets are available (active):  - Atlas   - Delta   - Falcon   - Nova   - Saturn   - Soyuz"
+
+  Tokens:      Input: 29 535  |  Output:     92
+  Cumulative:  Input: 51 452  |  Output:    315
+  Session messages: 14  |  Sent to LLM: 13
+────────────────────────────────────────────────────────────────
+
+── Turn 3 ──────────────────────────────────────────────────
+  Q: "Which astronaut is leading the most missions?"
+info: ContentAwareChatReducer[0]
+      Phase 2: 14 messages split into 9 historical + 5 recent. Condensing historical data tool results.
+info: ContentAwareChatReducer[0]
+        Condensed tool result: list_knowledge_sources (call_Ij9XqcyqCpOv6poFTpgCFJvh) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#expando","value":[]}
+info: ContentAwareChatReducer[0]
+        Preserved tool result: list_tables (call_ddNb1LRFDNMGHuYoXYvIEeK6)
+info: ContentAwareChatReducer[0]
+        Preserved tool result: describe_table (call_yjomSmfZxqLumvg2wCc6cr1V)
+info: ContentAwareChatReducer[0]
+        Condensed tool result: read_query (call_CLGs3ncXnWifJgWnl2c0FCRi) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#Microsoft.Dynamics.CRM.McpExecuteSqlQueryResponse","queryresult":"[\r\n  {\r\n    \"fullname\": \"Alan Shepard\",\r\n... [truncated]
+info: ContentAwareChatReducer[0]
+      Phase 3: 14 messages within maxMessages (20), no trimming needed.
+info: ContentAwareChatReducer[0]
+      Reduction complete: 14 → 14 messages.
+  [Tool Call] read_query(querytext=SELECT TOP 1 fullname, contact_missions_completed
+FROM contact
+WHERE contact_mis...)
+  A: "**Chris Hadfield** is leading the most missions, with **3 missions completed**."
+
+  Tokens:      Input: 19 514  |  Output:     70
+  Cumulative:  Input: 70 966  |  Output:    385
+  Session messages: 18  |  Sent to LLM: 17
+────────────────────────────────────────────────────────────────
+
+── Turn 4 ──────────────────────────────────────────────────
+  Q: "What is the specialization of Astrid Lindqvist?"
+info: ContentAwareChatReducer[0]
+      Phase 2: 18 messages split into 13 historical + 5 recent. Condensing historical data tool results.
+info: ContentAwareChatReducer[0]
+        Condensed tool result: list_knowledge_sources (call_Ij9XqcyqCpOv6poFTpgCFJvh) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#expando","value":[]}
+info: ContentAwareChatReducer[0]
+        Preserved tool result: list_tables (call_ddNb1LRFDNMGHuYoXYvIEeK6)
+info: ContentAwareChatReducer[0]
+        Preserved tool result: describe_table (call_yjomSmfZxqLumvg2wCc6cr1V)
+info: ContentAwareChatReducer[0]
+        Condensed tool result: read_query (call_CLGs3ncXnWifJgWnl2c0FCRi) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#Microsoft.Dynamics.CRM.McpExecuteSqlQueryResponse","queryresult":"[\r\n  {\r\n    \"fullname\": \"Alan Shepard\",\r\n... [truncated]
+info: ContentAwareChatReducer[0]
+        Preserved tool result: describe_table (call_z5XYvZej8dTMR1uDGPpfk46D)
+info: ContentAwareChatReducer[0]
+        Condensed tool result: read_query (call_P1fNj4dzcrTawHfllbvgBAm3) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#Microsoft.Dynamics.CRM.McpExecuteSqlQueryResponse","queryresult":"[\r\n  {\r\n    \"cr087_rocketname\": \"Atlas\",\r\... [truncated]
+info: ContentAwareChatReducer[0]
+      Phase 3: 18 messages within maxMessages (20), no trimming needed.
+info: ContentAwareChatReducer[0]
+      Reduction complete: 18 → 18 messages.
+  [Tool Call] read_query(querytext=SELECT fullname, contact_specialization
+FROM contact
+WHERE fullname = 'Astrid Li...)
+  A: "Astrid Lindqvist’s specialization is **Commander**."
+
+  Tokens:      Input: 19 232  |  Output:     52
+  Cumulative:  Input: 90 198  |  Output:    437
+  Session messages: 22  |  Sent to LLM: 21
+────────────────────────────────────────────────────────────────
+
+── Turn 5 ──────────────────────────────────────────────────
+  Q: "Earlier you listed the astronauts. Can you recall who the first one was?"
+info: ContentAwareChatReducer[0]
+      Phase 2: 22 messages split into 17 historical + 5 recent. Condensing historical data tool results.
+info: ContentAwareChatReducer[0]
+        Condensed tool result: list_knowledge_sources (call_Ij9XqcyqCpOv6poFTpgCFJvh) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#expando","value":[]}
+info: ContentAwareChatReducer[0]
+        Preserved tool result: list_tables (call_ddNb1LRFDNMGHuYoXYvIEeK6)
+info: ContentAwareChatReducer[0]
+        Preserved tool result: describe_table (call_yjomSmfZxqLumvg2wCc6cr1V)
+info: ContentAwareChatReducer[0]
+        Condensed tool result: read_query (call_CLGs3ncXnWifJgWnl2c0FCRi) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#Microsoft.Dynamics.CRM.McpExecuteSqlQueryResponse","queryresult":"[\r\n  {\r\n    \"fullname\": \"Alan Shepard\",\r\n... [truncated]
+info: ContentAwareChatReducer[0]
+        Preserved tool result: describe_table (call_z5XYvZej8dTMR1uDGPpfk46D)
+info: ContentAwareChatReducer[0]
+        Condensed tool result: read_query (call_P1fNj4dzcrTawHfllbvgBAm3) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#Microsoft.Dynamics.CRM.McpExecuteSqlQueryResponse","queryresult":"[\r\n  {\r\n    \"cr087_rocketname\": \"Atlas\",\r\... [truncated]
+info: ContentAwareChatReducer[0]
+        Condensed tool result: read_query (call_wzonfXbEQXtIXGFSNGaPYGTw) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#Microsoft.Dynamics.CRM.McpExecuteSqlQueryResponse","queryresult":"[\r\n  {\r\n    \"fullname\": \"Chris Hadfield\",\r... [truncated]
+info: ContentAwareChatReducer[0]
+      Phase 3: 22 messages exceeds maxMessages (20). Trimming 1 oldest messages (safe-cut at index 1).
+info: ContentAwareChatReducer[0]
+      Reduction complete: 22 → 21 messages.
+  A: "Yes — the first astronaut I listed was **Alan Shepard**."
+
+  Tokens:      Input:  9 676  |  Output:     16
+  Cumulative:  Input: 99 874  |  Output:    453
+  Session messages: 23  |  Sent to LLM: 22
+────────────────────────────────────────────────────────────────
+
+── Turn 6 ──────────────────────────────────────────────────
+  Q: "What was the specialization of Alan?"
+info: ContentAwareChatReducer[0]
+      Phase 2: 23 messages split into 18 historical + 5 recent. Condensing historical data tool results.
+info: ContentAwareChatReducer[0]
+        Condensed tool result: list_knowledge_sources (call_Ij9XqcyqCpOv6poFTpgCFJvh) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#expando","value":[]}
+info: ContentAwareChatReducer[0]
+        Preserved tool result: list_tables (call_ddNb1LRFDNMGHuYoXYvIEeK6)
+info: ContentAwareChatReducer[0]
+        Preserved tool result: describe_table (call_yjomSmfZxqLumvg2wCc6cr1V)
+info: ContentAwareChatReducer[0]
+        Condensed tool result: read_query (call_CLGs3ncXnWifJgWnl2c0FCRi) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#Microsoft.Dynamics.CRM.McpExecuteSqlQueryResponse","queryresult":"[\r\n  {\r\n    \"fullname\": \"Alan Shepard\",\r\n... [truncated]
+info: ContentAwareChatReducer[0]
+        Preserved tool result: describe_table (call_z5XYvZej8dTMR1uDGPpfk46D)
+info: ContentAwareChatReducer[0]
+        Condensed tool result: read_query (call_P1fNj4dzcrTawHfllbvgBAm3) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#Microsoft.Dynamics.CRM.McpExecuteSqlQueryResponse","queryresult":"[\r\n  {\r\n    \"cr087_rocketname\": \"Atlas\",\r\... [truncated]
+info: ContentAwareChatReducer[0]
+        Condensed tool result: read_query (call_wzonfXbEQXtIXGFSNGaPYGTw) → {"@odata.context":"https://orga7f9a5a6.crm4.dynamics.com/api/data/v9.1.0/$metadata#Microsoft.Dynamics.CRM.McpExecuteSqlQueryResponse","queryresult":"[\r\n  {\r\n    \"fullname\": \"Chris Hadfield\",\r... [truncated]
+info: ContentAwareChatReducer[0]
+      Phase 3: 23 messages exceeds maxMessages (20). Trimming 2 oldest messages (safe-cut at index 2).
+info: ContentAwareChatReducer[0]
+      Reduction complete: 23 → 21 messages.
+  [Tool Call] read_query(querytext=SELECT TOP 5 fullname, contact_specialization
+FROM contact
+WHERE fullname LIKE '...)
+  A: "Alan (Alan Shepard)’s specialization is **Pilot**."
+
+  Tokens:      Input: 19 447  |  Output:     56
+  Cumulative:  Input: 119 321  |  Output:    509
+  Session messages: 25  |  Sent to LLM: 24
+────────────────────────────────────────────────────────────────
+
+========================== COMPARISON SUMMARY ==========================
+Reducer                          |   Total In |  Total Out | Final Msgs |   Last LLM
+------------------------------------------------------------------------------------
+ContentAwareChatReducer          |    119 321 |        509 |         25 |         24
+=========================================================================
+
+  * 'Final Msgs' = total messages in session (unreduced)
+  * 'Last LLM'   = messages sent to LLM on final turn (after reduction)
+
+  Key observations:
+  - DummyReducer: Highest token usage but perfect context retention.
+  - MyMessageCountingChatReducer: Lowest tokens but loses all tool context.
+  - ToolPreservingChatReducer: Balanced - retains recent tool pairs, drops older ones.
+  - ContentAwareChatReducer: Smart condensation preserves schema while saving tokens.

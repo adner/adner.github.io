@@ -1,0 +1,89 @@
+================================================================
+  CONTEXT REDUCER COMPARISON DEMO
+  Running 6 scripted questions against 1 reducers
+================================================================
+
+================================================================
+  REDUCER 1/1: DummyReducer
+  No reduction - all messages retained
+================================================================
+
+
+── Turn 1 ──────────────────────────────────────────────────
+  Q: "List all the astronauts in the system and their specialization!"
+  [Tool Call] list_knowledge_sources()
+  [Tool Call] list_tables()
+  [Tool Call] read_query(querytext=SELECT TOP 20 contactid, fullname, jobtitle FROM contact ORDER BY fullname)
+  [Tool Call] describe_table(tablename=contact)
+  [Tool Call] read_query(querytext=SELECT TOP 50 fullname, contact_specialization FROM contact WHERE jobtitle = 'As...)
+  [Tool Call] read_query(querytext=SELECT TOP 20 fullname, contact_specialization FROM contact WHERE jobtitle = 'As...)
+  A: "Here are the astronauts (contacts) in the system and their specialization:  | Astronaut | Specialization | |---|---| | Alan Shepard | Pilot | | Amara Okafor | Payload Specialist | | Astrid Lindqvist |..."
+
+  Tokens:      Input: 47 065  |  Output:    296
+  Cumulative:  Input: 47 065  |  Output:    296
+  Session messages: 14  |  Sent to LLM: 13
+────────────────────────────────────────────────────────────────
+
+── Turn 2 ──────────────────────────────────────────────────
+  Q: "What rockets are available?"
+  [Tool Call] describe_table(tablename=cr087_rocket)
+  [Tool Call] read_query(querytext=SELECT TOP 20 cr087_rocketid, cr087_rocketname, statecode, statuscode FROM cr087...)
+  A: "The following rockets are available in the system (active):  - Atlas   - Delta   - Falcon   - Nova   - Saturn   - Soyuz"
+
+  Tokens:      Input: 35 821  |  Output:    102
+  Cumulative:  Input: 82 886  |  Output:    398
+  Session messages: 20  |  Sent to LLM: 19
+────────────────────────────────────────────────────────────────
+
+── Turn 3 ──────────────────────────────────────────────────
+  Q: "Which astronaut is leading the most missions?"
+  [Tool Call] read_query(querytext=SELECT TOP 1 fullname, contact_missions_completed FROM contact WHERE jobtitle = ...)
+  A: "**Chris Hadfield** is leading with the most missions completed: **3**."
+
+  Tokens:      Input: 25 359  |  Output:     66
+  Cumulative:  Input: 108 245  |  Output:    464
+  Session messages: 24  |  Sent to LLM: 23
+────────────────────────────────────────────────────────────────
+
+── Turn 4 ──────────────────────────────────────────────────
+  Q: "What is the specialization of Astrid Lindqvist?"
+  [Tool Call] read_query(querytext=SELECT TOP 1 fullname, contact_specialization FROM contact WHERE fullname = 'Ast...)
+  A: "Astrid Lindqvist’s specialization is **Commander**."
+
+  Tokens:      Input: 25 769  |  Output:     53
+  Cumulative:  Input: 134 014  |  Output:    517
+  Session messages: 28  |  Sent to LLM: 27
+────────────────────────────────────────────────────────────────
+
+── Turn 5 ──────────────────────────────────────────────────
+  Q: "Earlier you listed the astronauts. Can you recall who the first one was?"
+  A: "Yes — the first astronaut in the earlier list was **Alan Shepard**."
+
+  Tokens:      Input: 13 004  |  Output:     18
+  Cumulative:  Input: 147 018  |  Output:    535
+  Session messages: 30  |  Sent to LLM: 29
+────────────────────────────────────────────────────────────────
+
+── Turn 6 ──────────────────────────────────────────────────
+  Q: "What was the specialization of Alan?"
+  A: "Alan Shepard’s specialization is **Pilot**."
+
+  Tokens:      Input: 13 036  |  Output:     12
+  Cumulative:  Input: 160 054  |  Output:    547
+  Session messages: 32  |  Sent to LLM: 31
+────────────────────────────────────────────────────────────────
+
+========================== COMPARISON SUMMARY ==========================
+Reducer                          |   Total In |  Total Out | Final Msgs |   Last LLM
+------------------------------------------------------------------------------------
+DummyReducer                     |    160 054 |        547 |         32 |         31
+=========================================================================
+
+  * 'Final Msgs' = total messages in session (unreduced)
+  * 'Last LLM'   = messages sent to LLM on final turn (after reduction)
+
+  Key observations:
+  - DummyReducer: Highest token usage but perfect context retention.
+  - MyMessageCountingChatReducer: Lowest tokens but loses all tool context.
+  - ToolPreservingChatReducer: Balanced - retains recent tool pairs, drops older ones.
+  - ContentAwareChatReducer: Smart condensation preserves schema while saving tokens.

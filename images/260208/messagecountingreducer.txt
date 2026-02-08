@@ -1,0 +1,110 @@
+================================================================
+  CONTEXT REDUCER COMPARISON DEMO
+  Running 6 scripted questions against 1 reducers
+================================================================
+
+================================================================
+  REDUCER 1/1: MyMessageCountingChatReducer
+  Keeps system + last 6 non-system messages, drops ALL tool messages
+================================================================
+
+
+── Turn 1 ──────────────────────────────────────────────────
+  Q: "List all the astronauts in the system and their specialization!"
+  [Tool Call] list_knowledge_sources()
+  [Tool Call] list_tables()
+  [Tool Call] describe_table(tablename=contact)
+  [Tool Call] read_query(querytext=SELECT TOP 20 fullname, contact_specialization FROM contact WHERE contact_specia...)
+  A: "| Astronaut | Specialization | |---|---| | Alan Shepard | Pilot | | Amara Okafor | Payload Specialist | | Astrid Lindqvist | Commander | | Buzz Aldrin | Pilot | | Chris Hadfield | Mission Specialist |..."
+
+  Tokens:      Input: 21 917  |  Output:    223
+  Cumulative:  Input: 21 917  |  Output:    223
+  Session messages: 8  |  Sent to LLM: 7
+────────────────────────────────────────────────────────────────
+
+── Turn 2 ──────────────────────────────────────────────────
+  Q: "What rockets are available?"
+info: MyMessageCountingChatReducer[0]
+      Chat history reduced: 8 messages → 2 retained. Dropped 0 non-system messages exceeding limit of 5, dropped 6 function call/result messages.
+  [Tool Call] list_knowledge_sources()
+  [Tool Call] list_tables()
+  [Tool Call] describe_table(tablename=cr087_rocket)
+  [Tool Call] read_query(querytext=SELECT cr087_rocketid, cr087_rocketname, statecode, statuscode, createdon, modif...)
+  A: "The following rockets are available in the system (all currently **Active**):  - Atlas   - Delta   - Falcon   - Nova   - Saturn   - Soyuz"
+
+  Tokens:      Input: 21 800  |  Output:    137
+  Cumulative:  Input: 43 717  |  Output:    360
+  Session messages: 12  |  Sent to LLM: 11
+────────────────────────────────────────────────────────────────
+
+── Turn 3 ──────────────────────────────────────────────────
+  Q: "Which astronaut is leading the most missions?"
+info: MyMessageCountingChatReducer[0]
+      Chat history reduced: 12 messages → 4 retained. Dropped 0 non-system messages exceeding limit of 5, dropped 8 function call/result messages.
+  [Tool Call] list_knowledge_sources()
+  [Tool Call] list_tables()
+  [Tool Call] describe_table(tablename=cr087_mission)
+  [Tool Call] describe_table(tablename=contact)
+  [Tool Call] read_query(querytext=SELECT TOP 1 c.fullname AS lead_astronaut, COUNT(m.cr087_missionid) AS missions_...)
+  A: "**Astrid Lindqvist** is leading the most missions, with **2** missions led."
+
+  Tokens:      Input: 28 209  |  Output:    185
+  Cumulative:  Input: 71 926  |  Output:    545
+  Session messages: 14  |  Sent to LLM: 13
+────────────────────────────────────────────────────────────────
+
+── Turn 4 ──────────────────────────────────────────────────
+  Q: "What is the specialization of Astrid Lindqvist?"
+info: MyMessageCountingChatReducer[0]
+      Chat history reduced: 14 messages → 5 retained. Dropped 1 non-system messages exceeding limit of 5, dropped 8 function call/result messages.
+  [Tool Call] list_knowledge_sources()
+  [Tool Call] list_tables()
+  [Tool Call] describe_table(tablename=contact)
+  [Tool Call] read_query(querytext=SELECT TOP 20 fullname, contact_specialization FROM contact WHERE fullname = 'As...)
+  A: "Astrid Lindqvist’s specialization is **Commander**."
+
+  Tokens:      Input: 27 456  |  Output:     98
+  Cumulative:  Input: 99 382  |  Output:    643
+  Session messages: 15  |  Sent to LLM: 14
+────────────────────────────────────────────────────────────────
+
+── Turn 5 ──────────────────────────────────────────────────
+  Q: "Earlier you listed the astronauts. Can you recall who the first one was?"
+info: MyMessageCountingChatReducer[0]
+      Chat history reduced: 15 messages → 5 retained. Dropped 2 non-system messages exceeding limit of 5, dropped 8 function call/result messages.
+  A: "I didn’t list any astronauts earlier in this chat—only rockets (Atlas, Delta, Falcon, Nova, Saturn, Soyuz) and then details about Astrid Lindqvist.  If you mean the first rocket I listed, it was **Atl..."
+
+  Tokens:      Input:  2 109  |  Output:     55
+  Cumulative:  Input: 101 491  |  Output:    698
+  Session messages: 7  |  Sent to LLM: 6
+────────────────────────────────────────────────────────────────
+
+── Turn 6 ──────────────────────────────────────────────────
+  Q: "What was the specialization of Alan?"
+info: MyMessageCountingChatReducer[0]
+      Chat history reduced: 7 messages → 5 retained. Dropped 2 non-system messages exceeding limit of 5, dropped 0 function call/result messages.
+  [Tool Call] list_knowledge_sources()
+  [Tool Call] list_tables()
+  [Tool Call] describe_table(tablename=contact)
+  [Tool Call] read_query(querytext=SELECT TOP 20 fullname, contact_specialization FROM contact WHERE firstname = 'A...)
+  A: "Alan (Alan Shepard) had the specialization **Pilot**."
+
+  Tokens:      Input: 27 054  |  Output:    114
+  Cumulative:  Input: 128 545  |  Output:    812
+  Session messages: 15  |  Sent to LLM: 14
+────────────────────────────────────────────────────────────────
+
+========================== COMPARISON SUMMARY ==========================
+Reducer                          |   Total In |  Total Out | Final Msgs |   Last LLM
+------------------------------------------------------------------------------------
+MyMessageCountingChatReducer     |    128 545 |        812 |         15 |         14
+=========================================================================
+
+  * 'Final Msgs' = total messages in session (unreduced)
+  * 'Last LLM'   = messages sent to LLM on final turn (after reduction)
+
+  Key observations:
+  - DummyReducer: Highest token usage but perfect context retention.
+  - MyMessageCountingChatReducer: Lowest tokens but loses all tool context.
+  - ToolPreservingChatReducer: Balanced - retains recent tool pairs, drops older ones.
+  - ContentAwareChatReducer: Smart condensation preserves schema while saving tokens.
