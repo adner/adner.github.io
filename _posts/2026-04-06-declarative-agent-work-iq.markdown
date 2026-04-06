@@ -110,7 +110,7 @@ For auth, select "OAuth (with static registration)":
 
 ![alt text](/images/260406/image-4.png)
 
-You will see an error message saying `Unable to find the authentication metadata in the MCP server. ` which can be disregarded. The Work IQ MCP Servers unfortunately don't publish authorization config information as they should, so we will add this info manually later (for a previous rant about the Agent 365 MCP Server not being MCP spec compliant, see this [post](https://nullpointer.se/agent-365-mcp-servers-part-1.html)).
+You will see an error message saying `Unable to find the authentication metadata in the MCP server`, which you can disregard for now. The Work IQ MCP Servers unfortunately don't publish authorization config information even though the SHOULDhttps://modelcontextprotocol.info/specification/draft/basic/authorization/#21-overview, so we will add this info manually later (for a previous rant about the Agent 365 MCP Server not being MCP spec compliant, see this [post](https://nullpointer.se/agent-365-mcp-servers-part-1.html)).
 
 Now two things have happened:
 
