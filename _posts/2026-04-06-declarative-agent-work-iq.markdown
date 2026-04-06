@@ -90,7 +90,7 @@ First of all, we need a way of finding out the metadata for the Work IQ MCP Serv
 
 Replace `<TENANT_ID>` with your own tenant ID, and you have the MCP Server URL.
 
-So, now that we have the MCP Server URLs, let's try to add them to a declarative agent, using the **Microsoft 365 Agents Toolkit** extension in VS Code. Install the extension, click the "M365" button and hit "Create a new agent/app":
+So, now that we have the MCP Server URLs, let's try to add them to a declarative agent using the **Microsoft 365 Agents Toolkit** extension in VS Code. Install the extension, click the "M365" button and hit "Create a new agent/app":
 
 ![alt text](/images/260406/image.png)
 
