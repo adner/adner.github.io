@@ -106,7 +106,7 @@ Then, click "ATK: Fetch action from MCP" to add the MCP Server tools to the `ai-
 
 ![alt text](/images/260406/image-3.png)
 
-For auth, select "OAuth (with static registration):
+For auth, select "OAuth (with static registration)":
 
 ![alt text](/images/260406/image-4.png)
 
@@ -123,12 +123,14 @@ Now it is time to add the missing authorization information to the `m365agents.y
 
 **Make sure to replace the GUID:s with your Tenant ID!**
 
-Now, we need to setup the infra necessary to make it possible to do OAuth2 authentication with the MCP Servers. How to accomplish this for declarative agent MCP plugins is described [here](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/api-plugin-authentication) in the docs.
+Next, we need to setup the infra necessary to make it possible to do OAuth2 authentication with the MCP Servers. How to accomplish this for declarative agent MCP plugins is described [here](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/api-plugin-authentication) in the docs.
 
 First, we need to add an App Registration to Entra ID. Create the app registration and:
 
-- Create a **web** redirect URL that points to: https://teams.microsoft.com/api/platform/v1.0/oAuthRedirect
+- Create a **web** redirect URL that points to: `https://teams.microsoft.com/api/platform/v1.0/oAuthRedirect`
+
 - Make a note of the app registration ID.
+
 - Create an app registration secret and make a note of it.
 
 Then, add API permissions for the Work IQ MCP Servers that you intend to use in your declarative agent, and grant admin consent for these.:
@@ -142,10 +144,12 @@ Back in VS Code, click "Provision" in the "M365 Agents Toolkit" pane:
 In the dialogs that are shown, enter:
 
 - The ID for the application registration that you created earlier.
+
 - The Client Secret that you created earlier.
+
 - The MCP Server scope (same as you added to the `m365agents.yml` file, for example `https://agent365.svc.cloud.microsoft/agents/tenants/<YOUR TENANT ID>/servers/mcp_MeServer/.default`)
 
-Now M365 Agent Toolkit will create the infra for your agent, and when completed you can find the agent in the Teams Dev Portal: [https://dev.teams.microsoft.com/](https://dev.teams.microsoft.com/). There, you can also see that OAuth client registrations have been created for all the MCP Servers that you added:
+Now M365 Agent Toolkit will create the infra for your agent, and when completed you can find the agent in the Teams Dev Portal: [https://dev.teams.microsoft.com/](https://dev.teams.microsoft.com/). There, you can also see that OAuth client registrations have been created for all the MCP Servers that you added. This allows you to authenticate against the Work IQ MCP Servers when using the agent:
 
 ![alt text](/images/260406/image-8.png)
 
