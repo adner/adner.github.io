@@ -121,6 +121,8 @@ Now it is time to add the missing authorization information to the `m365agents.y
 
 ![alt text](/images/260406/image-5.png)
 
+**Make sure to replace the GUID:s with your Tenant ID!**
+
 Now, we need to setup the infra necessary to make it possible to do OAuth2 authentication with the MCP Servers. How to accomplish this for declarative agent MCP plugins is described [here](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/api-plugin-authentication) in the docs.
 
 First, we need to add an App Registration to Entra ID. Create the app registration and:
@@ -129,7 +131,7 @@ First, we need to add an App Registration to Entra ID. Create the app registrati
 - Make a note of the app registration ID.
 - Create an app registration secret and make a note of it.
 
-Then, add API permissions for the MCP Servers that you intend to use in your declarative agent, and grant admin consent for these.:
+Then, add API permissions for the Work IQ MCP Servers that you intend to use in your declarative agent, and grant admin consent for these.:
 
 ![alt text](/images/260406/image-6.png)
 
@@ -143,7 +145,7 @@ In the dialogs that are shown, enter:
 - The Client Secret that you created earlier.
 - The MCP Server scope (same as you added to the `m365agents.yml` file, for example `https://agent365.svc.cloud.microsoft/agents/tenants/<YOUR TENANT ID>/servers/mcp_MeServer/.default`)
 
-Now M365 Agent Toolkit will create the infra for your agent, and you can find the agent in the Teams Dev Portal: [https://dev.teams.microsoft.com/](https://dev.teams.microsoft.com/). There, you can see that OAuth client registrations have been created for all the MCP Servers that you added:
+Now M365 Agent Toolkit will create the infra for your agent, and when completed you can find the agent in the Teams Dev Portal: [https://dev.teams.microsoft.com/](https://dev.teams.microsoft.com/). There, you can also see that OAuth client registrations have been created for all the MCP Servers that you added:
 
 ![alt text](/images/260406/image-8.png)
 
@@ -151,7 +153,11 @@ You can now try your agent by opening it up in the Teams Dev Portal, and clickin
 
 ![alt text](/images/260406/image-9.png)
 
-You should now have a working declarative agent that uses the Work IQ MCP Servers! In this example I have wired up the agent with the `mcp_MeServer`, `mcp_CalendarTools`, `mcp_MailTools` and `mcp_M365Copilot` MCP Servers. This has been fun, declarative agents and Work IQ MCP Servers are awesome. Until next time, happy hacking!
+You should now have a working declarative agent that uses the Work IQ MCP Servers! 
+
+In the video below I have wired up the agent with the `mcp_MeServer`, `mcp_CalendarTools`, `mcp_MailTools` and `mcp_M365Copilot` Work IQ MCP Servers. 
+
+This has been fun, declarative agents and Work IQ MCP Servers are pretty awesome. Until next time, happy hacking!
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/AdhkoSNJPvk?si=22RUVRK0AGuaOwAZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
