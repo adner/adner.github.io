@@ -35,7 +35,7 @@ Since Ignite 2025 I have done a lot of demos and blog posts about the Agent 365 
 
 Lately, it seems that these MCP servers have gotten much easier to access and to use, something that I explored in a [recent LinkedIn post](https://www.linkedin.com/posts/andreasadner_workiq-agent365-activity-7445431916155240448-UByj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) where I tried out the servers from VS Code.
 
-Lately, it has really felt like the tooling is starting to come together, and the Work IQ MCP Servers have pretty much everything we need to do work in Microsoft 365 work from an agent. Exciting times, for sure!
+It has really started to felt like the tooling is starting to come together now, and the Work IQ MCP Servers have pretty much everything we need to do work in Microsoft 365 work from an agent. Exciting times, for sure!
 
 The Work IQ MCP Servers are still [documented](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview) as part of the Agent 365 docs. At the time of writing, these are the available MCP Servers:
 
@@ -161,7 +161,9 @@ You should now have a working declarative agent that uses the Work IQ MCP Server
 
 In the video below I have wired up the agent with the `mcp_MeServer`, `mcp_CalendarTools`, `mcp_MailTools` and `mcp_M365Copilot` Work IQ MCP Servers. 
 
-This has been fun, declarative agents and Work IQ MCP Servers are pretty awesome. Until next time, happy hacking!
+This has been fun, declarative agents and Work IQ MCP Servers are pretty awesome. The Agent 365 Toolkit does a good job of provisioning the infrastructure for it all, which make things much simpler. 
+
+Thanks for reading, and until next time - happy hacking!
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/AdhkoSNJPvk?si=22RUVRK0AGuaOwAZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
