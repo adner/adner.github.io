@@ -13,9 +13,9 @@ permalink: /declarative-agents-workiq.html
 
 It has been a while since I last looked into [Agent 365 SDK](https://learn.microsoft.com/en-us/microsoft-agent-365/overview), and since then a couple of interesting things have happened. <!--end_excerpt--> 
 
-First of all, a release date has been announced for [Microsoft 365 E7](https://partner.microsoft.com/en-US/blog/article/agent-365-announcement), a new type of license that includes Agent 365 capabilities. It is worth noting that the parts of Agent 365 that have to do with agentic identities and autonomous agentic users will not be GA on 1st of May, and licensing details regarding this are yet to be announced. This is a bit of a bummer, since I have spent a lot of time the last few months exploring the agentic parts of Agent 365 (see for example [here](https://nullpointer.se/exploring-agent-365-cli.html) and [here](https://nullpointer.se/agent-365-notifications.html)), and it would have been cool to be able to test it in production. But for the time being, agentic users are kept in the [Frontier program](https://www.microsoft.com/en-us/microsoft-365-copilot/frontier-program) and we'll have to wait a bit longer until it becomes generally available.
+First of all, a release date has been announced for [Microsoft 365 E7](https://partner.microsoft.com/en-US/blog/article/agent-365-announcement), a new type of license that includes Agent 365 capabilities. It is worth noting that the parts of Agent 365 that have to do with agentic identities and autonomous agentic users will not be GA on 1st of May, and licensing details regarding this are yet to be announced. This is a bit of a bummer, since I have spent a lot of time the last few months exploring the agentic parts of Agent 365 (see for example [here](https://nullpointer.se/exploring-agent-365-cli.html) and [here](https://nullpointer.se/agent-365-notifications.html)), and it would have been cool to be able to test it in production. But for the time being, agentic users stays in the [Frontier program](https://www.microsoft.com/en-us/microsoft-365-copilot/frontier-program) and we'll have to wait a bit longer until the agentic bits become generally available. Good things to those who wait!
 
-The parts of Agent 365 that go GA in May are all about agents acting "on-behalf-of" the user. Check out [this](https://www.youtube.com/watch?v=Mszz9ntbVpc) Agent 365 AMA for a deep-dive on this topic.
+The parts of Agent 365 that go GA in May are all about agents acting "on-behalf-of" the user, as well as a lot of agent governance goodies. Check out [this](https://www.youtube.com/watch?v=Mszz9ntbVpc) Agent 365 AMA for a deep-dive, and a good explanation of what is coming in May.
 
 Another thing that has happened is that the ***Agent 365 tooling servers*** have been rebranded to [Work IQ MCP](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview). [This](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview) is how Work IQ is described by Microsoft:
 
@@ -35,7 +35,7 @@ Since Ignite 2025 I have done a lot of demos and blog posts about the Agent 365 
 
 Lately, it seems that these MCP servers have gotten much easier to access and to use, something that I explored in a [recent LinkedIn post](https://www.linkedin.com/posts/andreasadner_workiq-agent365-activity-7445431916155240448-UByj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) where I tried out the servers from VS Code.
 
-It has really started to felt like the tooling is starting to come together now, and the Work IQ MCP Servers have pretty much everything we need to do work in Microsoft 365 work from an agent. Exciting times, for sure!
+It has really started to felt like the tooling for agents in the Microsoft ecosystem is starting to come together now, and with the Work IQ MCP Servers we have pretty much everything we need to do work in Microsoft 365 work from an agent. Exciting times, for sure!
 
 The Work IQ MCP Servers are still [documented](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview) as part of the Agent 365 docs. At the time of writing, these are the available MCP Servers:
 
@@ -98,7 +98,7 @@ Then, select "Declarative agent" -> "Add an action" -> "Start with an MCP Server
 
 ![alt text](/images/260406/image-1.png)
 
-Click "Start" to start the MCP Server. After authenticating, you can see that the MCP Server is connected and the tools (5 in this case) are loaded:
+Click "Start" to run the MCP Server. After authenticating, you can see that the MCP Server is connected and the tools (5 of them, in this case) are loaded:
 
 ![alt text](/images/260406/image-2.png)
 
