@@ -33,8 +33,8 @@ But there was a problem: the technology simply wasn't there. These were just dem
 
 But then last autumn, things started happening. First, quietly on the open-source side, [MCP-UI](https://github.com/MCP-UI-Org/mcp-ui) showed up - an early attempt at formalizing how agent UIs could be served over MCP ([here's my demo](https://www.linkedin.com/posts/andreasadner_%F0%9D%90%8D%F0%9D%90%9E%F0%9D%90%B0-%F0%9D%90%AF%F0%9D%90%A2%F0%9D%90%9D%F0%9D%90%9E%F0%9D%90%A8-using-mcp-ui-to-add-activity-7366158904004685825-GVsw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) from August). Then the frontier labs followed:
 
-- [OpenAI Apps SDK](https://developers.openai.com/apps-sdk) — announced in October.
-- [MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview) — announced in November, as an extension to the MCP protocol from Anthropic.
+- [OpenAI Apps SDK](https://developers.openai.com/apps-sdk) - announced in October.
+- [MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview) - announced in November, as an extension to the MCP protocol from Anthropic.
 
 MCP Apps was directly inspired by MCP-UI, so credit to the MCP-UI team for paving the way.
 
@@ -64,7 +64,7 @@ Recently, this [article](https://www.linkedin.com/pulse/capabilities-layer-todd-
 
 *"AI needs applications to describe what they can do, what their constraints are, and what state they are operating against. They need a surface that is designed to be composed ... That surface is the **Capabilities Layer**. It sits between your application services and any consumer - human, agent, or orchestrator - and it exposes typed tools, structured data resources, and interactive UX components through MCP."*
 
-One concept in particular stands out — the idea of "micro-frontends":
+One concept in particular stands out - the idea of "micro-frontends":
  
 *"Micro-frontends apply service-style decomposition to the user interface by splitting the frontend into independently developed and deployed features or components that are composed into a larger experience."*
 
@@ -113,7 +113,7 @@ And then on April 7 came the [big one](https://devblogs.microsoft.com/microsoft3
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7448665788577832960?collapsed=1" height="754" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
-And there is more — for example, the [agent feed](https://learn.microsoft.com/en-us/power-apps/user/supervise-agents-with-agent-feed) capability in Power Apps (demo [here](https://www.linkedin.com/posts/andreasadner_powerapps-copilotstudio-activity-7454575199213170688-vAIM?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w)) and the ability to use your own [custom agents in Microsoft 365 productivity apps](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/build-api-plugins-local-office-api), such as Excel and Word (demo [here](https://www.linkedin.com/posts/andreasadner_powerapps-microsoftcopilot-activity-7451321150292480001-G59w?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w)).
+And there is more - for example, the [agent feed](https://learn.microsoft.com/en-us/power-apps/user/supervise-agents-with-agent-feed) capability in Power Apps (demo [here](https://www.linkedin.com/posts/andreasadner_powerapps-copilotstudio-activity-7454575199213170688-vAIM?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w)) and the ability to use your own [custom agents in Microsoft 365 productivity apps](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/build-api-plugins-local-office-api), such as Excel and Word (demo [here](https://www.linkedin.com/posts/andreasadner_powerapps-microsoftcopilot-activity-7451321150292480001-G59w?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w)).
 
 So, it feels like Microsoft is firing on all cylinders when it comes to agentic UIs, at least when it comes to **declarative** Copilot agents. The state of things has improved enormously since last year. So, kudos to everyone at Microsoft, and while we're at it - here is my wishlist:
 
