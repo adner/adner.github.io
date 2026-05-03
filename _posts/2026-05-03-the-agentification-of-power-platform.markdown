@@ -117,6 +117,20 @@ And then on April 7 came the [big one](https://devblogs.microsoft.com/microsoft3
 
 And there is more — for example, the [agent feed](https://learn.microsoft.com/en-us/power-apps/user/supervise-agents-with-agent-feed) capability in Power Apps (demo [here](https://www.linkedin.com/posts/andreasadner_powerapps-copilotstudio-activity-7454575199213170688-vAIM?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w)) and the possibilities of using your own [custom agents in Microsoft 365 productivity apps](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/build-api-plugins-local-office-api), such as Excel and Word (demo [here](https://www.linkedin.com/posts/andreasadner_powerapps-microsoftcopilot-activity-7451321150292480001-G59w?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w)).
 
+So, it feels like Microsoft is firing on all cylinders when it comes to agentic UIs, at least when it comes to **declarative** Copilot agents and the state of things have improved enormously since last year. So, kudos to everyone at Microsoft, and while we're at it - here is my wishlist:
+
+- Pretty please with sugar on top - make it possible for custom agents to be aware of their Power Apps context. Please?
+
+- Let's make it possible for all Copilot agents to use MCP Apps, not just declarative agents. Here's any idea - make it a general functionality in M365 Copilot, that works for all agent types - declarative, Copilot Studio and custom engine agents. And perhaps in Teams too?
+
+- Add a possibility to limit the amount of user approvals that is needed when using MCP action plugins in declarative Copilot agents. There is so much clicking. 😉
+
+- Implement some smart way of providing context to an agent UI that is synchronized with the agent backend. Similar to the context management feature in AG-UI. As stated above, this is the one big thing that unlocks the possibilities to build real agentic applications.
+
+
+
+
+
 
 
 
