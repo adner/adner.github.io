@@ -115,7 +115,7 @@ And then on April 7 came the [big one](https://devblogs.microsoft.com/microsoft3
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7448665788577832960?collapsed=1" height="754" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
-
+And there is more, for example the [agent feed](https://learn.microsoft.com/en-us/power-apps/user/supervise-agents-with-agent-feed) capability in Power Apps (demo [here](https://www.linkedin.com/posts/andreasadner_powerapps-copilotstudio-activity-7454575199213170688-vAIM?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w)) and the possibilities of using your own [custom agents in Microsoft 365 productivity apps](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/build-api-plugins-local-office-api), such as Excel and Word (demo [here](https://www.linkedin.com/posts/andreasadner_powerapps-microsoftcopilot-activity-7451321150292480001-G59w?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w)).
 
 
 
