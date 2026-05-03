@@ -1,0 +1,84 @@
+---
+layout: post
+title:  "The death of BizApps and the rise of the agentic Power Platform"
+date:   2026-05-03
+image: /images/260503/splash.png
+permalink: /agentification-power-platform.html
+---
+{% if page.image %}
+  <a href="{{ page.url | relative_url }}">
+    <img src="{{ page.image | relative_url }}" alt="{{ page.title }}">
+  </a>
+{% endif %}
+
+Sometime last summer, it started to dawn on me that business applications as we know them might soon be a thing of the past. 
+
+I had been experimenting with the Model Context Protocol for a while, building custom agents that read and wrote to Dataverse directly - no UI in between. Talking to my business application in natural language, with MCP doing the plumbing, was unexpectedly delightful - and surprisingly productive. <!--end_excerpt-->If you are interested, you can find some of my early experiments with Dataverse and MCP [here](https://www.linkedin.com/posts/andreasadner_mvp-agenticai-powerplatform-activity-7318953890094235650-vLf9) and [here](https://www.linkedin.com/posts/andreasadner_agenticai-mcp-dataverse-activity-7319027765075165185-10Z5).
+
+It was early days, before the release of the official [Dataverse MCP Server](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/data-platform-mcp) - so I had to [roll my own](https://github.com/adner/SimpleDataverseMcpServer). Surprisingly easy, as it turned out LLMs are really good at FetchXML.
+
+Accessing Dataverse from an agent in this way was fun and all, but it became pretty clear that text might not be the optimal modality for using business applications, mainly because it is painfully slow (local Speech-to-text helps somewhat, see this [demo](https://www.linkedin.com/posts/andreasadner_building-my-own-crm-in-vs-code-using-mcp-activity-7427324074483302400-F52e)). This got me thinking - what if the agent could render user interfaces when the user needs them?
+
+Once again, early days - there wasn't much available in terms of standards or specifications for agentic user interfaces. [AG-UI](https://docs.ag-ui.com/introduction), [OpenAI Apps SDK](https://developers.openai.com/apps-sdk) and [MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview), all of which I'd later spend a lot of time exploring, hadn't been announced yet. So, lacking official specs and tooling, I started rolling my own agent UIs.
+
+Nowhere near enterprise-ready, but during this time I built a few demos that explored the idea. [One of them](https://www.youtube.com/watch?v=k5Tc3AsMBls) showed a bespoke agent UI that pulled in Power Apps screens when needed, and rendered reports dynamically from natural language:
+
+![](/images/260503/1.gif)
+
+We started showing this to customers, and the response was simply overwhelming. *"We want this!"* came up in nearly every demo - the idea that you could just *ask* for what you needed and have the right UI appear, instead of clicking through menus and tabs, clearly hit a nerve.
+
+But there was a problem: the technology simply wasn't there. These were just demos, and even though the benefits of agent UIs were clear, shipping this to customers felt a long way off. 
+
+## Some specs, finally
+
+But then last autumn, things started happening. First, quietly on the open-source side, [MCP-UI](https://github.com/MCP-UI-Org/mcp-ui) showed up - an early attempt at formalizing how agent UIs could be served over MCP. ([Here's my demo](https://www.linkedin.com/posts/andreasadner_%F0%9D%90%8D%F0%9D%90%9E%F0%9D%90%B0-%F0%9D%90%AF%F0%9D%90%A2%F0%9D%90%9D%F0%9D%90%9E%F0%9D%90%A8-using-mcp-ui-to-add-activity-7366158904004685825-GVsw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) from August.) Then the frontier labs followed:
+
+- [OpenAI Apps SDK](https://developers.openai.com/apps-sdk) — announced in October
+- [MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview) — announced in November
+
+MCP Apps was directly inspired by MCP-UI, so credit to the MCP-UI team for paving the way.
+
+Going back a bit further - last summer, a small, then-unknown company called CopilotKit released [AG-UI](https://docs.ag-ui.com/introduction), the spec that, more than any other, piqued my interest in agent UIs. I've since explored it in depth, including a session [at AgentCon](https://globalai.community/chapters/stockholm/events/agentcon-stockholm/) ([video summary](https://www.youtube.com/watch?v=PeEE5kYwdgo)) and a [conversation with Rasmus Wulff Jensen](https://www.youtube.com/watch?v=QOlQAEAhIZI). For deeper dives, see my LinkedIn writeups [here](https://www.linkedin.com/posts/andreasadner_dynamic-ai-user-interfaces-with-microsoft-activity-7398088200042315776-ygSA?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) and [here](https://www.linkedin.com/posts/andreasadner_copilotkit-version-15-microsoft-agent-activity-7413675309042147328-dk2Q?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w).
+
+[Shared state](https://docs.ag-ui.com/concepts/state) between the UI and the agent orchestrator - a core part of the AG-UI spec - is, in my view, the single biggest unlock for agent UIs, and one piece that is still missing as these specs finally land in mainstream Microsoft tools. Shared state unlocks some really transformative user experiences, such as these ones:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/PeEE5kYwdgo?si=hJr29_XzMX8gZZfD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+## The death of BizApps
+So while these agent UI standards started emerging at the end of last year, support for them was still lacking in the Microsoft ecosystem. Our customers were eager to start trying these experiences in Microsoft Teams and M365 Copilot — they'd have to wait a bit longer.
+
+But inside Microsoft, things had been brewing for quite some time. Back in December 2024, on the [BG2 podcast](https://www.bg2pod.com/) Satya Nadella famously predicted the eventual death of SaaS-applications as we know then, in favor AI orchestration layers that serves agents directly.
+
+Also, Charles Lamanna was even blunter. In a [May 2025 conversation with Madrona](https://www.madrona.com/the-end-of-biz-apps-ai-agility-and-the-agent-native-enterprise-from-microsoft-cvp-charles-lamanna/) he said:
+
+*"As the guy at Microsoft who works on business applications, sometimes the truth hurts, but business apps as we know it are indeed dead ... Instead, what will probably happen is you’ll see this ossification of these classic biz apps, the emergence of this new AI layer, which is very focused around automation and completing tasks in a way that extends the team of humans and people with these AI agents that go and do work ..  You’re going to have a generative UI, which AI dynamically authors and renders on the fly to exactly match what the person’s trying to do .. The gist of it is yes, indeed, biz apps, the age of biz apps is over."*
+
+## The coming war of the AI Capabilities Layer
+And it's not just the apps. At the Power Platform Community Conference 2025 in Las Vegas, Lamanna delivered the line that lit up the low-code community: *"Low code is dead, as we know it."* That caused quite a stir - but six months on, it looks less like the low-code frameworks themselves are dying, and more like the way we *use* them is changing. Instead of clicking around a designer to build a low-code app, we're letting our agents build them for using a CLI. See for example [this demo](https://www.linkedin.com/posts/andreasadner_copilotstudio-activity-7452038499995799552-GtfN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) of Copilot Studio agents built with Claude Code and Skills. I, for one, didn't see this coming.
+
+Another harbinger - and one I have quoted repeatedly - is Lane Swenka's [blog post](https://devblogs.microsoft.com/powerplatform/power-platform-api-and-sdks-from-ux-first-to-api-first/) from last summer, laying out a new direction for Power Platform admin tools: a transition from UX-first to API-first. The scope was nominally limited to admin tooling, but in hindsight it was pretty clear that it pointed to something bigger - an API-first shift across the whole Power Platform, to cater for the needs of AI agents.
+
+The recent [article](https://www.linkedin.com/pulse/capabilities-layer-todd-trotter-girqc/) by [Todd Trotter](https://www.linkedin.com/in/todd-trotter-01818030/) about the *Capabilities Layer* — the architecture and plumbing needed to serve AI agents — is one of the best summaries I've read of where all this is heading, and what it means for the Power Platform.
+
+*"AI needs applications to describe what they can do, what their constraints are, and what state they are operating against. They need a surface that is designed to be composed ... That surface is the Capabilities Layer. It sits between your application services and any consumer - human, agent, or orchestrator - and it exposes typed tools, structured data resources, and interactive UX components through MCP."*
+
+One concept in particular stands out — the idea of "micro frontends":
+ 
+*"Micro-frontends apply service-style decomposition to the user interface by splitting the frontend into independently developed and deployed features or components that are composed into a larger experience."*
+
+Some corporate-speak, sure - but he's basically saying the same thing Charles Lamanna was (see above): the user experiences of the future will surface when they're needed, with just the UI elements the user needs, no more, no less. We're heading toward a world where dynamically surfaced, agent-centric *"micro experiences"* are the norm.
+
+So the vision from Microsoft is pretty clear: agentic user experiences FTW, and the infrastructure, APIs and MCPs to support them. And they're not the only ones reaching this conclusion — Salesforce's recent [Headless 360 announcement](https://www.salesforce.com/news/stories/salesforce-headless-360-announcement/) is the same play, and SAP, ServiceNow and the rest are doing the same thing. The platforms are being (re)built to be consumed by an army of autonomous agents, and the human-facing UIs - when they're needed - will be dynamic and invoked by the agents.
+
+The writing is on the wall, this is the war that's coming. And when the dust settles, the winner will be the provider with the best **Capabilities Layer** for agents — and the best support for agent UIs.
+
+But vision is one thing; execution is another. With the coming clash of the titans to build the best **Capabilities Layer** as backdrop, let's look at what Microsoft has actually shipped lately, and how it fits the picture.
+
+## The rise of the agentic Power Platform
+
+
+
+
+
+
+
