@@ -127,7 +127,9 @@ So, it feels like Microsoft is firing on all cylinders when it comes to agentic 
 
 - Implement some smart way of providing context to an agent UI that is synchronized with the agent backend. Similar to the context management feature in AG-UI. As stated above, this is the one big thing that unlocks the possibilities to build real agentic applications.
 
+So, we have talked about the agentic UI layer. But what about the AI Capability Layer that will power the rise of the autonomous agentic workforce and lead to the death of BizApps? It seems to me that Microsoft is currently consolidating this capability layer under the Work IQ umbrella, at least when it comes to Microsoft 365 and Dataverse. A set of [MCP Servers](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview) are available that could allow agents to interact with Microsoft services on-behalf of the user, and eventually also autonomously - under its own agentic identity. I have [played around](https://nullpointer.se/declarative-agents-workiq.html) with the Work IQ MCP Servers, and they are pretty neat.
 
+One can only assume that massive efforts are underway internally at Microsoft to build out this AI Capability Layer and respond in force to Salesforce Headless 360, and the other major players out there that have all arrived at the same conclusion — that the race for the AI Capability Layer is the race for the next era of enterprise software, and there are no prizes for second place. Game on!
 
 
 
