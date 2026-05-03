@@ -33,7 +33,7 @@ But there was a problem: the technology simply wasn't there. These were just dem
 
 But then last autumn, things started happening. First, quietly on the open-source side, [MCP-UI](https://github.com/MCP-UI-Org/mcp-ui) showed up - an early attempt at formalizing how agent UIs could be served over MCP ([Here's my demo](https://www.linkedin.com/posts/andreasadner_%F0%9D%90%8D%F0%9D%90%9E%F0%9D%90%B0-%F0%9D%90%AF%F0%9D%90%A2%F0%9D%90%9D%F0%9D%90%9E%F0%9D%90%A8-using-mcp-ui-to-add-activity-7366158904004685825-GVsw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) from August)- Then the frontier labs followed:
 
-- [OpenAI Apps SDK](https://developers.openai.com/apps-sdk) — announced in October
+- [OpenAI Apps SDK](https://developers.openai.com/apps-sdk) — announced in October.
 - [MCP Apps](https://modelcontextprotocol.io/extensions/apps/overview) — announced in November, as an extension to the MCP protocol from Anthropic.
 
 MCP Apps was directly inspired by MCP-UI, so credit to the MCP-UI team for paving the way.
@@ -47,7 +47,7 @@ One specific concept in AG-UI - [Shared state](https://docs.ag-ui.com/concepts/s
 Suddenly, the demos from a year earlier didn't look quite so far-fetched - the pieces in the agentic UI puzzle were starting to come together.
 
 ## The death of BizApps
-So while agent UI standards started emerging at the end of last year, support for them was still lacking in the Microsoft ecosystem. Our customers were eager to start trying these experiences in Microsoft Teams and M365 Copilot, but as it turned out - they would've to wait a bit longer.
+So while agent UI standards started emerging at the end of last year, support for them was still lacking in the Microsoft ecosystem. Our customers were eager to start trying these experiences in Microsoft Teams and M365 Copilot, but as it turned out - they would have to wait a bit longer.
 
 But inside Microsoft, these kind of ideas had apparently been brewing for quite some time. Already back in December 2024, on the [BG2 podcast](https://www.bg2pod.com/) Satya Nadella famously predicted the eventual death of SaaS-applications as we know them, in favor AI orchestration layers that serves agents directly.
 
@@ -56,9 +56,7 @@ Charles Lamanna was even blunter. In a [May 2025 conversation with Madrona](http
 *"As the guy at Microsoft who works on business applications, sometimes the truth hurts, but business apps as we know it are indeed dead ... Instead, what will probably happen is you’ll see this ossification of these classic biz apps, the emergence of this new AI layer, which is very focused around automation and completing tasks in a way that extends the team of humans and people with these AI agents that go and do work ..  You’re going to have a generative UI, which AI dynamically authors and renders on the fly to exactly match what the person’s trying to do .. The gist of it is yes, indeed, biz apps, the age of biz apps is over."*
 
 ## The coming war of the AI Capabilities Layer
-And it's not just the apps. At the Power Platform Community Conference 2025 in Las Vegas, Lamanna delivered the line that lit up the low-code community: *"Low code is dead, as we know it."* That caused quite a stir - but six months on, it looks less like the low-code frameworks themselves are dying, and more like the way we *use* them is changing. Instead of clicking around a designer to build a low-code app, we're letting our agents build them for using a CLI. See for example [this demo](https://www.linkedin.com/posts/andreasadner_copilotstudio-activity-7452038499995799552-GtfN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) of Copilot Studio agents built with Claude Code and agent skills. 
-
-I, for one, didn't see this coming.
+And it's not just the apps. At the Power Platform Community Conference 2025 in Las Vegas, Lamanna delivered the line that lit up the low-code community: *"Low code is dead, as we know it."* That caused quite a stir - but six months on, it looks less like the low-code frameworks themselves are dying, and more like the way we *use* them is changing. Instead of clicking around a designer to build a low-code app, we're letting our agents build them for using a CLI. See for example [this demo](https://www.linkedin.com/posts/andreasadner_copilotstudio-activity-7452038499995799552-GtfN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) of Copilot Studio agents built with Claude Code and agent skills. Honestly, that I didn't see coming.
 
 Another harbinger of things to come - and one I have quoted repeatedly - is Lane Swenka's [blog post](https://devblogs.microsoft.com/powerplatform/power-platform-api-and-sdks-from-ux-first-to-api-first/) from last summer, laying out a new direction for Power Platform admin tools: a transition from UX-first to API-first. The scope was seemingly limited to admin tooling, but in hindsight it was pretty clear that it pointed to something bigger - an API-first shift across the whole Power Platform, to cater for the needs of AI agents.
 
@@ -70,16 +68,16 @@ One concept in particular stands out — the idea of "micro frontends":
  
 *"Micro-frontends apply service-style decomposition to the user interface by splitting the frontend into independently developed and deployed features or components that are composed into a larger experience."*
 
-Some corporate-speak, sure - but he's basically saying the same thing as Charles Lamanna was saying (see above): the user experiences of the future will surface when they're needed, with just the UI elements the user needs, no more, no less. We're heading toward a world where dynamically surfaced, agent-centric *"micro experiences"* are the norm.
+Some corporate-speak, sure - but he's basically saying the same thing as Charles Lamanna was saying: the user experiences of the future will surface when they're needed, with just the UI elements the user needs, no more, no less. We're heading toward a world where dynamically surfaced, agent-centric *"micro experiences"* are the norm.
 
-So the vision from Microsoft is pretty clear: agentic user experiences FTW, and the infrastructure, APIs and MCPs to support them. And they're not the only ones reaching this conclusion - Salesforce's recent [Headless 360 announcement](https://www.salesforce.com/news/stories/salesforce-headless-360-announcement/) is the same play, and SAP, ServiceNow and the rest are doing it also. The platforms are being (re)built to be consumed by an army of autonomous agents, and the human-facing UIs - when they're needed - will be dynamic and invoked by the agents.
+So the vision from Microsoft is pretty clear: agentic user experiences FTW, and the infrastructure, APIs and MCPs to support them. And they're not the only ones reaching this conclusion - Salesforce's recent [Headless 360 announcement](https://www.salesforce.com/news/stories/salesforce-headless-360-announcement/) is the same play, and SAP, ServiceNow and the rest are doing it also. The platforms are being (re)built to be consumed by an army of autonomous agents, and the human-facing UIs - when they're needed - will be dynamic and served by the agents.
 
-The writing is on the wall, this is the war that's coming. And when the dust settles, the winner will be the provider with the best **Capabilities Layer** for agents — and the best support for agent UIs.
+The writing is on the wall, this is the war that's coming. And when the dust settles, the winner will be the provider with the best **Capabilities Layer** for agents - and the best support for agent UIs.
 
 But vision is one thing; execution is another. With the coming clash of the titans to build the best capabilities layer as backdrop, let's look at what Microsoft has actually shipped lately in this space.
 
 ## The rise of the agentic Power Platform
-In all honesty, being passionate about agent user experiences and at the same time being a consultant in the Microsoft space last year wasn't all that great. With the explosion of specifications in the agent UI space we saw late last year, I had high hopes that these capabilities would be promptly made available in the Microsoft tech stacks. Perhaps support for MCP Apps for Copilot Studio agents? Or why not an iteration upon the Adaptive Card spec to support the same behaviour? Or maybe AG-UI support in M365 Copilot? One could only dream...
+In all honesty, being passionate about agent user experiences and at the same time being a consultant in the Microsoft space last year wasn't all that great. With the explosion of specifications in the agent UI space we saw late last year, I had high hopes that these capabilities would be promptly made available in the Microsoft tech stacks. Perhaps support for MCP Apps for Copilot Studio agents? Or why not an iteration upon the Adaptive Card spec to support dynamic user interfaces? Or maybe AG-UI support in M365 Copilot? One could only dream...
 
 But Ignite 2025 came and went without any real announcements in this space, so I kept waiting and hoping, hoping and waiting. And good things come to those who wait, because on the 9th of March, somewhat hidden in the Microsoft [365 Copilot Blog](https://techcommunity.microsoft.com/blog/microsoft365copilotblog/enable-agents-to-bring-apps-into-the-flow-of-work%E2%80%94while-keeping-it-in-control/4499464) was this little nugget:
 
@@ -93,7 +91,7 @@ This feature was part of a capability exclusive to Microsoft 365 Copilot **decla
 
 For some reason, all these new fancy capabilities related to support for agentic UI protocols were implemented for *declarative agents*, a technology I hadn't tried before - I had mostly dabbled with Copilot Studio agents and agents built with custom code (referred to as [*custom engine agents*](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/overview-custom-engine-agent) in the M365 Copilot nomenclature). So this gave me the chance to explore declarative agents, which was pretty interesting. 
 
-Then, it was announced that it was possible to use [M365 Copilot agents in a Power App](https://learn.microsoft.com/en-us/power-apps/user/use-microsoft-365-copilot-model-driven-apps). At first glance, the main benefit of this is to run the main M365 Copilot agent from a Power App - which is already grounded in your organization's data, but which now also indexes the data in your Power App environment, which opens up some cool possibilities:
+Then, it was announced that it was possible to use [M365 Copilot agents in a Power App](https://learn.microsoft.com/en-us/power-apps/user/use-microsoft-365-copilot-model-driven-apps). At first glance, the main benefit of this is to run the main M365 Copilot agent from a Power App - which is already grounded in your organization's data, but which now also indexes the data in your Power App environment. It's [not the first time](https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/add-ai-copilot) we have seen Copilots in Dynamics/Power Apps, but this time it seems to actually work pretty great:
 
 ![](/images/260503/3.gif)
 
@@ -105,7 +103,7 @@ To remedy this, you can also [access your custom agents](https://learn.microsoft
 
 I hope that this will change soon - context-aware custom agents is such an unlock that it should have been implemented yesterday...
 
-Next was the [announcement](https://www.microsoft.com/en-us/power-platform/blog/power-apps/public-preview-your-business-apps-now-part-of-every-conversation/) that your Power App could [expose its own MCP Server](https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/enable-your-app-copilot), which came with a set of custom MCP Apps UI tools. You could then download it as a declarative Copilot agent. I created a [demo](https://www.linkedin.com/posts/andreasadner_dataverse-powerapps-microsoftcopilot-activity-7445817384805916672-E9Ue?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) of this also:
+Next was the [announcement](https://www.microsoft.com/en-us/power-platform/blog/power-apps/public-preview-your-business-apps-now-part-of-every-conversation/) that your Power App could [expose its own MCP Server](https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/enable-your-app-copilot), which came with a set of custom MCP Apps UI tools. You could then download it as a declarative Copilot agent package, which you could deploy to your tenant. I created a [demo](https://www.linkedin.com/posts/andreasadner_dataverse-powerapps-microsoftcopilot-activity-7445817384805916672-E9Ue?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) of this also:
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7445718741906137089?collapsed=1" height="541" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
@@ -117,19 +115,21 @@ And then on April 7 came the [big one](https://devblogs.microsoft.com/microsoft3
 
 And there is more — for example, the [agent feed](https://learn.microsoft.com/en-us/power-apps/user/supervise-agents-with-agent-feed) capability in Power Apps (demo [here](https://www.linkedin.com/posts/andreasadner_powerapps-copilotstudio-activity-7454575199213170688-vAIM?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w)) and the possibilities of using your own [custom agents in Microsoft 365 productivity apps](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/build-api-plugins-local-office-api), such as Excel and Word (demo [here](https://www.linkedin.com/posts/andreasadner_powerapps-microsoftcopilot-activity-7451321150292480001-G59w?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w)).
 
-So, it feels like Microsoft is firing on all cylinders when it comes to agentic UIs, at least when it comes to **declarative** Copilot agents and the state of things have improved enormously since last year. So, kudos to everyone at Microsoft, and while we're at it - here is my wishlist:
+So, it feels like Microsoft is firing on all cylinders when it comes to agentic UIs, at least when it comes to **declarative** Copilot agents. The state of things have improved enormously since last year. So, kudos to everyone at Microsoft, and while we're at it - here is my wishlist:
 
 - Pretty please with sugar on top - make it possible for custom agents to be aware of their Power Apps context. Please?
 
-- Let's make it possible for all Copilot agents to use MCP Apps, not just declarative agents. Here's any idea - make it a general functionality in M365 Copilot, that works for all agent types - declarative, Copilot Studio and custom engine agents. And perhaps in Teams too?
+- Let's make it possible for all Copilot agents to use MCP Apps, not just declarative agents. Here's an idea - make MCP Apps support a general functionality in M365 Copilot, that works for all agent types - declarative, Copilot Studio and custom engine agents. And perhaps in Teams too?
 
 - Add a possibility to limit the amount of user approvals that is needed when using MCP action plugins in declarative Copilot agents. There is so much clicking. 😉
 
-- Implement some smart way of providing context to an agent UI that is synchronized with the agent backend. Similar to the context management feature in AG-UI. As stated above, this is the one big thing that unlocks the possibilities to build real agentic applications.
+- Implement some smart way of providing context to an agent UI that is synchronized with the agent backend. Similar to the context management feature in AG-UI. As stated above, this is the one big thing that unlocks the possibility to build real agentic applications.
 
 So, we have talked about the agentic UI layer. But what about the AI Capability Layer that will power the rise of the autonomous agentic workforce and lead to the death of BizApps? It seems to me that Microsoft is currently consolidating this capability layer under the Work IQ umbrella, at least when it comes to Microsoft 365 and Dataverse. A set of [MCP Servers](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview) are available that could allow agents to interact with Microsoft services on-behalf of the user, and eventually also autonomously - under its own agentic identity. I have [played around](https://nullpointer.se/declarative-agents-workiq.html) with the Work IQ MCP Servers, and they are pretty neat.
 
 One can only assume that massive efforts are underway internally at Microsoft to build out this AI Capability Layer and respond in force to Salesforce Headless 360, and the other major players out there that have all arrived at the same conclusion — that the race for the AI Capability Layer is the race for the next era of enterprise software, and there are no prizes for second place. Game on!
+
+As always, thanks for reading and until next time - happy hacking! 
 
 
 
