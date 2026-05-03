@@ -83,7 +83,7 @@ In all honestly, being passionate about agent user experiences and at the same t
 
 But Ignite 2025 came and went without any real announcements in this space, so I kept waiting and hoping, hoping and waiting. And good things to those who wait, because on the 9th of March, somewhat hidden in the Microsoft [365 Copilot Blog](https://techcommunity.microsoft.com/blog/microsoft365copilotblog/enable-agents-to-bring-apps-into-the-flow-of-work%E2%80%94while-keeping-it-in-control/4499464) was this little nugget:
 
-![alt text](image.png)
+![alt text](/images/260503/image.png)
 
 Support for OpenAI Apps SDK was already available, and MCP Apps coming soon. I found some [really cool samples](https://github.com/microsoft/mcp-interactiveUI-samples) which I used to create [my own demo](https://www.linkedin.com/posts/andreasadner_copilot-mcp-activity-7441598020539908097-_JA6?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w):
 
@@ -101,19 +101,21 @@ A [limitation](https://learn.microsoft.com/en-us/power-apps/user/use-microsoft-3
 
 To remedy this, you can also [access your custom agents](https://learn.microsoft.com/en-us/power-apps/user/use-microsoft-365-copilot-model-driven-apps#use-agents-in-microsoft-365-copilot) (declarative, Copilot Studio or custom engine agent) from M365 Copilot in your Power App, and this is where it starts to become really cool! I created a [demo](https://www.linkedin.com/posts/andreasadner_microsoftcopilot-activity-7444647079043289089-HcpT?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) of this, once again using the Microsoft samples. This means that if your custom agent is equipped with e.g. the Dataverse MCP Server, it can update data in Dataverse. One big limitation currently is that the custom agent has no context - it doesn't know which Power App/form/view/record that it is using:
 
-![alt text](image-1.png)
+![alt text](/images/260503/image-1.png)
 
 I hope that this will change soon!
 
 Next was the [announcement](https://www.microsoft.com/en-us/power-platform/blog/power-apps/public-preview-your-business-apps-now-part-of-every-conversation/) that your Power App could [expose its own MCP Server](https://learn.microsoft.com/en-us/power-apps/maker/model-driven-apps/enable-your-app-copilot), which came with a set of custom MCP Apps UI tools. You couldn't then download it as a declarative Copilot agent. I created a [demo](https://www.linkedin.com/posts/andreasadner_dataverse-powerapps-microsoftcopilot-activity-7445817384805916672-E9Ue?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) of this also:
 
-![](/images/260503/4.png)
+<iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7445718741906137089?collapsed=1" height="541" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
 
 Then came the [announcement](https://www.microsoft.com/en-us/power-platform/blog/2026/04/22/custom-tools-and-rich-ui-for-app-based-conversations-are-now-in-public-preview/) that custom tools could be added to your Power Apps, which became part of the MCP plugin actions, when you exported the Power Apps as a declarative agent. Demo [here](https://www.linkedin.com/posts/andreasadner_microsoftcopilot-powerplatform-activity-7452963921768067073-S9ns?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w).
 
 And then on April 7 came the [big one](https://devblogs.microsoft.com/microsoft365dev/mcp-apps-now-available-in-copilot-chat/) - [support for MCP Apps](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/declarative-agent-ui-widgets) in declarative Copilot agents! Since I had [already created](https://www.linkedin.com/posts/andreasadner_building-my-own-crm-in-vs-code-using-mcp-activity-7427324074483302400-F52e) an MCP Server with some cool looking MCP Apps UI components, I simply added them to a declarative agent which resulted in my most successful [LinkedIn post](https://www.linkedin.com/posts/andreasadner_powerapps-microsoftcopilot-activity-7448784585456357376-X9bX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) to date:
 
 <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7448665788577832960?collapsed=1" height="754" width="504" frameborder="0" allowfullscreen="" title="Embedded post"></iframe>
+
+
 
 
 
