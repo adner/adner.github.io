@@ -13,9 +13,9 @@ permalink: /declarative-agents-workiq.html
 
 It has been a while since I last looked into [Agent 365 SDK](https://learn.microsoft.com/en-us/microsoft-agent-365/overview), and since then a couple of interesting things have happened. <!--end_excerpt--> 
 
-First of all, a release date has been announced for [Microsoft 365 E7](https://partner.microsoft.com/en-US/blog/article/agent-365-announcement), a new type of license that includes Agent 365 capabilities. It is worth noting that the parts of Agent 365 that have to do with agentic identities and autonomous agentic users will not be GA on 1st of May, and licensing details regarding this are yet to be announced. This is a bit of a bummer, since I have spent a lot of time the last few months exploring the agentic parts of Agent 365 (see for example [here](https://nullpointer.se/exploring-agent-365-cli.html) and [here](https://nullpointer.se/agent-365-notifications.html)), and it would have been cool to be able to test it in production. But for the time being, agentic users are kept in the [Frontier program](https://www.microsoft.com/en-us/microsoft-365-copilot/frontier-program) and we'll have to wait a bit longer until it becomes generally available.
+First of all, a release date has been announced for [Microsoft 365 E7](https://partner.microsoft.com/en-US/blog/article/agent-365-announcement), a new type of license that includes Agent 365 capabilities. It is worth noting that the parts of Agent 365 that have to do with agentic identities and autonomous agentic users will not be GA on 1st of May, and licensing details regarding this are yet to be announced. This is a bit of a bummer, since I have spent a lot of time the last few months exploring the agentic parts of Agent 365 (see for example [here](https://nullpointer.se/exploring-agent-365-cli.html) and [here](https://nullpointer.se/agent-365-notifications.html)), and it would have been cool to be able to test it in production. But for the time being, agentic users stays in the [Frontier program](https://www.microsoft.com/en-us/microsoft-365-copilot/frontier-program) and we'll have to wait a bit longer until the agentic bits become generally available. Good things to those who wait!
 
-The parts of Agent 365 that go GA in May are all about agents acting "on-behalf-of" the user. Check out [this](https://www.youtube.com/watch?v=Mszz9ntbVpc) Agent 365 AMA for a deep-dive on this topic.
+The parts of Agent 365 that go GA in May are all about agents acting "on-behalf-of" the user, as well as a lot of agent governance goodies. Check out [this](https://www.youtube.com/watch?v=Mszz9ntbVpc) Agent 365 AMA for a deep-dive, and a good explanation of what is coming in May.
 
 Another thing that has happened is that the ***Agent 365 tooling servers*** have been rebranded to [Work IQ MCP](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview). [This](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview) is how Work IQ is described by Microsoft:
 
@@ -35,7 +35,7 @@ Since Ignite 2025 I have done a lot of demos and blog posts about the Agent 365 
 
 Lately, it seems that these MCP servers have gotten much easier to access and to use, something that I explored in a [recent LinkedIn post](https://www.linkedin.com/posts/andreasadner_workiq-agent365-activity-7445431916155240448-UByj?utm_source=share&utm_medium=member_desktop&rcm=ACoAAACM8rsBEgQIrYgb4NZAbnxwfDRk_Tu5e3w) where I tried out the servers from VS Code.
 
-Lately, it has really felt like the tooling is starting to come together, and the Work IQ MCP Servers have pretty much everything we need to do work in Microsoft 365 work from an agent. Exciting times, for sure!
+It has really started to felt like the tooling for agents in the Microsoft ecosystem is starting to come together now, and with the Work IQ MCP Servers we have pretty much everything we need to do work in Microsoft 365 work from an agent. Exciting times, for sure!
 
 The Work IQ MCP Servers are still [documented](https://learn.microsoft.com/en-us/microsoft-agent-365/tooling-servers-overview) as part of the Agent 365 docs. At the time of writing, these are the available MCP Servers:
 
@@ -90,7 +90,7 @@ First of all, we need a way of finding out the metadata for the Work IQ MCP Serv
 
 Replace `<TENANT_ID>` with your own tenant ID, and you have the MCP Server URL.
 
-So, now that we have the MCP Server URLs, let's try to add them to a declarative agent, using the **Microsoft 365 Agents Toolkit** extension in VS Code. Install the extension, click the "M365" button and hit "Create a new agent/app":
+So, now that we have the MCP Server URLs, let's try to add them to a declarative agent using the **Microsoft 365 Agents Toolkit** extension in VS Code. Install the extension, click the "M365" button and hit "Create a new agent/app":
 
 ![alt text](/images/260406/image.png)
 
@@ -98,7 +98,7 @@ Then, select "Declarative agent" -> "Add an action" -> "Start with an MCP Server
 
 ![alt text](/images/260406/image-1.png)
 
-Click "Start" to start the MCP Server. After authenticating, you can see that the MCP Server is connected and the tools (5 in this case) are loaded:
+Click "Start" to run the MCP Server. After authenticating, you can see that the MCP Server is connected and the tools (5 of them, in this case) are loaded:
 
 ![alt text](/images/260406/image-2.png)
 
@@ -106,11 +106,11 @@ Then, click "ATK: Fetch action from MCP" to add the MCP Server tools to the `ai-
 
 ![alt text](/images/260406/image-3.png)
 
-For auth, select "OAuth (with static registration):
+For auth, select "OAuth (with static registration)":
 
 ![alt text](/images/260406/image-4.png)
 
-You will see an error message saying `Unable to find the authentication metadata in the MCP server. ` which can be disregarded. The Work IQ MCP Servers unfortunately don't publish authorization config information as they should, so we will add this info manually later.
+You will see an error message saying `Unable to find the authentication metadata in the MCP server`, which you can disregard for now. The Work IQ MCP Servers unfortunately don't publish authorization config information even though they [SHOULD](https://modelcontextprotocol.info/specification/draft/basic/authorization/#21-overview), so we will add this info manually later (for a previous rant about the Agent 365 MCP Server not being MCP spec compliant, see this [post](https://nullpointer.se/agent-365-mcp-servers-part-1.html)).
 
 Now two things have happened:
 
@@ -121,15 +121,19 @@ Now it is time to add the missing authorization information to the `m365agents.y
 
 ![alt text](/images/260406/image-5.png)
 
-Now, we need to setup the infra necessary to make it possible to do OAuth2 authentication with the MCP Servers. How to accomplish this for declarative agent MCP plugins is described [here](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/api-plugin-authentication) in the docs.
+**Make sure to replace the GUID:s with your Tenant ID!**
+
+Next, we need to setup the infra necessary to make it possible to do OAuth2 authentication with the MCP Servers. How to accomplish this for declarative agent MCP plugins is described [here](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/api-plugin-authentication) in the docs.
 
 First, we need to add an App Registration to Entra ID. Create the app registration and:
 
-- Create a **web** redirect URL that points to: https://teams.microsoft.com/api/platform/v1.0/oAuthRedirect
+- Create a **web** redirect URL that points to: `https://teams.microsoft.com/api/platform/v1.0/oAuthRedirect`
+
 - Make a note of the app registration ID.
+
 - Create an app registration secret and make a note of it.
 
-Then, add API permissions for the MCP Servers that you intend to use in your declarative agent, and grant admin consent for these.:
+Then, add API permissions for the Work IQ MCP Servers that you intend to use in your declarative agent, and grant admin consent for these.:
 
 ![alt text](/images/260406/image-6.png)
 
@@ -140,10 +144,12 @@ Back in VS Code, click "Provision" in the "M365 Agents Toolkit" pane:
 In the dialogs that are shown, enter:
 
 - The ID for the application registration that you created earlier.
+
 - The Client Secret that you created earlier.
+
 - The MCP Server scope (same as you added to the `m365agents.yml` file, for example `https://agent365.svc.cloud.microsoft/agents/tenants/<YOUR TENANT ID>/servers/mcp_MeServer/.default`)
 
-Now M365 Agent Toolkit will create the infra for your agent, and you can find the agent in the Teams Dev Portal: [https://dev.teams.microsoft.com/](https://dev.teams.microsoft.com/). There, you can see that OAuth client registrations have been created for all the MCP Servers that you added:
+Now M365 Agent Toolkit will create the infra for your agent, and when completed you can find the agent in the Teams Dev Portal: [https://dev.teams.microsoft.com/](https://dev.teams.microsoft.com/). There, you can also see that OAuth client registrations have been created for all the MCP Servers that you added. This allows you to authenticate against the Work IQ MCP Servers when using the agent:
 
 ![alt text](/images/260406/image-8.png)
 
@@ -151,7 +157,13 @@ You can now try your agent by opening it up in the Teams Dev Portal, and clickin
 
 ![alt text](/images/260406/image-9.png)
 
-You should now have a working declarative agent that uses the Work IQ MCP Servers! In this example I have wired up the agent with the `mcp_MeServer`, `mcp_CalendarTools`, `mcp_MailTools` and `mcp_M365Copilot` MCP Servers. This has been fun, declarative agents and Work IQ MCP Servers are awesome. Until next time, happy hacking!
+You should now have a working declarative agent that uses the Work IQ MCP Servers! 
+
+In the video below I have wired up the agent with the `mcp_MeServer`, `mcp_CalendarTools`, `mcp_MailTools` and `mcp_M365Copilot` Work IQ MCP Servers. 
+
+This has been fun, declarative agents and Work IQ MCP Servers are pretty awesome. The Agent 365 Toolkit does a good job of provisioning the infrastructure for it all, which make things much simpler. 
+
+Thanks for reading, and until next time - happy hacking!
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/AdhkoSNJPvk?si=22RUVRK0AGuaOwAZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
