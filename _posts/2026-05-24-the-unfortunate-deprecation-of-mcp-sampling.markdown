@@ -62,7 +62,7 @@ So why is it deprecated? [**SEP-2577: Deprecate Roots, Sampling, and Logging**](
 
 The deprecation wasn't without debate, as can be seen from the comments to [SEP-2577](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2577), but I am not really seeing anyone mentioning the main benefit that I see with sampling, and that I mention above - all the agentic capabilities it opens up.
 
-Even though the new MCP Spec is not set in stone, I am assuming this will be the death of MCP Sampling. So long old friend, it has been a fun ride and I hate to see you go.
+Even though the new MCP Spec is not set in stone, I am assuming this will be the death of MCP Sampling. Farewell, old friend — a brief, brilliant run that hinted at a more agentic future for MCP. I hate to see you go.
 
 The silver lining? Thanks to that brand new *Feature Lifecycle Policy*, MCP Sampling won't actually disappear for at least 12 months after the deprecating spec ships - so if you have never built an MCP Server that uses Sampling, now is the time to give it a try. Go grab some inference tokens on the client's tab while you still can!
 
