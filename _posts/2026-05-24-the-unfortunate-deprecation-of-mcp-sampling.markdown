@@ -37,16 +37,16 @@ What is not so good is that they are also deprecating what is probably my favour
 
 Despite its name, *MCP Sampling* has nothing to do with music - it is a way for MCP Server tools to "piggy back" on the MCP Client's Large Language Model, and use that LLM for completions. In the words of the specification:
 
-```text
-The Model Context Protocol (MCP) provides a standardized way for servers to request LLM sampling (“completions” or “generations”) from language models via clients. This flow allows clients to maintain control over model access, selection, and permissions while enabling servers to leverage AI capabilities—with no server API keys necessary. Servers can request text, audio, or image-based interactions and optionally include context from MCP servers in their prompts.
-```
+
+*The Model Context Protocol (MCP) provides a standardized way for servers to request LLM sampling (“completions” or “generations”) from language models via clients. This flow allows clients to maintain control over model access, selection, and permissions while enabling servers to leverage AI capabilities—with no server API keys necessary. Servers can request text, audio, or image-based interactions and optionally include context from MCP servers in their prompts.*
+
 So, this basically gives the MCP Server tool access to its own LLM (borrowed from the client), and it requires no AI plumbing on the MCP Server side, and no API key - the MCP Client pays for the inference! 
 
 I have blogged and posted about this feature extensively for the last year, and explored it in various ways:
 
 - In [this blog post](https://nullpointer.se/2025/08/21/mcp-automatic-report-generation.html) I use MCP Sampling to allow an MCP tool to dynamically generate reports, based on user input. 
 
-- In my [LinkedIn post](https://www.linkedin.com/posts/andreasadner_mcp-vscode-activity-7444081850974879745-PTE-) "What if your MCP Server could think for itself?" I explore a related MCP feature - [SEP-1577 Sampling with Tools](https://modelcontextprotocol.io/seps/1577--sampling-with-tools) - a feature that made the Sampling capability even more powerful, by allowing LLM calls made by the tool through Sampling to also be able to call other MCP Server tools. 
+- In my [LinkedIn post](https://www.linkedin.com/posts/andreasadner_mcp-vscode-activity-7444081850974879745-PTE-) *"What if your MCP Server could think for itself?"* I explore a related MCP feature - [SEP-1577 Sampling with Tools](https://modelcontextprotocol.io/seps/1577--sampling-with-tools) - a feature that made the Sampling capability even more powerful, by allowing LLM calls made by the tool through Sampling to also be able to call other MCP Server tools. 
 
 This could have been a real game-changer, since with the "Sampling with tools" feature the MCP Server could take over the steering-wheel and drive its own agentic loop, all on its own, using the client's model. This inverts the typical MCP control flow: instead of the client orchestrating everything, the *tool itself* becomes an agent orchestrator - able to reason, call other MCP tools and iterate until it arrives at an answer. All while borrowing the client's LLM, and on the client's dime.
 
@@ -56,9 +56,9 @@ This is all really sad - it sure feels like a lost opportunity to make MCP Serve
 
 So why is it deprecated? [**SEP-2577: Deprecate Roots, Sampling, and Logging**](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2577) gives some answers. They list a couple of reasons for the coming death of Sampling:
 
-- Low adoption - Yes, that is true, sort of - and maybe not as true as it used to be. VS Code has had [good, although experimental support](https://code.visualstudio.com/updates/v1_101#_mcp-support-for-sampling-experimental) for Sampling for a long time, and I have done all my experiments there. But looking at the official list of [supported MCP Clients](https://modelcontextprotocol.io/clients), that list is actually pretty long, nowadays.
+- **Low adoption** - Yes, that is true, sort of - and maybe not as true as it used to be. VS Code has had [good, although experimental support](https://code.visualstudio.com/updates/v1_101#_mcp-support-for-sampling-experimental) for Sampling for a long time, and I have done all my experiments there. But looking at the official list of [supported MCP Clients](https://modelcontextprotocol.io/clients), that list is actually pretty long, nowadays.
 
-- Complex to implement - Perhaps true, but hasn't stopped many clients from shipping it.
+- **Complex to implement** - Perhaps true, but hasn't stopped many clients from shipping it.
 
 The deprecation wasn't without debate, as can be seen from the comments to [SEP-2577](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/2577), but I am not really seeing anyone mentioning the main benefit that I see with sampling, and that I mention above - all the agentic capabilities it opens up.
 
