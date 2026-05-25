@@ -35,12 +35,12 @@ The MCP specification is evolving, and a release candidate for the next version 
 
 What is not so good is that they are also deprecating what is probably my favourite feature in the MCP Spec (well, except for MCP Apps, of course) - [MCP Sampling](https://modelcontextprotocol.io/specification/2025-11-25/client/sampling).
 
-Despite its name, *MCP Sampling* has nothing to do with music - it is a way for MCP Server tools to "piggy back" on the MCP Client's Large Language Model, and use that LLM for completions. In the words of the specification:
+Despite its name, *MCP Sampling* has nothing to do with music - it is a way for MCP Server tools to "piggy back" on the MCP client's Large Language Model, and use that LLM for completions. In the words of the specification:
 
 
 *The Model Context Protocol (MCP) provides a standardized way for servers to request LLM sampling (“completions” or “generations”) from language models via clients. This flow allows clients to maintain control over model access, selection, and permissions while enabling servers to leverage AI capabilities—with no server API keys necessary. Servers can request text, audio, or image-based interactions and optionally include context from MCP servers in their prompts.*
 
-So, this basically gives the MCP Server tool access to its own LLM (borrowed from the client), and it requires no AI plumbing on the MCP Server side, and no API key - the MCP Client pays for the inference! 
+So, this basically gives the MCP Server tool access to its own LLM (borrowed from the client), and it requires no AI plumbing on the MCP Server side, and no API key - the MCP client pays for the inference! 
 
 I have blogged and posted about this feature extensively for the last year, and explored it in various ways:
 
