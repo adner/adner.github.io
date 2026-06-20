@@ -52,3 +52,5 @@ paginate_path: "/page:num/"  # /page2, /page3, ...
 exclude:
   - scripts/
 
+include: [".well-known"]
+

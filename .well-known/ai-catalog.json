@@ -1,0 +1,24 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Nullpointer Treasure Hunt",
+    "identifier": "did:web:nullpointer.se"
+  },
+  "entries": [
+    {
+      "identifier": "urn:ai:nullpointer.se:server:challenge-one",
+      "displayName": "ARD Treasure Hunt — Challenge 1",
+      "type": "application/mcp-server+json",
+      "url": "https://nptreasurehuntstorage.blob.core.windows.net/ardchallenge/cards/76041b6a9f9547d19459e702ea06d343.mcp.json",
+      "description": "First stop in the Agentic Resource Discovery treasure hunt. Connect and call the tool to begin.",
+      "capabilities": ["reveal_challenge_one"],
+      "tags": ["treasure-hunt", "ard", "demo"],
+      "representativeQueries": [
+        "start the agentic resource discovery treasure hunt",
+        "find the first ARD challenge",
+        "where do I begin the nullpointer treasure hunt",
+        "discover an MCP server via a well-known catalog"
+      ]
+    }
+  ]
+}
