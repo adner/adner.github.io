@@ -55,7 +55,7 @@ Then, let's set up the OAuth2 redirect URLs required for the MCP Clients we inte
 
 ## Connect to the Dataverse MCP Server
 
-Let's hook our various MCP Clients up to the Dataverse MCP Server.
+Let's hook our various MCP Clients up to the Dataverse MCP Server. Our PKCE setup makes this a breeze.
 
 ### Claude Desktop
 
