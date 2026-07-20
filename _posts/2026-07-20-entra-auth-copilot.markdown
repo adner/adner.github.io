@@ -271,7 +271,9 @@ After packaging the plugin, we upload it to our tenant and enable it in Cowork. 
 
 ![alt text](/images/260720/image-11.png)
 
-So, after a deep dive down the Entra/MCP rabbit hole, we have both Microsoft 365 Copilot and Copilot Cowork running with Entra ID-secured MCP servers. What a time to be alive! I hope you learned something about auth; I sure did. 
+So, after a deep dive down the Entra/MCP rabbit hole, we have both Microsoft 365 Copilot and Copilot Cowork running with Entra ID-secured MCP servers. What a time to be alive! I hope you learned something about auth - I sure did. 
+
+For a code-dump of everything, as well as the ramblings between me and Codex/Claude that led to this, see [this repo](https://github.com/adner/EntraAuthCopilotCowork).
 
 Until next time, happy hacking! ⌨️
 
